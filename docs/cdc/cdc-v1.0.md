@@ -86,11 +86,17 @@ Utilisé lors que l'on passe dessus:
 ## Pages
 
 ### Page d'accueil
+- Pas de header / pas de aside
 - Zone de login sur la partie principale de l'écran
 - Logo en fond sur l'écran de login
 - En bas infos sur le jeu (règles, commandes, scores (ou page à part), copyright, ...).
 
+### Page des games
+- Pas de header
+- Liste des games sur la partie principale de l'écran
+- Aside :  Infos sur le player (Statut de connexion à une game / infos games (nb joueur, nom de la game, ...)
+
 ### Page du jeu
-- pas de header
-- zone principale = zone de jeu
-- aside : 4 personnages (Nom, type, score, items, ...)
+- Pas de header
+- Zone principale = zone de jeu
+- Aside : 4 personnages (Nom, type, score, items, ...)
