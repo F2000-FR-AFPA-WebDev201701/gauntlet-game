@@ -82,3 +82,15 @@ Utilisé lors que l'on passe dessus:
 
 ## Limites du projet
 - Multiplayer (local = 1 machine).
+
+## Pages
+
+### Page d'accueil
+- Zone de login sur la partie principale de l'écran
+- Logo en fond sur l'écran de login
+- En bas infos sur le jeu (règles, commandes, scores (ou page à part), copyright, ...).
+
+### Page du jeu
+- pas de header
+- zone principale = zone de jeu
+- aside : 4 personnages (Nom, type, score, items, ...)
