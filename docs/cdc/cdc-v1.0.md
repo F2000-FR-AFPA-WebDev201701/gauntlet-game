@@ -1,5 +1,5 @@
 # Cahier des charges V1.0
-06/03/2017 - 15H57
+07/03/2017 - 11H05
 
 GAUNTLET
 
@@ -48,13 +48,13 @@ Infos de la partie actuelle (en PO) :
 - Avancent vers le héro (CAC).
 - XXX points de vie.
 - Force d'attaque.
-- Représentes XXX PO lors qu'ils sont tués.
+- Ajoutent XXX PO au personnage lors qu'ils sont tués. Si plusieurs joueurs XXX PO reparties sur l'ensemble des joueurs.
 
 ### Objets :
 Utilisé lors que l'on passe dessus:
-- potions : + XX points de vie.
-- clés : On peut les cumuler (sert à ouvrir les portes).
-- coffres : + XX Pièces.
+- Potions : + XX points de vie.
+- Clés : On peut les cumuler (sert à ouvrir les portes).
+- Coffres : + XX Pièces.
 
 ### Décors :
 - Portails de sortie (level supérieur).
