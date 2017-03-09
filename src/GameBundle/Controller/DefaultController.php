@@ -4,8 +4,9 @@ namespace GameBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use GameBundle\Entity\Decor;
-use GameBundle\Entity\Personage;
+use GameBundle\Model\Decor;
+use GameBundle\Model\Personage;
+use GameBundle\Model\Map;
 
 class DefaultController extends Controller {
 
@@ -25,28 +26,35 @@ class DefaultController extends Controller {
         $decor1 = new Decor();
         $decor1->setPositionX(123);
         $decor1->setPositionY(22);
-        $decor1->setType('Mur'); // wall
+        $decor1->setType('mur'); // wall
         $decor1->setImage('wall.gif');
 
         $decor2 = new Decor();
         $decor2->setPositionX(72);
         $decor2->setPositionY(44);
-        $decor2->setType('Mur'); // wall
+        $decor2->setType('mur'); // wall
         $decor2->setImage('wall.gif');
 
-        // $perso1 = new Personage();
+        $perso1 = new Personage();
+        $perso1->setPositionX(155);
+        $perso1->setPositionY(175);
+        $perso1->setType('hero'); // perso
+        //$perso1->setImage('war.gif');
 
-        $map = new Map();
-        $map->addElement($decor1);
-        $map->addElement($decor2);
-        // $map->addItem($perso1);
+        $oMap = new Map();
+        $oMap->addElement($decor1);
+        $oMap->addElement($decor2);
+
+        $oMap->addElement($perso1);
 
         dump($decor1);
         dump($decor2);
 
         dump($oMap->getaElements());
 
-        return $this->render('GameBundle:Default:tests.html.twig', $oMap->getaElements());
+        //$oMap->collision($perso1, $decor2);
+
+        return $this->render('GameBundle:Map:initmap.html.twig', array('map' => $oMap->getaElements()));
     }
 
 }
