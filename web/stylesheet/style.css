@@ -1,0 +1,29 @@
+.container{
+    width: 640px;
+    height: 640px;
+    margin:0 calc(50% - 225px);
+}
+
+
+.plateau{
+    position: relative;
+    width: 640px;
+    height: 640px;
+    box-sizing: border-box;
+    border:2px solid black;
+}
+
+.tile{
+    position: absolute;
+    width: 32px;
+    height: 32px;
+}
+
+.hero{
+    background-color: greenyellow;
+}
+
+.mur{
+    background-color: darkred;
+}
+
