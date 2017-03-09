@@ -4,18 +4,6 @@ namespace GameBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-<<<<<<< HEAD
-
-class DefaultController extends Controller
-{
-    /**
-     * @Route("/")
-     */
-    public function indexAction()
-    {
-        return $this->render('GameBundle:Default:index.html.twig');
-    }
-=======
 use GameBundle\Entity\Decor;
 use GameBundle\Entity\Personage;
 
@@ -61,5 +49,4 @@ class DefaultController extends Controller {
         return $this->render('GameBundle:Default:tests.html.twig', $oMap->getaElements());
     }
 
->>>>>>> a2d36a22a51e1ad80a50cb3ba1e98b1f0b851338
 }

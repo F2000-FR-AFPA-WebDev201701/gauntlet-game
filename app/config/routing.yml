@@ -7,3 +7,6 @@ app:
     resource: "@AppBundle/Controller/"
     type:     annotation
 
+game:
+    resource: "@GameBundle/Controller/"
+    type:     annotation
