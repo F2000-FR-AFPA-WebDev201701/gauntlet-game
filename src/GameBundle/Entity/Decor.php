@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="decor")
  * @ORM\Entity(repositoryClass="GameBundle\Repository\DecorRepository")
  */
-class Decor
-{
+class Decor {
+
     /**
      * @var int
      *
@@ -38,7 +38,7 @@ class Decor
     /**
      * @var string
      *
-     * @ORM\Column(name="Type", type="string", length=64)
+     * @ORM\Column(name="Type", type="string", length=1)
      */
     private $type;
 
@@ -49,14 +49,12 @@ class Decor
      */
     private $image;
 
-
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -67,8 +65,7 @@ class Decor
      *
      * @return Decor
      */
-    public function setPositionX($positionX)
-    {
+    public function setPositionX($positionX) {
         $this->positionX = $positionX;
 
         return $this;
@@ -79,8 +76,7 @@ class Decor
      *
      * @return int
      */
-    public function getPositionX()
-    {
+    public function getPositionX() {
         return $this->positionX;
     }
 
@@ -91,8 +87,7 @@ class Decor
      *
      * @return Decor
      */
-    public function setPositionY($positionY)
-    {
+    public function setPositionY($positionY) {
         $this->positionY = $positionY;
 
         return $this;
@@ -103,8 +98,7 @@ class Decor
      *
      * @return int
      */
-    public function getPositionY()
-    {
+    public function getPositionY() {
         return $this->positionY;
     }
 
@@ -115,8 +109,7 @@ class Decor
      *
      * @return Decor
      */
-    public function setType($type)
-    {
+    public function setType($type) {
         $this->type = $type;
 
         return $this;
@@ -127,8 +120,7 @@ class Decor
      *
      * @return string
      */
-    public function getType()
-    {
+    public function getType() {
         return $this->type;
     }
 
@@ -139,8 +131,7 @@ class Decor
      *
      * @return Decor
      */
-    public function setImage($image)
-    {
+    public function setImage($image) {
         $this->image = $image;
 
         return $this;
@@ -151,9 +142,8 @@ class Decor
      *
      * @return string
      */
-    public function getImage()
-    {
+    public function getImage() {
         return $this->image;
     }
-}
 
+}
