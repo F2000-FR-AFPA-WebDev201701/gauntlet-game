@@ -1,76 +1,51 @@
 <?php
 
-namespace GameBundle\Entity;
-
-use Doctrine\ORM\Mapping as ORM;
+namespace GameBundle\Model;
 
 /**
  * Personage
- *
- * @ORM\Table(name="personage")
- * @ORM\Entity(repositoryClass="GameBundle\Repository\PersonageRepository")
  */
-class Personage
-{
+class Personage {
+
     /**
      * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Type", type="string", length=1)
      */
     private $type;
 
     /**
      * @var int
-     *
-     * @ORM\Column(name="PositionX", type="integer")
      */
     private $positionX;
 
     /**
      * @var int
-     *
-     * @ORM\Column(name="PositionY", type="integer")
      */
     private $positionY;
 
     /**
      * @var int
-     *
-     * @ORM\Column(name="HP", type="integer")
      */
-    private $hP;
+    private $hp;
 
     /**
      * @var int
-     *
-     * @ORM\Column(name="Strength", type="integer")
      */
     private $strength;
 
     /**
      * @var int
-     *
-     * @ORM\Column(name="GameId", type="integer")
      */
     private $gameId;
 
-
     /**
      * Get id
-     *
-     * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -81,8 +56,7 @@ class Personage
      *
      * @return Personage
      */
-    public function setType($type)
-    {
+    public function setType($type) {
         $this->type = $type;
 
         return $this;
@@ -93,8 +67,7 @@ class Personage
      *
      * @return string
      */
-    public function getType()
-    {
+    public function getType() {
         return $this->type;
     }
 
@@ -105,8 +78,7 @@ class Personage
      *
      * @return Personage
      */
-    public function setPositionX($positionX)
-    {
+    public function setPositionX($positionX) {
         $this->positionX = $positionX;
 
         return $this;
@@ -117,8 +89,7 @@ class Personage
      *
      * @return int
      */
-    public function getPositionX()
-    {
+    public function getPositionX() {
         return $this->positionX;
     }
 
@@ -129,8 +100,7 @@ class Personage
      *
      * @return Personage
      */
-    public function setPositionY($positionY)
-    {
+    public function setPositionY($positionY) {
         $this->positionY = $positionY;
 
         return $this;
@@ -141,8 +111,7 @@ class Personage
      *
      * @return int
      */
-    public function getPositionY()
-    {
+    public function getPositionY() {
         return $this->positionY;
     }
 
@@ -153,21 +122,19 @@ class Personage
      *
      * @return Personage
      */
-    public function setHP($hP)
-    {
-        $this->hP = $hP;
+    public function setHp($hp) {
+        $this->hp = $hp;
 
         return $this;
     }
 
     /**
-     * Get hP
+     * Get Hp
      *
      * @return int
      */
-    public function getHP()
-    {
-        return $this->hP;
+    public function getHp() {
+        return $this->hp;
     }
 
     /**
@@ -177,8 +144,7 @@ class Personage
      *
      * @return Personage
      */
-    public function setStrength($strength)
-    {
+    public function setStrength($strength) {
         $this->strength = $strength;
 
         return $this;
@@ -189,8 +155,7 @@ class Personage
      *
      * @return int
      */
-    public function getStrength()
-    {
+    public function getStrength() {
         return $this->strength;
     }
 
@@ -201,8 +166,7 @@ class Personage
      *
      * @return Personage
      */
-    public function setGameId($gameId)
-    {
+    public function setGameId($gameId) {
         $this->gameId = $gameId;
 
         return $this;
@@ -213,9 +177,8 @@ class Personage
      *
      * @return int
      */
-    public function getGameId()
-    {
+    public function getGameId() {
         return $this->gameId;
     }
-}
 
+}

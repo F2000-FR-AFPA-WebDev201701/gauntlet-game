@@ -1,13 +1,18 @@
 <?php
 
-namespace GameBundle\Entity;
+namespace GameBundle\Model;
 
 class Map {
 
     protected $aElements = [];
 
+    /*
+     * addElement($element)
+     * add a element (wall, item, perso, ...) into $aElements
+     * a element can be a array or a object (instance)
+     */
+
     function addElement($element) {
-        //function qui remplit le tableau d'objets de types decors/persos/items
         $this->aElements[] = $element;
     }
 

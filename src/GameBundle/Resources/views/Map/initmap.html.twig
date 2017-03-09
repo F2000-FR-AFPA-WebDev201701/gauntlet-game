@@ -10,7 +10,7 @@
         <div class="plateau">
             {% for tile in map %}
                 <!-- Changer les noms des variables coord/ect-->
-                <div class="{{ tile.tuile }} tile" style="margin-left:{{ tile.coordx }}px; margin-top:{{ tile.coordy }}px"></div>
+                <div class="{{ tile.type }} tile" style="margin-left:{{ tile.positionX }}px; margin-top:{{ tile.positionY }}px"></div>
             {% endfor %}
         </div>
     </body>

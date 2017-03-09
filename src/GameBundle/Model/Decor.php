@@ -1,58 +1,39 @@
 <?php
 
-namespace GameBundle\Entity;
-
-use Doctrine\ORM\Mapping as ORM;
+namespace GameBundle\Model;
 
 /**
  * Decor
- *
- * @ORM\Table(name="decor")
- * @ORM\Entity(repositoryClass="GameBundle\Repository\DecorRepository")
  */
 class Decor {
 
     /**
      * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var int
-     *
-     * @ORM\Column(name="PositionX", type="integer")
      */
     private $positionX;
 
     /**
      * @var int
-     *
-     * @ORM\Column(name="PositionY", type="integer")
      */
     private $positionY;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Type", type="string", length=1)
      */
     private $type;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Image", type="string", length=128)
      */
     private $image;
 
     /**
      * Get id
-     *
-     * @return int
      */
     public function getId() {
         return $this->id;
