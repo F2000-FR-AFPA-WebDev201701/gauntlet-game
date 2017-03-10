@@ -12,7 +12,8 @@ class Map {
     private $mapMaxY = 480;
     private $posPersoX; //result X
     private $posPersoY; //result Y
-
+    private $posDecorX; //result X
+    private $posDecorY;
     /**
      * Map constructor.
      */
@@ -20,8 +21,8 @@ class Map {
     public function __construct() {
         // load
         $this->load();
-        //$this->posPersoX = 305;
-        //$this->posPersoY = 128;
+        $this->posDecorX = 110;
+        $this->posDecorY = 50;
     }
 
     public function move($moveDirection) {
@@ -83,11 +84,14 @@ class Map {
                 <style type="text/css">
             .hero { margin-left: ' . $this->posPersoX . 'px;
                     margin-top: ' . $this->posPersoY . 'px;}
+            .decor { margin-left: ' . $this->posDecorX . 'px;
+                    margin-top: ' . $this->posDecorY . 'px;}
             </style>
         </head>
         <body>
             <div class="plateau">
             <div class="hero" ></div>
+            <div class="decor"></div>
         </div>
         </body>
                 ';
@@ -106,6 +110,38 @@ class Map {
     public function save() {
         $varSerialize = serialize($this);
         file_put_contents('./save', $varSerialize);
+    }
+
+    public function collision(){
+
+        //Comparaison Y1/Y2 & X1/X2
+        $x1 = $this->posPersoX;
+        $y1 = $this->posPersoY;
+        $x2 = $this->posDecorX;
+        $y2 = $this->posDecorY;
+        /*
+        A1(x1,      y1)       <   C2(x2+32,   y2+32)
+        B1(x1+32,   y1)       <   D2(x2,      y2+32)
+        C1(x1+32,   y1+32)    <   A2(x2,      y2)
+        D1(x1,      y1+32)    <   B2(x2+32,   y2)   //pour x et pour y
+        */
+
+        if((($x1>=$x2) && ($x1<=($x2+32))) && (($y1>=$y2) && ($y1<=($y2+32)))){
+            echo 'collision entre A1 et C2!';
+        }
+        if(((($x1+32)>=$x2) && (($x1+32)<=$x2+32)) &&( ($y1>=$y2) && ($y1<=($y2+32)) )){
+            echo 'collision entre B1 et D2!';
+        }
+
+        if( (($x1+32>=$x2) && (($x1+32)<=($x2+32))) && ( (($y1+32)<=($y2+32))&&(($y1+32)>=$y2)) ){
+            echo 'collision entre C1 et A2!';
+        }
+
+        if( ( ($x1<=$x2+32)  && ($x1>=$x2)) &&  (   (($y1+32)>=$y2 ) && (($y1+32)<=($y2+32))    ) )   {
+            echo 'collision entre D1 et B2!';
+        }
+
+
     }
 
 }

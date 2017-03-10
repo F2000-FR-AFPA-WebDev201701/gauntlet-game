@@ -8,6 +8,7 @@ $moveDirection = $_GET['move'];
 $map = new Map();
 $map->move($moveDirection);
 $html = $map->generateHtml();
+$map->collision();
 
 echo $html;
 
