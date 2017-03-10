@@ -31,11 +31,14 @@
 
 - Création d'un répertoire /php-tests dans SF3 pour les petits tests en Php (pas de SF3)
 
+## 10-03-2017
+
+- Serialiser Map dans entité Game
+
 #################################################
 en cours
 #################################################
 
-- Serialiser Map dans entité Game (en cours nico HEN)
 
 - Login / Inscription User (en cours nico HUG)
 
