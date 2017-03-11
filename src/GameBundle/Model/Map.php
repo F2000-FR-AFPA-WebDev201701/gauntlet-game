@@ -15,7 +15,7 @@ class Map {
     
     // element
     public static $_ELEMENT_OFFSET_MOVE   = 4;    // pixels
-    public static $_ELEMENT_SIZE         = 32;   // pixels
+    public static $_ELEMENT_SIZE          = 32;   // pixels
    
     // elements
     protected $aElements = [];   
@@ -28,19 +28,10 @@ class Map {
     }
     
     /*
-     * addElement($element)
-     * add a element (wall, item, perso, ...) into $aElements
-     * a element can be a array or a object (instance)
-     */
-    function addElement($element) {
-        $this->aElements[] = $element;
-    }
-
-    /*
      * create()
      * it's a map generator : create a new map in a file
      */
-    private function create() {
+    public function create() {
         // load decor datas
         $this->decor1 = new Decor();
         $this->decor1->setPositionX(110);
@@ -189,6 +180,15 @@ class Map {
         }
         // no collision
         return false;
+    }
+    
+    /*
+     * addElement($element)
+     * add a element (wall, item, perso, ...) into $aElements
+     * a element can be a array or a object (instance)
+     */
+    private function addElement($element) {
+        $this->aElements[] = $element;
     }
 
     /**
