@@ -26,37 +26,16 @@ class Map {
     function __construct() {
 
     }
-    
+
     /*
-     * create()
-     * it's a map generator : create a new map in a file
+     * addElement($element)
+     * add a element (wall, item, perso, ...) into $aElements
+     * a element can be a array or a object (instance)
      */
-    public function create() {
-        // load decor datas
-        $this->decor1 = new Decor();
-        $this->decor1->setPositionX(110);
-        $this->decor1->setPositionY(110);
-        $this->decor1->setType('mur'); // wall
-        $this->decor1->setImage('wall.gif');
-        /*
-            $this->decor2 = new Decor();
-            $this->decor2->setPositionX(123);
-            $this->decor2->setPositionY(22);
-            $this->decor2->setType('mur'); // wall
-            $this->decor2->setImage('wall.gif');
-        */
-        $this->perso1 = new Personage();
-        $this->perso1->setPositionX(210);
-        $this->perso1->setPositionY(190);
-        $this->perso1->setType('hero'); // perso
-
-        $this->oMap = new Map();
-        $this->oMap->addElement($this->perso1);
-        $this->oMap->addElement($this->decor1);
-
-        //$this->save($this->oMap);
+    public function addElement($element) {
+        $this->aElements[] = $element;
     }
-
+    
     /*
      * load()
      * load a map from a file
@@ -68,7 +47,7 @@ class Map {
             $filenameSer = 'map1';
         }
         else {
-            // create map1
+            return null;
         }
         $contentFile = file_get_contents($filenameSer);
         $unserFile = unserialize($contentFile);
@@ -182,15 +161,6 @@ class Map {
         return false;
     }
     
-    /*
-     * addElement($element)
-     * add a element (wall, item, perso, ...) into $aElements
-     * a element can be a array or a object (instance)
-     */
-    private function addElement($element) {
-        $this->aElements[] = $element;
-    }
-
     /**
      * Getters / Setters
      */
@@ -198,7 +168,7 @@ class Map {
         return $this->aElements;
     }
 
-    protected function setaElements($structure) {
+    public function setaElements($structure) {
         $this->aElements = $structure;
     }
 }
