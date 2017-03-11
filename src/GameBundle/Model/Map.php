@@ -4,39 +4,43 @@ namespace GameBundle\Model;
 
 class Map {
 
-    public static $_MOVEUP = 1;
-    public static $_MOVERIGHT = 2;
-    public static $_MOVEDOWN = 3;
-    public static $_MOVELEFT = 4;
-    public static $_OFFSETMOVE = 4; //pixels
-    //private $moveDirection;
-    private $mapMaxX = 320;
-    private $mapMaxY = 480;
-    protected $aElements = [];
+    public static $_MOVE_UP      = 1;
+    public static $_MOVE_RIGHT   = 2;
+    public static $_MOVE_DOWN    = 3;
+    public static $_MOVE_LEFT    = 4;
 
+    // map
+    public static $_MAP_MAX_X = 320;
+    public static $_MAP_MAX_Y = 480;
+    
+    // element
+    public static $_ELEMENT_OFFSET_MOVE   = 4;    // pixels
+    public static $_ELEMENT_SIZE         = 32;   // pixels
+   
+    // elements
+    protected $aElements = [];   
+
+    /*
+     * __construct()
+     */
+    function __construct() {
+
+    }
+    
     /*
      * addElement($element)
      * add a element (wall, item, perso, ...) into $aElements
      * a element can be a array or a object (instance)
      */
-
     function addElement($element) {
         $this->aElements[] = $element;
     }
 
-    function __construct() {
-
-    }
-
-    public function getaElements() {
-        return $this->aElements;
-    }
-
-    protected function setaElements($structure) {
-        $this->aElements = $structure;
-    }
-
-    private function createAction() { // create a new map in a file
+    /*
+     * create()
+     * it's a map generator : create a new map in a file
+     */
+    private function create() {
         // load decor datas
         $this->decor1 = new Decor();
         $this->decor1->setPositionX(110);
@@ -44,11 +48,11 @@ class Map {
         $this->decor1->setType('mur'); // wall
         $this->decor1->setImage('wall.gif');
         /*
-                $decor2 = new Decor();
-                $decor2->setPositionX(123);
-                $decor2->setPositionY(22);
-                $decor2->setType('mur'); // wall
-                $decor2->setImage('wall.gif');
+            $this->decor2 = new Decor();
+            $this->decor2->setPositionX(123);
+            $this->decor2->setPositionY(22);
+            $this->decor2->setType('mur'); // wall
+            $this->decor2->setImage('wall.gif');
         */
         $this->perso1 = new Personage();
         $this->perso1->setPositionX(210);
@@ -57,17 +61,15 @@ class Map {
 
         $this->oMap = new Map();
         $this->oMap->addElement($this->perso1);
-
         $this->oMap->addElement($this->decor1);
 
-        //dump($decor1);
-        //dump($decor2);
-
-        //dump($oMap->getaElements());
-        //$this->save(new);
+        //$this->save($this->oMap);
     }
 
-
+    /*
+     * load()
+     * load a map from a file
+     */
     public function load() {
         if(file_exists('map1move')) {
             $filenameSer = 'map1move';
@@ -83,115 +85,120 @@ class Map {
         return($unserFile);
     }
 
+    /*
+     * save()
+     * save a map (all elements + methods) into a file
+     */
     public function save() {
         $ser = serialize($this);
         $fileNameSer = 'map1move';
         file_put_contents($fileNameSer, $ser);
     }
-
-    public function collision($moveDirection){
-        dump('debut collision test');
-        //Comparaison Y1/Y2 & X1/X2
-        $x1 = $this->aElements[0]->getPositionX();
-        $y1 = $this->aElements[0]->getPositionY();
-        $x2 = $this->aElements[1]->getPositionX();
-        $y2 = $this->aElements[1]->getPositionY();
-        /*
-        A1(x1,      y1)       <   C2(x2+32,   y2+32)
-        B1(x1+32,   y1)       <   D2(x2,      y2+32)
-        C1(x1+32,   y1+32)    <   A2(x2,      y2)
-        D1(x1,      y1+32)    <   B2(x2+32,   y2)   //pour x et pour y
-        */
-        if ($moveDirection == self::$_MOVELEFT || $moveDirection == self::$_MOVEUP) {
-            if ((($x1 >= $x2) && ($x1 <= ($x2 + 32))) && (($y1 >= $y2) && ($y1 <= ($y2 + 32)))) {
-                dump('collision entre A1 et C2!');
-                return false;
-            }
-        }
-
-        if ($moveDirection == self::$_MOVERIGHT || $moveDirection == self::$_MOVEUP) {
-            if (((($x1 + 32) >= $x2) && (($x1 + 32) <= $x2 + 32)) && (($y1 >= $y2) && ($y1 <= ($y2 + 32)))) {
-                dump('collision entre B1 et D2!');
-
-                return false;
-            }
-        }
-
-        if ($moveDirection == self::$_MOVERIGHT || $moveDirection == self::$_MOVEDOWN) {
-            if ((($x1 + 32 >= $x2) && (($x1 + 32) <= ($x2 + 32))) && ((($y1 + 32) <= ($y2 + 32)) && (($y1 + 32) >= $y2))) {
-                dump('collision entre C1 et A2!');
-
-                return false;
-            }
-        }
-        if ($moveDirection == self::$_MOVELEFT || $moveDirection ==  self::$_MOVEDOWN) {
-            if ((($x1 <= $x2 + 32) && ($x1 >= $x2)) && ((($y1 + 32) >= $y2) && (($y1 + 32) <= ($y2 + 32)))) {
-                dump('collision entre D1 et B2!');
-
-                return false;
-            }
-        }
-        dump('no collision');
-        return true;
-
-
-    }
-
+    
+    /*
+     * move()
+     * move a element and save the map
+     */
     public function move($moveDirection) {
-        //dump($moveDirection);
-        if ($this->moveable($moveDirection)) {
-            switch ($moveDirection) {
-                case self::$_MOVEUP :
-                    $this->aElements[0]->setPositionY($this->aElements[0]->getPositionY() - self::$_OFFSETMOVE);
-                    break;
-                case self::$_MOVERIGHT :
-                    $this->aElements[0]->setPositionX($this->aElements[0]->getPositionX() + self::$_OFFSETMOVE);
-                    break;
-                case self::$_MOVEDOWN :
-                    $this->aElements[0]->setPositionY($this->aElements[0]->getPositionY() + self::$_OFFSETMOVE);
-                    break;
-                case self::$_MOVELEFT :
-                    $this->aElements[0]->setPositionX($this->aElements[0]->getPositionX() - self::$_OFFSETMOVE);
-                    break;
-            } // end switch
-            //save
-            $this->save();
+        $elementA = $this->aElements[0];
+        $elementB = $this->aElements[1];
+        
+        // move elementA (calcul)
+        $this->calcMove($elementA, $moveDirection);
+        
+        // test if move is valid
+        if ( ($this->checkCollisionMapside($elementA)) || ($this->checkCollision($elementA, $elementB)) ) {
+            // collision with map side or and another element
+            $this->calcMoveInverse($elementA, $moveDirection); // it's not a valid move then come back move
+        } else {
+            // no collisions then keep move and save the map
+            $this->save();           
         }
-    }
-
-    public function moveable($moveDirection) {
-        //return true;
+    }   
+    
+    /*
+     * calcMove($element, $moveDirection)
+     * set element with new coord. Une a move direction.
+     */
+    private function calcMove($element, $moveDirection) {
         switch ($moveDirection) {
-            case self::$_MOVEUP :
-                $condition = ($this->aElements[0]->getPositionY() - self::$_OFFSETMOVE >= 0);
-                if (!$condition) {
-                    //  $this->posPersoY = $this->mapMaxY - 2;
-                }
+            case self::$_MOVE_UP :
+                $element->setPositionY($element->getPositionY() - self::$_ELEMENT_OFFSET_MOVE);
+            break;
+            case self::$_MOVE_RIGHT :
+                $element->setPositionX($element->getPositionX() + self::$_ELEMENT_OFFSET_MOVE);
                 break;
-            case self::$_MOVERIGHT :
-                $condition = ($this->aElements[0]->getPositionX() + self::$_OFFSETMOVE <= $this->mapMaxX);
-                if (!$condition) {
-                    // $this->posPersoX = $this->mapMaxX - 2;
-                }
+            case self::$_MOVE_DOWN :
+                $element->setPositionY($element->getPositionY() + self::$_ELEMENT_OFFSET_MOVE);
                 break;
-            case self::$_MOVEDOWN :
-                $condition = ($this->aElements[0]->getPositionY() + 32 + self::$_OFFSETMOVE <= $this->mapMaxY);
-                if (!$condition) {
-                    // $this->posPersoX = $this->mapMaxY + 2;
-                }
-                break;
-            case self::$_MOVELEFT :
-                $condition = ($this->aElements[0]->getPositionX() - self::$_OFFSETMOVE >= 0);
-                if (!$condition) {
-                    // $this->posPersoX = $this->mapMaxX + 2;
-                }
+            case self::$_MOVE_LEFT :
+                $element->setPositionX($element->getPositionX() - self::$_ELEMENT_OFFSET_MOVE);
                 break;
         } // end switch
+    }
+    
+    /*
+     * calcMoveInverse($element, $moveDirection)
+     * set element with new coord. Use a inverse move direction.
+     */
+    private function calcMoveInverse($element, $moveDirection) {
+        switch ($moveDirection) {
+            case self::$_MOVE_UP :
+                $this->calcMove($element, self::$_MOVE_DOWN);
+                break;
+            case self::$_MOVE_RIGHT :
+                $this->calcMove($element, self::$_MOVE_LEFT);
+                break;
+            case self::$_MOVE_DOWN :
+                $this->calcMove($element, self::$_MOVE_UP);
+                break;
+            case self::$_MOVE_LEFT :
+                $this->calcMove($element, self::$_MOVE_RIGHT);
+                break;
+        } // end switch
+    }
+    
+    /*
+     * checkCollisionMapside($elementA)
+     * return true if a collision exist with border map
+     **/ 
+    private function checkCollisionMapside($element) {
+        return (
+                ($element->getPositionX() <= 0) || ($element->getPositionX() >= self::$_MAP_MAX_X) ||
+                ($element->getPositionY() <= 0) || ($element->getPositionY() >= self::$_MAP_MAX_Y)
+        );
+    }    
+    
+    /*
+     * checkCollision($element1, $element2)
+     * return true if a collision exist with element2
+     **/ 
+    private function checkCollision($element1, $element2) {
+        $x1 = $element1->getPositionX();
+        $x2 = $element2->getPositionX();
+        $y1 = $element1->getPositionY();
+        $y2 = $element2->getPositionY();
+        
+        $maxLeft  = max($x1 , $x2);
+        $maxRight = min($x1 + self::$_ELEMENT_SIZE , $x2 + self::$_ELEMENT_SIZE);
+        $maxBottom   = max($y1 , $y2);
+        $minTop  = min($y1 + self::$_ELEMENT_SIZE, $y2 + self::$_ELEMENT_SIZE);
 
-            return ($condition && ($this->collision($moveDirection)));
+        if( ($maxLeft < $maxRight) && ($maxBottom < $minTop) ) { // intersection
+            return true;    // collision
+        }
+        // no collision
+        return false;
     }
 
+    /**
+     * Getters / Setters
+     */
+    public function getaElements() {
+        return $this->aElements;
+    }
 
-
-
+    protected function setaElements($structure) {
+        $this->aElements = $structure;
+    }
 }
