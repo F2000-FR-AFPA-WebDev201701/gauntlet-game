@@ -11,9 +11,6 @@ use Symfony\Component\BrowserKit\Request;
 
 class DefaultController extends Controller {
 
-    private $decor1;
-    private $perso1;
-
     /**
      * @Route("/")
      */
@@ -25,7 +22,7 @@ class DefaultController extends Controller {
      * @Route("/tests")
      */
     public function testsAction() {
-        $this->oMap = new Map();
+        $this->oMap = new Map(2);
         $unserFile = $this->oMap->load();
         $this->oMap = $unserFile;
 
@@ -38,7 +35,7 @@ class DefaultController extends Controller {
     {
         $moveDirection = $_GET['move'];
 
-        $this->oMap = new Map();
+        $this->oMap = new Map(2);
         $unserFile = $this->oMap->load();
         $this->oMap = $unserFile;
 

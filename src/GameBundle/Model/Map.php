@@ -4,18 +4,22 @@ namespace GameBundle\Model;
 
 class Map {
 
-    public static $_MOVE_UP      = 1;
-    public static $_MOVE_RIGHT   = 2;
-    public static $_MOVE_DOWN    = 3;
-    public static $_MOVE_LEFT    = 4;
+    public static $_MOVE_UP    = 1;
+    public static $_MOVE_RIGHT = 2;
+    public static $_MOVE_DOWN  = 3;
+    public static $_MOVE_LEFT  = 4;
 
     // map
-    public static $_MAP_MAX_X = 320;
-    public static $_MAP_MAX_Y = 480;
+    public static $_MAP_DIRECTORY ='maps'; // /web/maps
+    public static $_MAP_MAX_X     = 320;   // 320 pixels   
+    public static $_MAP_MAX_Y     = 480;   // 480 pixels
+    
+    private $filenameMap     = '';
+    private $filenameMapGame = '';
     
     // element
-    public static $_ELEMENT_OFFSET_MOVE   = 4;    // pixels
-    public static $_ELEMENT_SIZE          = 32;   // pixels
+    public static $_ELEMENT_OFFSET_MOVE = 4;  // pixels
+    public static $_ELEMENT_SIZE        = 32; // pixels
    
     // elements
     protected $aElements = [];   
@@ -23,8 +27,8 @@ class Map {
     /*
      * __construct()
      */
-    function __construct() {
-
+    function __construct($idMap = 1) {
+        $this->initCurrentMapFilename($idMap);
     }
 
     /*
@@ -41,10 +45,10 @@ class Map {
      * load a map from a file
      */
     public function load() {
-        if(file_exists('map1move')) {
-            $filenameSer = 'map1move';
-        } else if(file_exists('map1')) {
-            $filenameSer = 'map1';
+        if(file_exists($this->filenameMapGame)) { // test if game exist
+            $filenameSer = $this->filenameMapGame;
+        } else if(file_exists($this->filenameMap)) { // else test if initial map exist
+            $filenameSer = $this->filenameMap;
         }
         else {
             return null;
@@ -59,10 +63,10 @@ class Map {
      * save()
      * save a map (all elements + methods) into a file
      */
-    public function save() {
+    public function save($initial = true) {
         $ser = serialize($this);
-        $fileNameSer = 'map1move';
-        file_put_contents($fileNameSer, $ser);
+        $filenameSer = ($initial) ? $this->filenameMap : $this->filenameMapGame;
+        file_put_contents($filenameSer, $ser);
     }
     
     /*
@@ -82,7 +86,7 @@ class Map {
             $this->calcMoveInverse($elementA, $moveDirection); // it's not a valid move then come back move
         } else {
             // no collisions then keep move and save the map
-            $this->save();           
+            $this->save(false);           
         }
     }   
     
@@ -149,16 +153,25 @@ class Map {
         $y1 = $element1->getPositionY();
         $y2 = $element2->getPositionY();
         
-        $maxLeft  = max($x1 , $x2);
-        $maxRight = min($x1 + self::$_ELEMENT_SIZE , $x2 + self::$_ELEMENT_SIZE);
-        $maxBottom   = max($y1 , $y2);
-        $minTop  = min($y1 + self::$_ELEMENT_SIZE, $y2 + self::$_ELEMENT_SIZE);
+        $maxLeft    = max($x1 , $x2);
+        $maxRight   = min($x1 + self::$_ELEMENT_SIZE , $x2 + self::$_ELEMENT_SIZE);
+        $maxBottom  = max($y1 , $y2);
+        $minTop     = min($y1 + self::$_ELEMENT_SIZE, $y2 + self::$_ELEMENT_SIZE);
 
         if( ($maxLeft < $maxRight) && ($maxBottom < $minTop) ) { // intersection
-            return true;    // collision
+            return true; // collision
         }
         // no collision
         return false;
+    }
+    
+    /*
+     * initCurrentMapFilename($idMap)
+     * init filenameMap & filenameMapGame = filename of specific map
+     **/
+    private function initCurrentMapFilename($idMap) {
+        $this->filenameMap = self::$_MAP_DIRECTORY. '/map'.$idMap;
+        $this->filenameMapGame = $this->filenameMap.'move';
     }
     
     /**
