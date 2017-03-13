@@ -20,7 +20,7 @@ jQuery(document).ready(function ($) {
         }
 
         $.ajax({
-            url: 'tests/move', // La ressource ciblée
+            url: '../tests/move', // La ressource ciblée
             type: 'GET', // Le type de la requête HTTP.
             data: 'move=' + moveDirection,
             dataType: 'html',
