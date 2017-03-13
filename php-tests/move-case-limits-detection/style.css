@@ -1,0 +1,29 @@
+.container{
+    width: 320px;
+    height: 480px;
+    margin:0 calc(50% - 140px);
+}
+
+
+.plateau{
+    position: relative;
+    width: 320px;
+    height: 480px;
+    box-sizing: border-box;
+    border:2px solid black;
+}
+
+.hero{
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-color: greenyellow;
+}
+.decor{
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-color: maroon;
+}
+
+

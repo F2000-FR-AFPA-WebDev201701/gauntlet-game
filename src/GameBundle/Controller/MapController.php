@@ -2,62 +2,67 @@
 
 namespace GameBundle\Controller;
 
-use GameBundle\Entity\Map;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use GameBundle\Model\Decor;
+use GameBundle\Model\Personage;
+use GameBundle\Model\Map;
 
 class MapController extends Controller {
 
     /**
-     * @Route("/initmap")
+     * @Route("/create_map_file")
+     * createMapAction()
+     * it's a map generator : create some map into a file
      */
-    public function initmapAction() {
-        $map = array(
-            1 => array(
-                'coordx' => '128',
-                'coordy' => '128',
-                'tuile' => 'mur',
-            ),
-            2 => array(
-                'coordx' => '160',
-                'coordy' => '128',
-                'tuile' => 'mur',
-            ),
-            3 => array(
-                'coordx' => '384',
-                'coordy' => '352',
-                'tuile' => 'mur',
-            ),
-            4 => array(
-                'coordx' => '384',
-                'coordy' => '384',
-                'tuile' => 'mur',
-            ),
-            5 => array(
-                'coordx' => '192',
-                'coordy' => '128',
-                'tuile' => 'mur',
-            ),
-            6 => array(
-                'coordx' => '64',
-                'coordy' => '64',
-                'tuile' => 'hero',
-            )
-        );
+    public function CreateMapAction() {
+        // map 1
+        $this->perso1 = new Personage();
+        $this->perso1->setPositionX(210);
+        $this->perso1->setPositionY(190);
+        $this->perso1->setType('hero'); // perso
+        
+        // load decor datas
+        $this->decor1 = new Decor();
+        $this->decor1->setPositionX(110);
+        $this->decor1->setPositionY(110);
+        $this->decor1->setType('mur'); // wall
 
-        $oMap = new Map();
-        $oMap->addElement(array(
-            'coordx' => '64',
-            'coordy' => '64',
-            'tuile' => 'hero'
-        ));
-        $oMap->addElement(array(
-            'coordx' => '168',
-            'coordy' => '168',
-            'tuile' => 'mur'
-        ));
+        $oMap1 = new Map(1);
+        $oMap1->addElement($this->perso1);
+        $oMap1->addElement($this->decor1);
 
-        return $this->render('GameBundle:Map:initmap.html.twig', array('map' => $oMap->getaElements())
+        $oMap1->save(true);
+
+        // map 2
+        $this->perso1 = new Personage();
+        $this->perso1->setPositionX(250);
+        $this->perso1->setPositionY(140);
+        $this->perso1->setType('hero'); // perso
+        
+        // load decor datas
+        $this->decor1 = new Decor();
+        $this->decor1->setPositionX(90);
+        $this->decor1->setPositionY(100);
+        $this->decor1->setType('mur'); // wall
+        
+        $this->decor2 = new Decor();
+        $this->decor2->setPositionX(100);
+        $this->decor2->setPositionY(160);
+        $this->decor2->setType('mur'); // wall        
+
+        $oMap2 = new Map(2);
+        $oMap2->addElement($this->perso1);
+        $oMap2->addElement($this->decor1);
+        $oMap2->addElement($this->decor2);
+
+        $oMap2->save(true);     
+
+        dump($oMap1);
+        dump($oMap2);
+        
+        return $this->render('GameBundle:Map:template.html.twig',
+                                array('map' => $oMap2->getaElements())
         );
     }
 
