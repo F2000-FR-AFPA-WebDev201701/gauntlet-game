@@ -35,14 +35,22 @@
 
 - Serialiser Map dans entité Game
 
+- Gestion collision (entre 2 éléments)
+
+## 13-03-2017
+
+- Gestion des collision entre plusieurs éléments
+
+
 #################################################
 en cours
 #################################################
 
+- sitemap (nicolas Hen)
 
-- Login / Inscription User (en cours nico HUG)
+- Login / Inscription / Logout User (en cours nico HUG)
 
 - Page d'accueil (sommaire) (en cours nioo HUG)
 
-- Gestion collision (en cours mika)
+- GameController (list / create / join / refresh / play) (en cours mika)
 
