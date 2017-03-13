@@ -74,19 +74,25 @@ class Map {
      */
 
     public function move($moveDirection) {
-        $elementA = $this->aElements[0];
-        $elementB = $this->aElements[1];
-
+        $elementA = $this->aElements[0]; // perso
         // move elementA (calcul)
         $this->calcMove($elementA, $moveDirection);
 
-        // test if move is valid
-        if (($this->checkCollisionMapside($elementA)) || ($this->checkCollision($elementA, $elementB))) {
-            // collision with map side or and another element
+        // check collision between elementA and others elements
+        $collision = false;
+        for ($i = 1; $i < count($this->aElements); $i++) {
+            // test if move is valid
+            if (($this->checkCollisionMapside($elementA)) || ($this->checkCollision($elementA, $this->aElements[$i]))) {
+                // collision with map side or and another element
+                $collision = true;
+            }
+        }
+
+        // not move or save
+        if ($collision) {
             $this->calcMoveInverse($elementA, $moveDirection); // it's not a valid move then come back move
         } else {
-            // no collisions then keep move and save the map
-            $this->save(false);
+            $this->save(false); // no collisions then keep move and save the map
         }
     }
 
