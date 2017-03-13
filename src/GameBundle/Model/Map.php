@@ -9,7 +9,9 @@ class Map {
     public static $_MOVE_DOWN = 3;
     public static $_MOVE_LEFT = 4;
     // map
-    public static $_MAP_DIRECTORY = 'maps'; // /web/maps
+    public static $_MAP_DIRECTORY = 'maps'; // /web/maps/
+    public static $_MAP_FILENAME_EXT_INITIAL = '.initial'; //example map file /web/maps/1.initial
+    public static $_MAP_FILENAME_EXT_SAVE = '.save'; //example map file /web/maps/1.save
     public static $_MAP_MAX_X = 320;   // 320 pixels
     public static $_MAP_MAX_Y = 480;   // 480 pixels
     private $filenameMap = '';
@@ -24,8 +26,10 @@ class Map {
      * __construct()
      */
 
-    function __construct($idMap = 1) {
-        $this->initCurrentMapFilename($idMap);
+    function __construct($idMap = null) {
+        if ($idMap > 0) {
+            $this->initCurrentMapFilename($idMap);
+        }
     }
 
     /*
@@ -36,6 +40,16 @@ class Map {
 
     public function addElement($element) {
         $this->aElements[] = $element;
+    }
+
+    /*
+     * nbMaps()
+     * return nbMaps (search in files)
+     */
+
+    public function nbMaps() {
+        $nbMaps = $this->nbFilesInDirectory(self::$_MAP_DIRECTORY);
+        return $nbMaps;
     }
 
     /*
@@ -66,6 +80,15 @@ class Map {
         $ser = serialize($this);
         $filenameSer = ($initial) ? $this->filenameMap : $this->filenameMapGame;
         file_put_contents($filenameSer, $ser);
+    }
+
+    /*
+     * delete()
+     * delete all maps files
+     */
+
+    public function delete() {
+        $this->deleteFilesDirectory(self::$_MAP_DIRECTORY);
     }
 
     /*
@@ -181,8 +204,50 @@ class Map {
      * */
 
     private function initCurrentMapFilename($idMap) {
-        $this->filenameMap = self::$_MAP_DIRECTORY . '/map' . $idMap;
-        $this->filenameMapGame = $this->filenameMap . 'move';
+        $this->filenameMap = self::$_MAP_DIRECTORY . '/' . $idMap . self::$_MAP_FILENAME_EXT_INITIAL;
+        $this->filenameMapGame = self::$_MAP_DIRECTORY . '/' . $idMap . self::$_MAP_FILENAME_EXT_SAVE;
+    }
+
+    /*
+     * deleteFilesDirectory($directory)
+     * delete all files in a directory
+     * */
+
+    private function deleteFilesDirectory($directory) {
+        // open dir
+        $directoryOpen = opendir($directory);
+
+        // read all files one
+        while (false !== ($filename = readdir($directoryOpen))) {
+            $fullFilename = $directory . "/" . $filename;
+            if ($filename != "." AND $filename != ".." AND ! is_dir($filename)) {
+                unlink($fullFilename);
+            }
+        }
+
+        closedir($directoryOpen); // On ferme !
+    }
+
+    /*
+     * nbFilesInDirectory($directory)
+     * return nb files in a directory
+     * */
+
+    private function nbFilesInDirectory($directory) {
+        $nbFiles = 0;
+        // open dir
+        $directoryOpen = opendir($directory);
+
+        // read all files name one by one
+        while (false !== ($filename = readdir($directoryOpen))) {
+            $fullFilename = $directory . "/" . $filename;
+            if ($filename != "." AND $filename != ".." AND ! is_dir($filename)) {
+                $nbFiles++;
+            }
+        }
+        closedir($directoryOpen); // close
+
+        return $nbFiles;
     }
 
     /**
@@ -192,7 +257,8 @@ class Map {
         return $this->aElements;
     }
 
-    public function setaElements($structure) {
+    public
+            function setaElements($structure) {
         $this->aElements = $structure;
     }
 

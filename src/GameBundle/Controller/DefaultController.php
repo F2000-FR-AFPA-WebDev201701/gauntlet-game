@@ -22,18 +22,30 @@ class DefaultController extends Controller {
      * @Route("/sitemap")
      */
     public function siteMapAction() {
-        return $this->render('GameBundle:Default:sitemap.html.twig');
+        $this->oMap = new Map();
+        $nbMaps = $this->oMap->nbMaps();
+        return $this->render('GameBundle:Default:sitemap.html.twig', array(
+                    'nbMaps' => $nbMaps
+        ));
     }
 
     /**
-     * @Route("/tests")
+     * @Route("/tests/map-{id}")
      */
-    public function testsAction() {
-        $this->oMap = new Map(2);
-        $unserFile = $this->oMap->load();
-        $this->oMap = $unserFile;
+    public function testsAction($id) {
+        $this->oMap = new Map($id);
+        if ($this->oMap->nbMaps() <= 0) {
+            $oMaps = "no Maps";
+        } else {
+            $unserFile = $this->oMap->load();
+            $this->oMap = $unserFile;
+            $oMaps = $this->oMap->getaElements();
+        }
 
-        return $this->render('GameBundle:Map:template.html.twig', array('map' => $this->oMap->getaElements()));
+        return $this->render('GameBundle:Map:template.html.twig', array(
+                    'map' => $oMaps
+                        )
+        );
     }
 
     /**
@@ -42,7 +54,7 @@ class DefaultController extends Controller {
     public function testsMoveAction() {
         $moveDirection = $_GET['move'];
 
-        $this->oMap = new Map(2);
+        $this->oMap = new Map(1);
         $unserFile = $this->oMap->load();
         $this->oMap = $unserFile;
 

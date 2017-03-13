@@ -10,14 +10,16 @@
     </ul>
 
     <h2>Admin (maps)</h2>
+    Nb Maps (initial & save) : {{ nbMaps }}<br />
     <ul>
-        <li><a href=" {{ asset("/create_map_file") }}" target="_blank">Create many maps</a>
+        <li><a href=" {{ asset("/create_map_file") }}" target="_blank">Create many maps (initial)</a>
         <li><a href=" {{ asset("/delete_map_file") }}" target="_blank">Delete all maps (initial & map save)</a>
     </ul>
 
-    <h2>Tests</h2>
+    <h2>Tests (maps : moves/collisions)</h2>
     <ul>
-        <li><a href=" {{ asset("/tests") }}" target="_blank">Tests (map : move/collision)</a>
+        <li><a href=" {{ asset("/tests/map-1") }}" target="_blank">Tests map 1</a>
+        <li><a href=" {{ asset("/tests/map-2") }}" target="_blank">Tests map 2</a>
     </ul>
 
 {% endblock %}

@@ -14,6 +14,7 @@ class MapController extends Controller {
      * @Route("/create_map_file")
      * createMapAction()
      * it's a map generator : create some map into a file
+     * ADMIN only
      */
     public function CreateMapAction() {
         // map 1
@@ -58,8 +59,24 @@ class MapController extends Controller {
 
         //dump($oMap1);
         //dump($oMap2);
+        $nbMaps = $oMap1->nbMaps();
+        return $this->render('GameBundle:Map:create.html.twig', array('nbMaps' => $nbMaps)
+        );
+    }
 
-        return $this->render('GameBundle:Map:template.html.twig', array('map' => $oMap2->getaElements())
+    /**
+     * @Route("/delete_map_file")
+     * deleteMapAction()
+     * delete all maps (initial & save)
+     * ADMIN only
+     */
+    public function deleteMapAction() {
+        $oMap = new Map();
+        $oMap->delete();
+
+        $nbMaps = $oMap->nbMaps();
+
+        return $this->render('GameBundle:Map:delete.html.twig', array('nbMaps' => $nbMaps)
         );
     }
 
