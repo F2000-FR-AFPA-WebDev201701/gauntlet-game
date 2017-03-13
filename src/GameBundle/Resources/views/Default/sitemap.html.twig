@@ -1,0 +1,23 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}GameBundle:Default:test{% endblock %}
+
+{% block body %}
+    <h1>Gauntlet SiteMap</h1>
+
+    <ul>
+        <li><a href=" {{ asset("/") }}" target="_blank">HomePage</a>
+    </ul>
+
+    <h2>Admin (maps)</h2>
+    <ul>
+        <li><a href=" {{ asset("/create_map_file") }}" target="_blank">Create many maps</a>
+        <li><a href=" {{ asset("/delete_map_file") }}" target="_blank">Delete all maps (initial & map save)</a>
+    </ul>
+
+    <h2>Tests</h2>
+    <ul>
+        <li><a href=" {{ asset("/tests") }}" target="_blank">Tests (map : move/collision)</a>
+    </ul>
+
+{% endblock %}

@@ -19,6 +19,13 @@ class DefaultController extends Controller {
     }
 
     /**
+     * @Route("/sitemap")
+     */
+    public function siteMapAction() {
+        return $this->render('GameBundle:Default:sitemap.html.twig');
+    }
+
+    /**
      * @Route("/tests")
      */
     public function testsAction() {
@@ -28,11 +35,11 @@ class DefaultController extends Controller {
 
         return $this->render('GameBundle:Map:template.html.twig', array('map' => $this->oMap->getaElements()));
     }
+
     /**
      * @Route("/tests/move")
      */
-    public function testsMoveAction()
-    {
+    public function testsMoveAction() {
         $moveDirection = $_GET['move'];
 
         $this->oMap = new Map(2);
@@ -43,6 +50,5 @@ class DefaultController extends Controller {
 
         return $this->render('GameBundle:Map:initmap.html.twig', array('map' => $this->oMap->getaElements()));
     }
-
 
 }
