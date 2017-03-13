@@ -41,12 +41,16 @@
 
 - Gestion des collision entre plusieurs éléments
 
+- SiteMap (/sitemap)
+
+- Création des maps (admin)
+
 
 #################################################
 en cours
 #################################################
 
-- sitemap (nicolas Hen)
+- Delete les maps (admin)
 
 - Login / Inscription / Logout User (en cours nico HUG)
 
