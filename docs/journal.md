@@ -50,7 +50,7 @@
 en cours
 #################################################
 
-- Delete les maps (admin)
+- Delete les maps (admin) (en cours nico HEN)
 
 - Login / Inscription / Logout User (en cours nico HUG)
 
