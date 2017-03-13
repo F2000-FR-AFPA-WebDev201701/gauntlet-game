@@ -37,6 +37,8 @@
 
 - Gestion collision (entre 2 éléments)
 
+- Login / Inscription / Logout User (début)
+
 ## 13-03-2017
 
 - Gestion des collision entre plusieurs éléments
@@ -45,12 +47,16 @@
 
 - Création des maps (admin)
 
+- Delete les maps (admin)
+
+- Login / Inscription / Logout User (suite)
+
+- GameController (début)
+
 
 #################################################
 en cours
 #################################################
-
-- Delete les maps (admin) (en cours nico HEN)
 
 - Login / Inscription / Logout User (en cours nico HUG)
 
