@@ -2,21 +2,54 @@
 
 namespace GameBundle\Entity;
 
-class User {
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * @ORM\Table(name="user")
+ * @ORM\Entity
+ */
+class User implements UserInterface {
+
+    /**
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
     protected $id;
-    protected $pseudo;
-    protected $password;
-    protected $email;
 
+    /**
+     *
+     * @ORM\Column(name="pseudo", type="string", length=15, unique=true)
+     */
+    protected $pseudo;
+
+    /**
+     *
+     * @ORM\Column(name="confirmPassword", type="string", length=255)
+     */
+    protected $confirmPassword;
+
+    /**
+     *
+     * @ORM\Column(name="password", type="string", length=255)
+     */
+    protected $password;
+
+    /**
+     *
+     * @ORM\Column(name="email", type="string", length=50, unique=true)
+     */
+    protected $email;
 
     /**
      * Get id
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -26,9 +59,12 @@ class User {
      * @param string $pseudo
      *
      * @return User
+     *
+     *
+     *
+     *
      */
-    public function setPseudo($pseudo)
-    {
+    public function setPseudo($pseudo) {
         $this->pseudo = $pseudo;
 
         return $this;
@@ -39,8 +75,7 @@ class User {
      *
      * @return string
      */
-    public function getPseudo()
-    {
+    public function getPseudo() {
         return $this->pseudo;
     }
 
@@ -51,8 +86,7 @@ class User {
      *
      * @return User
      */
-    public function setPassword($password)
-    {
+    public function setPassword($password) {
         $this->password = $password;
 
         return $this;
@@ -63,8 +97,7 @@ class User {
      *
      * @return string
      */
-    public function getPassword()
-    {
+    public function getPassword() {
         return $this->password;
     }
 
@@ -75,8 +108,7 @@ class User {
      *
      * @return User
      */
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = $email;
 
         return $this;
@@ -87,8 +119,52 @@ class User {
      *
      * @return string
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
+
+    /**
+     * Get confirmPassword
+     *
+     * @return string
+     */
+    public function getConfirmPassword() {
+        return $this->confirmPassword;
+    }
+
+    /**
+     * Set confirmPassword
+     *
+     * @param string confirmPassword
+     *
+     * @return string
+     */
+    public function setConfirmPassword($password) {
+        $this->confirmPassword = $password;
+    }
+
+    public function getSalt() {
+        // The bcrypt algorithm doesn't require a separate salt.
+        // You *may* need a real salt if you choose a different encoder.
+        return null;
+    }
+
+    public function getUsername() {
+        // The bcrypt algorithm doesn't require a separate salt.
+        // You *may* need a real salt if you choose a different encoder.
+        return null;
+    }
+
+    public function getRoles() {
+        // The bcrypt algorithm doesn't require a separate salt.
+        // You *may* need a real salt if you choose a different encoder.
+        return null;
+    }
+
+    public function eraseCredentials() {
+        // The bcrypt algorithm doesn't require a separate salt.
+        // You *may* need a real salt if you choose a different encoder.
+        return null;
+    }
+
 }
