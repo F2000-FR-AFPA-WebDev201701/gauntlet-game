@@ -1,25 +1,36 @@
 <hr>
-<div class="footer-rules">
-    <h3>LES REGLES</h3>
+<div class="well">
+    <div class="footer-copyright">
+        <h3>COPYRIGHT</h3>
+    </div>
+    
+    <div class="footer-rules">
+        <h3>LES REGLES</h3>
+    </div>
+        
+    <div class="footer-about-us">
+        <h3>A PROPOS</h3>
+    </div>
+  
+    <div class="footer-contact">
+        <h3>NOUS CONTACTER</h3>
+    </div>
+    
+    <div class="footer-liens">
+        <h3>FOOTER LIENS</h3>
+    </div>
 </div>
 
-<div class="footer-copyright">
-    <h3>COPYRIGHT</h3>
-</div>
-
-<div class="footer-contact">
-    <h3>NOUS CONTACTER</h3>
-</div>
-
-<div class="site-map">
-    <h3>SITEMAP</h3>
-    <a href="{{ path('homepage') }}">Homepage</a>
-    <h4>Users</h4>
-        <a href="{{ path('user_login') }}">Login</a>
-        <a href="{{ path('user_logout') }}">Logout</a>
-        <a href="{{ path('user_register') }}">Register</a>
-</div>
-
-<div class="footer-liens">
-    <h3>FOOTER LIENS</h3>
-</div>
+{% if app.debug %}
+    <hr>
+    <div class="site-map well">
+        <h3>SITEMAP (debug mode only)</h3>
+        <a href="{{ path('homepage') }}">Homepage</a>
+        <h4>Users</h4>
+            <a href="{{ path('user_login') }}">Login</a>
+            <a href="{{ path('user_logout') }}">Logout</a>
+            <a href="{{ path('user_register') }}">Register</a>
+            <a href="{{ path('user_profil', {'id': 1}) }}">Profil user id 1</a>
+            <a href="{{ path('user_lost_password') }}">Lost Password</a>
+    </div>
+{% endif %}

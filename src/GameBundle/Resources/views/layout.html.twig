@@ -4,9 +4,9 @@
         <meta charset="UTF-8">
         <title>GantletPHP</title>
         <link rel="stylesheet" type="text/css" href="{{ asset('stylesheet/style.css') }}" />
-        <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap-3.3.7-dist/css/bootstrap.min.css') }}" />
+        <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>       
+        <script src="{{ asset('bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
     </head>
     <body>
         <div class="container">
@@ -14,8 +14,10 @@
                 {% include 'GameBundle:Default:_header.html.twig' %}
             </header>
 
+            <div class="well">
+                (main)
             {% block content %} {% endblock %}
-
+            </div>
             <footer>
                 {% include 'GameBundle:Default:_footer.html.twig' %}
             </footer>

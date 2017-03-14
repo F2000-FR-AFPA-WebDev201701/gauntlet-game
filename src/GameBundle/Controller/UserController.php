@@ -65,5 +65,19 @@ class UserController extends Controller {
         }
         return $this->render('GameBundle:User:register.html.twig', ['form' => $form->createView()]);
     }
+    
+    /**
+     * @Route("/user/profil/{id}", name="user_profil")
+     */
+    public function profilAction($id) {
+        return $this->render('GameBundle:User:profil.html.twig');
+    }
+
+    /**
+     * @Route("/user/lost_password/", name="user_lost_password")
+     */
+    public function lostPasswordAction() {
+        return $this->render('GameBundle:User:lost_password.html.twig');
+    }
 
 }
