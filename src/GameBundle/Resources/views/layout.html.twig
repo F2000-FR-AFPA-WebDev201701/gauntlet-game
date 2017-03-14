@@ -18,6 +18,11 @@
                 (main)
             {% block content %} {% endblock %}
             </div>
+                
+            <div class="well">
+                {% include 'GameBundle:Default:_infos.html.twig' %}
+            </div>
+            
             <footer>
                 {% include 'GameBundle:Default:_footer.html.twig' %}
             </footer>

@@ -55,15 +55,20 @@
 
 ## 14-03-2017
 
+- Login / Inscription / Logout User
 
 
 #################################################
 en cours
 #################################################
 
-- Login / Inscription / Logout User (en cours nico HUG)
+- Page d'accueil (liste des games)
 
-- Page d'accueil (sommaire) (en cours nioo HUG)
+- Style css du template
+
+- Contenu infos (règles, commandes, à propos, ...)
+
+- Page "mot de passe oublié"
 
 - GameController (list / create / join / refresh / play) (en cours mika)
 
