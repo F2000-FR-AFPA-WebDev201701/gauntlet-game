@@ -2,30 +2,106 @@
 
 namespace GameBundle\Entity;
 
-class Game {
+use Doctrine\ORM\Mapping as ORM;
 
-    protected $id;
-    protected $nameRoom;
-    protected $score;
-    protected $date;
-    protected $nbPlayer;
-    protected $saveGame;
-    protected $idUser;
+/**
+ * Game
+ *
+ * @ORM\Table(name="game")
+ * @ORM\Entity(repositoryClass="GameBundle\Repository\GameRepository")
+ */
+class Game
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
 
     /**
-     * @var integer
+     * @var int
+     *
+     * @ORM\Column(name="status", type="integer", nullable=false)
      */
-    private $Score;
+    private $status;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nameRoom", type="string", length=100)
+     */
+    private $nameRoom;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $date;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nbPlayer", type="integer", nullable=false)
+     */
+    private $nbPlayer;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nbPlayerMax", type="integer", nullable=false)
+     */
+    private $nbPlayerMax;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="saveGame", type="text")
+     */
+    private $saveGame;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="idUser", type="integer")
+     */
+    private $idUser;
 
 
     /**
      * Get id
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set status
+     *
+     * @param integer $status
+     *
+     * @return Game
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return int
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 
     /**
@@ -53,51 +129,51 @@ class Game {
     }
 
     /**
-     * Set score
+     * Set date
      *
-     * @param integer $score
+     * @param \DateTime $date
      *
      * @return Game
      */
-    public function setScore($score)
+    public function setDate($date)
     {
-        $this->Score = $score;
+        $this->date = $date;
 
         return $this;
     }
 
     /**
-     * Get score
+     * Get date
      *
-     * @return integer
+     * @return \DateTime
      */
-    public function getScore()
+    public function getDate()
     {
-        return $this->Score;
+        return $this->date;
     }
 
     /**
-     * Set nbPlayer
+     * Set nbPlayerMax
      *
-     * @param integer $nbPlayer
+     * @param integer $nbPlayerMax
      *
      * @return Game
      */
-    public function setNbPlayer($nbPlayer)
+    public function setNbPlayerMax($nbPlayerMax)
     {
-        $this->nbPlayer = $nbPlayer;
+        $this->nbPlayerMax = $nbPlayerMax;
 
         return $this;
     }
 
     /**
-     * Get nbPlayer
+     * Get nbPlayerMax
      *
-     * @return integer
+     * @return int
      */
-    public function getNbPlayer()
+    public function getNbPlayerMax()
     {
-        return $this->nbPlayer;
+        return $this->nbPlayerMax;
     }
 
     /**
@@ -125,30 +201,6 @@ class Game {
     }
 
     /**
-     * Set date
-     *
-     * @param \DateTime $date
-     *
-     * @return Game
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
-
-    /**
      * Set idUser
      *
      * @param integer $idUser
@@ -165,10 +217,34 @@ class Game {
     /**
      * Get idUser
      *
-     * @return integer
+     * @return int
      */
     public function getIdUser()
     {
         return $this->idUser;
+    }
+
+    /**
+     * Set nbPlayer
+     *
+     * @param integer $nbPlayer
+     *
+     * @return Game
+     */
+    public function setNbPlayer($nbPlayer)
+    {
+        $this->nbPlayer = $nbPlayer;
+
+        return $this;
+    }
+
+    /**
+     * Get nbPlayer
+     *
+     * @return integer
+     */
+    public function getNbPlayer()
+    {
+        return $this->nbPlayer;
     }
 }
