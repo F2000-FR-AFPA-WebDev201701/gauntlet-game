@@ -60,7 +60,7 @@ class DefaultController extends Controller {
 
         $this->oMap->move($moveDirection);
 
-        return $this->render('GameBundle:Map:initmap.html.twig', array('map' => $this->oMap->getaElements()));
+        return $this->render('GameBundle:Map:map.html.twig', array('map' => $this->oMap->getaElements()));
     }
 
 }
