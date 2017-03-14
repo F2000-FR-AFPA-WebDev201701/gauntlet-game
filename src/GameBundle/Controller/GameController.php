@@ -82,12 +82,12 @@ class GameController extends Controller
         if ($oGame->getNbPlayer() < $oGame->getNbPlayerMax()  ){
             $oGame->setNbPlayer($oGame->getNbPlayer() +1 );
             // METTRE le gameID dans USER  A FAIREEEEEEEEE
-            $em = $this->
+            //$em = $this->
 
             //RECUPERER USERS DE LA GAME SELECT BDD
             //liste d'objet à retourner
             $repoUser = $this->getDoctrine()->getRepository('GameBundle:User');
-            $oUser = $repoUser->
+
 
             //SAVE oGAME EN BDD
 
