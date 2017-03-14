@@ -17,7 +17,7 @@ class UserController extends Controller {
     public function loginAction(Request $request) {
         $user = new User;
         $form = $this->createForm(RegisterType::class, $user);
-
+        $form->remove('confirmPassword')->remove('email');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
