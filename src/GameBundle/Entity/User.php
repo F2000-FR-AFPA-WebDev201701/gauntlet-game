@@ -166,21 +166,15 @@ class User implements UserInterface {
     }
 
     public function getSalt() {
-        // The bcrypt algorithm doesn't require a separate salt.
-        // You *may* need a real salt if you choose a different encoder.
-        return null;
+        return $this->salt;
     }
 
     public function getUsername() {
-        // The bcrypt algorithm doesn't require a separate salt.
-        // You *may* need a real salt if you choose a different encoder.
-        return null;
+        return $this->username;
     }
 
     public function getRoles() {
-        // The bcrypt algorithm doesn't require a separate salt.
-        // You *may* need a real salt if you choose a different encoder.
-        return null;
+        return $this->roles;
     }
 
     public function eraseCredentials() {
