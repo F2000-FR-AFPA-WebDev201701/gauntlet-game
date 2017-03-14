@@ -68,37 +68,34 @@ class GameController extends Controller
     /**
      * @Route("join/{id}")
      */
-    public function joinAction($id)
+    public function joinAction(Request $request, $id)
     {
-        $oUser = [];
-        $oUser = array(array('id' => '1', 'pseudo' => 'Jean-Gui'),
-                       array('id' => '2', 'pseudo' => 'Jean-Mi'),
-                       );
-
-        $repoGame = $this->getDoctrine()->getRepository('GameBundle:Game');
+        $request->getSession()->set('user',$user);
+        $repoGame = $this->getDoctrine()->getManager()->getRepository('GameBundle:Game');
         $oGame = $repoGame->findOneById($id);
+        //dump($repoGame);
+        //dump($oGame);
 
         //Rejoindre la partie si pas full
-        if ($oGame->getNbPlayer() < $oGame->getNbPlayerMax()  ){
-            $oGame->setNbPlayer($oGame->getNbPlayer() +1 );
-            // METTRE le gameID dans USER  A FAIREEEEEEEEE
-            //$em = $this->
+        if (count($oGame->getUsers()) < $oGame->getNbPlayerMax()  ){
 
+            // METTRE le gameID dans USER  A FAIREEEEEEEEE
+            $em = $this->getDoctrine()->getManager();
+            $oUser = $em->getRepository('GameBundle:User')
+                ->find($request->getSession()->get('user')->getId());
+            //$oUser->setGame($oGame);
+            $oGame->addUser($oUser);
+            $em->flush();
             //RECUPERER USERS DE LA GAME SELECT BDD
             //liste d'objet à retourner
-            $repoUser = $this->getDoctrine()->getRepository('GameBundle:User');
-
-
+            $oGame->getUsers();
             //SAVE oGAME EN BDD
-
         }
-
         //A FAIRE VUE DETAIL GAME
-
         return $this->render('GameBundle:Game:join.html.twig', array(
             // Vue sur le détail de la Game avec oGame et oUsers
             'game' => $oGame,
-            'user' => $oUser
+            'user' => $oGame->getUsers()
         ));
 
     }

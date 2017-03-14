@@ -45,6 +45,28 @@ class User implements UserInterface {
     protected $email;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Game", inversedBy="users")
+     * @ORM\JoinColumn(name="game_id", referencedColumnName="id")
+     */
+    protected $game;
+
+    /**
+     * @return mixed
+     */
+    public function getGame()
+    {
+        return $this->game;
+    }
+
+    /**
+     * @param mixed $game_id
+     */
+    public function setGame(Game $game)
+    {
+        $this->game = $game;
+    }
+
+    /**
      * Get id
      *
      * @return integer

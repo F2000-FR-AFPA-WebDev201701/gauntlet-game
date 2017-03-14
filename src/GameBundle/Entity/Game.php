@@ -15,9 +15,25 @@ class Game
 {
     /**
      *
-     * @ORM\OneToMany(targetEntity="User", mappedBy="Game")
+     * @ORM\OneToMany(targetEntity="User", mappedBy="game")
      */
     private $users;
+
+    /**
+     * @return mixed
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * @param mixed $users
+     */
+    public function setUsers($users)
+    {
+        $this->users = $users;
+    }
 
     public function __construct()
     {
@@ -55,12 +71,7 @@ class Game
      */
     private $date;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="nbPlayer", type="integer", nullable=false)
-     */
-    private $nbPlayer;
+
     /**
      * @var int
      *
@@ -207,28 +218,4 @@ class Game
         return $this->saveGame;
     }
 
-
-    /**
-     * Set nbPlayer
-     *
-     * @param integer $nbPlayer
-     *
-     * @return Game
-     */
-    public function setNbPlayer($nbPlayer)
-    {
-        $this->nbPlayer = $nbPlayer;
-
-        return $this;
-    }
-
-    /**
-     * Get nbPlayer
-     *
-     * @return integer
-     */
-    public function getNbPlayer()
-    {
-        return $this->nbPlayer;
-    }
 }
