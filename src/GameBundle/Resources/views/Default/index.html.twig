@@ -1,1 +1,91 @@
-Hello World!
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Gauntlet</title>
+        <link rel="stylesheet" type="text/css" href="stylesheet/style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <section class="header-top">
+                    <a href="#"><img src="images/Gauntlet_logo.jpg" class="header-top-logo"/></a>
+                    <nav class="header-top-nav">
+                        <ul>
+                            <li><a href="#"></a>Accueil</li>
+                            <li><a href="#"></a>Jouer</li>
+                            <li><a href="#"></a>Le jeux</li>
+                            <li><a href="#"></a>A propos</li>
+                        </ul>
+                    </nav>
+
+                    <div class="header-top-login">
+                        <form action="#" name="login" class="header-top-login-form">
+
+                            {{ form_row(form.pseudo) }}
+                            {{ form_row(form.password) }}
+
+                            <button type="submit">Ok!</button>
+                        </form>
+
+
+                        <!--    <form action="#" name="login" class="header-top-login-form">
+                               <label for="login">Pseudo</label>
+                               <input type="text" name="pseudo">
+                               <label for="password">password</label>
+                               <input type="password" name="password">
+                               <button type="submit">Se connecter</button>
+                           </form>-->
+                    </div>
+                </section>
+                <section class="header-middle">
+                    <div class="header-middle-presentation">
+                        <h1>Gauntlet Truc</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, distinctio, magni? Quaerat expedita voluptatum impedit eveniet praesentium velit culpa adipisci deserunt, quasi, voluptates, amet porro laboriosam eum minima repudiandae necessitatibus.</p>
+                    </div>
+                </section>
+            </header>
+            <section class="jouer">
+                <div class="jouer-connecter">
+                    <div class="jouer-connecter-room"><div class="room-name"></div><div class="room-player"></div><div class="room-player"></div><div class="room-player"></div></div><button>Lancer une partie</button>
+
+                </div>
+                <div class="jouer-score">
+                    <div class="jouer-score-best"></div>
+                </div>
+            </section>
+            <section class="lejeux">
+                <div class="lejeux-regles">
+
+                </div>
+                <div class="lejeux-lesheros">
+                    <div class="lejeux-lesheros-card">
+                        <img src="" alt="">
+                        <h1>Barbare</h1>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="lejeux-bestiaire">
+                    <div class="lejeux-bestiaire-card">
+                        <img src="" alt="">
+                        <h1>Monstre</h1>
+                        <p></p>
+                    </div>
+                </div>
+            </section>
+            <section class="apropos">
+                <div class="apropos-leprojet">
+
+                </div>
+                <div class="apropos-quisommesnous">
+
+                </div>
+            </section>
+            <footer>
+                <div class="footer-copyright"></div>
+                <div class="footer-nouscontacter"></div>
+                <div class="footer-liens"></div>
+            </footer>
+        </div>
+    </body>
+</html>
