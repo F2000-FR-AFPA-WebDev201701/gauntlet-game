@@ -24,14 +24,25 @@ class GameController extends Controller
         $repo = $this->getDoctrine()->getRepository('GameBundle:Game');
         $oGame = $repo->findAll();
 
-        //CALCUL PLAYERS RESTANTS
-
-        //$oGame->
-
         return $this->render('GameBundle:Game:list.html.twig', array(
             'game' => $oGame
         ));
     }
+
+    /**
+     * @Route("/detail/{id}")
+     */
+    public function detailAction($id)
+    {
+        //RECUPERATION BDD
+        $repo = $this->getDoctrine()->getRepository('GameBundle:Game');
+        $oGame = $repo->findOneById($id);
+
+        return $this->render('GameBundle:Game:detail.html.twig', array(
+            'game' => $oGame
+        ));
+    }
+
 
     /**
      * @Route("/create")
@@ -39,7 +50,7 @@ class GameController extends Controller
     public function createAction(Request $request)
     {
         //FORMULAIRE
-        $idUser = 1;
+        $idUser = $request->getSession()->get('user')->getId();
         $oGame = new Game();
         $form = $this->createFormBuilder($oGame)
             ->add('nameRoom', TextType::class)
@@ -48,19 +59,19 @@ class GameController extends Controller
             ->add('save', SubmitType::class, array('label' => 'Create Game'))
             ->getForm();
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $oGame->setDate(new \DateTime());
             $oGame->setIdUser($idUser);
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($oGame);
             $em->flush();
-            //RENVOI VERS LA LISTE DE GAME
-            return $this->redirectToRoute('game_game_list');
+            //Renvoi vers la list sur homepage
+            return $this->redirectToRoute('game_game_detail');
             }
 
-
-        return $this->render('GameBundle:Game:create.html.twig', array(
+        ///////RENDER CONTROLLER A METTRE DANS LA HOME PAGE///////
+       return $this->render('GameBundle:Game:create.html.twig', array(
             'form' => $form->createView(),
         ));
     }
@@ -68,37 +79,32 @@ class GameController extends Controller
     /**
      * @Route("join/{id}")
      */
-    public function joinAction($id)
+    public function joinAction(Request $request, $id)
     {
-        $oUser = [];
-        $oUser = array(array('id' => '1', 'pseudo' => 'Jean-Gui'),
-                       array('id' => '2', 'pseudo' => 'Jean-Mi'),
-                       );
-
-        $repoGame = $this->getDoctrine()->getRepository('GameBundle:Game');
+        $repoGame = $this->getDoctrine()->getManager()->getRepository('GameBundle:Game');
         $oGame = $repoGame->findOneById($id);
 
         //Rejoindre la partie si pas full
-        if ($oGame->getNbPlayer() < $oGame->getNbPlayerMax()  ){
-            $oGame->setNbPlayer($oGame->getNbPlayer() +1 );
-            // METTRE le gameID dans USER  A FAIREEEEEEEEE
-            //$em = $this->
+        if (count($oGame->getUsers()) < $oGame->getNbPlayerMax()  ){
 
+            // METTRE le gameID dans USER  A FAIREEEEEEEEE
+            $em = $this->getDoctrine()->getManager();
+            $oUser = $em->getRepository('GameBundle:User')
+                ->find($request->getSession()->get('user')->getId());
+            $oUser->setGame($oGame);
+            //$oGame->addUser($oUser);
+            $em->flush();
             //RECUPERER USERS DE LA GAME SELECT BDD
             //liste d'objet à retourner
-            $repoUser = $this->getDoctrine()->getRepository('GameBundle:User');
-
-
+            //$oGame->getUsers();
             //SAVE oGAME EN BDD
-
         }
 
-        //A FAIRE VUE DETAIL GAME
-
-        return $this->render('GameBundle:Game:join.html.twig', array(
+        //////RENDER CONTROLLER DETAIL DANS HOMEPAGE//////
+        return $this->render('GameBundle:Game:detail.html.twig', array(
             // Vue sur le détail de la Game avec oGame et oUsers
             'game' => $oGame,
-            'user' => $oUser
+            'users' => $oGame->getUsers()
         ));
 
     }

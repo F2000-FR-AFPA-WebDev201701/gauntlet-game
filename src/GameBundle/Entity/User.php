@@ -45,6 +45,28 @@ class User implements UserInterface {
     protected $email;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Game", inversedBy="users")
+     * @ORM\JoinColumn(name="game_id", referencedColumnName="id")
+     */
+    protected $game;
+
+    /**
+     * @return mixed
+     */
+    public function getGame()
+    {
+        return $this->game;
+    }
+
+    /**
+     * @param mixed $game_id
+     */
+    public function setGame(Game $game)
+    {
+        $this->game = $game;
+    }
+
+    /**
      * Get id
      *
      * @return integer
@@ -144,21 +166,15 @@ class User implements UserInterface {
     }
 
     public function getSalt() {
-        // The bcrypt algorithm doesn't require a separate salt.
-        // You *may* need a real salt if you choose a different encoder.
-        return null;
+        return $this->salt;
     }
 
     public function getUsername() {
-        // The bcrypt algorithm doesn't require a separate salt.
-        // You *may* need a real salt if you choose a different encoder.
-        return null;
+        return $this->username;
     }
 
     public function getRoles() {
-        // The bcrypt algorithm doesn't require a separate salt.
-        // You *may* need a real salt if you choose a different encoder.
-        return null;
+        return $this->roles;
     }
 
     public function eraseCredentials() {

@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 class UserController extends Controller {
 
     /**
-     * @Route("/user", name="login")
+     * @Route("/accueil", name="login")
      */
     public function loginAction(Request $request) {
         $user = new User;
@@ -22,9 +22,9 @@ class UserController extends Controller {
 
         if ($form->isSubmitted() && $form->isValid()) {
             $repo = $this->getDoctrine()->getRepository('GameBundle:User');
-
+            dump($form);
             $userValid = $repo->findOneBy(array(
-                'login' => $user->getPseudo(),
+                'pseudo' => $user->getPseudo(),
                 'password' => $user->getPassword(),
             ));
 
@@ -37,6 +37,14 @@ class UserController extends Controller {
         }
         //dump($form->createView());
         return $this->render('GameBundle:Default:index.html.twig', ['form' => $form->createView()]);
+    }
+
+    /**
+     * @Route("/login/logout", name="logout")
+     */
+    public function logoutAction(Request $request) {
+        $request->getSession()->set('user', NULL);
+        return $this->redirectToRoute('login');
     }
 
     /**
@@ -53,8 +61,8 @@ class UserController extends Controller {
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $password = $this->get('security.password_encoder')->encodePassword($user, $user->getConfirmPassword());
-            $user->setPassword($password);
+            //$password = $this->get('security.password_encoder')->encodePassword($user, $user->getConfirmPassword());
+            $user->setPassword($user->getConfirmPassword());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);

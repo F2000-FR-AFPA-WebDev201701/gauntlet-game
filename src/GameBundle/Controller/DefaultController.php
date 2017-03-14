@@ -12,7 +12,7 @@ use Symfony\Component\BrowserKit\Request;
 class DefaultController extends Controller {
 
     /**
-     * @Route("/")
+     * @Route("/", name="homepage")
      */
     public function indexAction() {
         return $this->render('GameBundle:Default:index.html.twig');

@@ -15,9 +15,25 @@ class Game
 {
     /**
      *
-     * @ORM\OneToMany(targetEntity="User", mappedBy="Game")
+     * @ORM\OneToMany(targetEntity="User", mappedBy="game")
      */
     private $users;
+
+    /**
+     * @return mixed
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * @param mixed $users
+     */
+    public function setUsers($users)
+    {
+        $this->users = $users;
+    }
 
     public function __construct()
     {
@@ -55,12 +71,7 @@ class Game
      */
     private $date;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="nbPlayer", type="integer", nullable=false)
-     */
-    private $nbPlayer;
+
     /**
      * @var int
      *
@@ -209,26 +220,26 @@ class Game
 
 
     /**
-     * Set nbPlayer
+     * Add user
      *
-     * @param integer $nbPlayer
+     * @param \GameBundle\Entity\User $user
      *
      * @return Game
      */
-    public function setNbPlayer($nbPlayer)
+    public function addUser(\GameBundle\Entity\User $user)
     {
-        $this->nbPlayer = $nbPlayer;
+        $this->users[] = $user;
 
         return $this;
     }
 
     /**
-     * Get nbPlayer
+     * Remove user
      *
-     * @return integer
+     * @param \GameBundle\Entity\User $user
      */
-    public function getNbPlayer()
+    public function removeUser(\GameBundle\Entity\User $user)
     {
-        return $this->nbPlayer;
+        $this->users->removeElement($user);
     }
 }
