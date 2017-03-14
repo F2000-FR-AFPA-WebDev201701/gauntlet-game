@@ -218,4 +218,28 @@ class Game
         return $this->saveGame;
     }
 
+
+    /**
+     * Add user
+     *
+     * @param \GameBundle\Entity\User $user
+     *
+     * @return Game
+     */
+    public function addUser(\GameBundle\Entity\User $user)
+    {
+        $this->users[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \GameBundle\Entity\User $user
+     */
+    public function removeUser(\GameBundle\Entity\User $user)
+    {
+        $this->users->removeElement($user);
+    }
 }
