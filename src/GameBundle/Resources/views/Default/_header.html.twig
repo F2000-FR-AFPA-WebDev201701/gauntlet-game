@@ -1,7 +1,6 @@
-{# empty Twig template #}
 <header>
     <section class="header-top">
-        <a href="#"><img src="images/Gauntlet_logo.jpg" class="header-top-logo"/></a>
+        <a href="#"><img src="images/logo.jpg" class="header-top-logo"/></a>
         <nav class="header-top-nav">
             <ul>
                 <li><a href="#"></a>Accueil</li>
@@ -12,14 +11,14 @@
         </nav>
 
         <div class="header-top-login">
+            {{ render(controller(
+                    'GameBundle:User:login'
+            )) }}
 
-            {{ form_start(form)}}
-            {{ form_widget(form) }}
-            {{ form_start(form)}}
 
         </div>
         <div>
-            <a href="{{ path('logout') }}">Logout</a>
+            <a href="{{ path('user_logout') }}">Logout</a>
         </div>
     </section>
     <section class="header-middle">

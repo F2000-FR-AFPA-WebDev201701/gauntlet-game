@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 class GameController extends Controller
 {
     /**
-     * @Route("/list")
+     * @Route("/game/list")
      */
     public function listAction()
     {
@@ -30,7 +30,7 @@ class GameController extends Controller
     }
 
     /**
-     * @Route("/detail/{id}")
+     * @Route("/game/details/{id}")
      */
     public function detailAction($id)
     {
@@ -45,7 +45,7 @@ class GameController extends Controller
 
 
     /**
-     * @Route("/create")
+     * @Route("/game/create")
      */
     public function createAction(Request $request)
     {
@@ -77,7 +77,7 @@ class GameController extends Controller
     }
 
     /**
-     * @Route("join/{id}")
+     * @Route("/game/join/{id}")
      */
     public function joinAction(Request $request, $id)
     {
@@ -110,7 +110,7 @@ class GameController extends Controller
     }
 
     /**
-     * @Route("refresh/{id}")
+     * @Route("/game/refresh/{id}")
      */
     public function refreshAction($id)
     {
@@ -120,7 +120,7 @@ class GameController extends Controller
     }
 
     /**
-     * @Route("/play/{id}/{action}")
+     * @Route("/game/play/{id}/{action}")
      */
     public function playAction($id, $action)
     {
