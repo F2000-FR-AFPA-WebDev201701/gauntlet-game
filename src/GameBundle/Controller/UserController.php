@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 class UserController extends Controller {
 
     /**
-     * @Route("/login", name="login")
+     * @Route("/accueil", name="login")
      */
     public function loginAction(Request $request) {
         $user = new User;
@@ -40,7 +40,7 @@ class UserController extends Controller {
     }
 
     /**
-     * @Route("/logout", name="logout")
+     * @Route("/login/logout", name="logout")
      */
     public function logoutAction(Request $request) {
         $request->getSession()->set('user', NULL);

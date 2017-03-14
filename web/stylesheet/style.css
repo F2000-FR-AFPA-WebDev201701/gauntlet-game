@@ -1,7 +1,7 @@
 .container{
-    width: 640px;
-    height: 640px;
-    margin:0 calc(50% - 225px);
+    width: 960px;
+    height: 960px;
+    margin:0 auto;
 }
 
 
@@ -26,4 +26,5 @@
 .mur{
     background-color: darkred;
 }
+
 
