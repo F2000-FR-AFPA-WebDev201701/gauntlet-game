@@ -20,13 +20,12 @@
                     </nav>
 
                     <div class="header-top-login">
-                        <form action="#" name="login" class="header-top-login-form">
 
-                            {{ form_row(form.pseudo) }}
-                            {{ form_row(form.password) }}
+                        {{ form_start(form)}}
+                        {{ form_widget(form) }}
+                        {{ form_start(form)}}
 
-                            <button type="submit">Ok!</button>
-                        </form>
+
 
 
                         <!--    <form action="#" name="login" class="header-top-login-form">
