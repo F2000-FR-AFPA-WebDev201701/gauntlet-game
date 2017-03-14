@@ -75,20 +75,22 @@ class GameController extends Controller
                        array('id' => '2', 'pseudo' => 'Jean-Mi'),
                        );
 
-        $repo = $this->getDoctrine()->getRepository('GameBundle:Game');
-        $oGame = $repo->findOneById($id);
+        $repoGame = $this->getDoctrine()->getRepository('GameBundle:Game');
+        $oGame = $repoGame->findOneById($id);
 
         //Rejoindre la partie si pas full
         if ($oGame->getNbPlayer() < $oGame->getNbPlayerMax()  ){
             $oGame->setNbPlayer($oGame->getNbPlayer() +1 );
             // METTRE le gameID dans USER  A FAIREEEEEEEEE
-            //
-
+            $em = $this->
 
             //RECUPERER USERS DE LA GAME SELECT BDD
             //liste d'objet à retourner
+            $repoUser = $this->getDoctrine()->getRepository('GameBundle:User');
+            $oUser = $repoUser->
 
             //SAVE oGAME EN BDD
+
         }
 
         //A FAIRE VUE DETAIL GAME

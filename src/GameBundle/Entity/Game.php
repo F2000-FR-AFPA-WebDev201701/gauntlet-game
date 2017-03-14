@@ -2,6 +2,7 @@
 
 namespace GameBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +13,18 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Game
 {
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="User", mappedBy="Game")
+     */
+    private $users;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
+
+
     /**
      * @var int
      *
@@ -62,12 +75,6 @@ class Game
      */
     private $saveGame;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="idUser", type="integer")
-     */
-    private $idUser;
 
 
     /**
@@ -200,29 +207,6 @@ class Game
         return $this->saveGame;
     }
 
-    /**
-     * Set idUser
-     *
-     * @param integer $idUser
-     *
-     * @return Game
-     */
-    public function setIdUser($idUser)
-    {
-        $this->idUser = $idUser;
-
-        return $this;
-    }
-
-    /**
-     * Get idUser
-     *
-     * @return int
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
-    }
 
     /**
      * Set nbPlayer
