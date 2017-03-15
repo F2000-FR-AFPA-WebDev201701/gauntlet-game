@@ -7,70 +7,80 @@
               
 ## 07-03-2017
 
-- Petit script php pour faire un cadre avec un carré qui se déplace (gestion de bordures et test de rapidité d'execution)
+- Petit script php pour faire un cadre avec un carrÃ© qui se dÃ©place (gestion de bordures et test de rapiditÃ© d'execution)
 
 ## 08-03-2017
 
 - Installation SF3 sur les 3 postes
 
-- Paramétrage de git sur les 3 postes
+- ParamÃªtrage de git sur les 3 postes
 
-- Entités : Personage / Map / Decor
+- EntitÃ©s Personage / Map / Decor
 
 ## 09-03-2017
 
-- Affichage des éléments créés en dur afin de tester l'affichage de la map (cadre + carrés de couleurs = elements) 
-	: génération des éléments de la map via addItems et passage à la vue
+- Affichage des Ã©lÃ©ments crÃ©Ã©s en dur afin de tester l'affichage de la map (cadre + carrÃ©s de couleurs = elements) 
+	: gÃ©nÃ©ration des Ã©lÃ©ments de la map via addItems et passage Ã  la vue
 	
 - Git synchro des versions (merge, pull, push)
 
-- Modeliser les entités (personage, decors, map)
+- Modeliser les entitÃ©s (personage, decors, map)
 
-- Créer les entités User Et Game
+- CrÃ©er les entitÃ©s User Et Game
 
-- Création d'un répertoire /php-tests dans SF3 pour les petits tests en Php (pas de SF3)
+- CrÃ©ation d'un rÃ©pertoire /php-tests dans SF3 pour les petits tests en Php (pas de SF3)
 
 ## 10-03-2017
 
-- Serialiser Map dans entité Game
+- Serialiser Map dans entitÃ© Game
 
-- Gestion collision (entre 2 éléments)
+- Gestion collision (entre 2 Ã©lÃ©ments)
 
-- Login / Inscription / Logout User (début)
+- Login / Inscription / Logout User (dÃ©but)
 
 ## 13-03-2017
 
-- Gestion des collision entre plusieurs éléments
+- Gestion des collision entre plusieurs Ã©lÃ©ments
 
 - SiteMap (/sitemap)
 
-- Création des maps (admin)
+- CrÃ©ation des maps (admin)
 
 - Delete les maps (admin)
 
 - Login / Inscription / Logout User (suite)
 
-- GameController (début)
+- GameController (dÃ©but)
 
 ## 14-03-2017
 
 - Login / Inscription / Logout User
 
+- GameController (list / create / join / refresh / play) (suite)
+
 ## 15-03-2017
-
-- 
-
-# En cours
 
 - Page d'accueil (liste des games)
 
-- GameController (list / create / join / refresh / play) (en cours mika)
+- GameController (list/ create/ join /refresh / play)
+
+- Game : supprimer
+
+- User Sessions
+
+- User : Page profil
+
+- Game : Lancer (crÃ©ation/chargement de la map en mÃ©moire&bdd + move en mÃ©moire&bdd)
+
+# En cours
+
+- Game : Lancer (=/game/play) (change statut de la game et affiche la page map)
 
 - Style css du template
 
-- Contenu infos (règles, commandes, à propos, ...)
+- Contenu infos (rÃ¨gles, commandes, Ã  propos, ...)
 
-- Page "mot de passe oublié"
+- USER : Page "mot de passe oubliÃ©" / verif register
 
 
 
