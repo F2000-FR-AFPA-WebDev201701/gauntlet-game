@@ -1,25 +1,42 @@
+{% extends "@Game/Template/layout.html.twig" %}
+{% block content %}
 <div>
-    <table class="table table-striped table-bordered table-hover">
+    <table class="table table-bordered ">
         <thead>
             <tr>
                 <th>ID</th>
+                <td>{{game.id }}</td>
+            </tr>
+            <tr>
                 <th>Status</th>
+                <td>{{game.status }}</td>
+            </tr>
+
+            <tr>
                 <th>Name</th>
+                <td>{{game.nameRoom }}</td>
+            </tr>
+            <tr>
                 <th>Created Date</th>
+                <td>{{game.date.date }}</td>
+            </tr>
+            <tr>
                 <th>Number player</th>
-                <th>Action</th>
+                <td>{{game.nbPlayerMax }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding: 0;" >
+                    {% if(app.session.get('user')) %}
+                        <a href="{{ path('game_game_play', {'id': game.id}) }}">
+                            <button class="text-center button-default" style="display: block; width: 100%; margin: 0;">
+                            Lancer
+                            
+                            </button>
+                        </a>
+                    {% endif %}
+                </td>
             </tr>
         </thead>
-        <tr>
-            <td>{{game.id }}</td>
-            <td>{{game.status }}</td>
-            <td>{{game.nameRoom }}</td>
-            <td>{{game.date.date }}</td>
-            <td>{{game.nbPlayerMax }}</td>
-            {% if(app.session.get('user')) %}
-                <td ><a href="{{ path('game_game_play', {'id': game.id}) }}">Lancer</a></td>
-            {% endif %}
-        </tr>
-
-    </table>
+     </table>
 </div>
+{% endblock %}
