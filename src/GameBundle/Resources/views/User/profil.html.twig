@@ -1,6 +1,25 @@
 {% extends 'GameBundle:Template:layout.html.twig' %}
 
 {% block content %}
-    Detail profil
+    {% if(app.session.get('user')) %}
+        <div>
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    </tr>
+                    Votre profil
+                    <tr>
+                </thead>
+                <td>ID</td>
+                <td>{{user.id }}</td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td>{{user.pseudo }}</td>
+                </tr>
+            </table>
+        </div>
+    {% else %}
+        <span class="alert-danger">Vous n'êtes pas connecté</span>
+    {% endif %}
 {% endblock %}
 

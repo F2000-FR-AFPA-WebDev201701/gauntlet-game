@@ -68,10 +68,12 @@ class UserController extends Controller {
     }
 
     /**
-     * @Route("/user/profil/{id}", name="user_profil")
+     * @Route("/user/profil/", name="user_profil")
      */
-    public function profilAction($id) {
-        return $this->render('GameBundle:User:profil.html.twig');
+    public function profilAction(Request $request) {
+        $user = $request->getSession()->get('user');
+
+        return $this->render('GameBundle:User:profil.html.twig', ['user' => $user]);
     }
 
     /**

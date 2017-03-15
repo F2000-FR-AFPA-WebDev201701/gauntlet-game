@@ -4,7 +4,7 @@
     <div class="footer-copyright">
         <h3>COPYRIGHT</h3>
     </div>
-    
+
     <div class="footer-liens">
         <h3>FOOTER LIENS</h3>
     </div>
@@ -14,13 +14,17 @@
     <hr>
     <div class="site-map well">
         <h3>SITEMAP (debug mode only)</h3>
-        <a href="{{ path('homepage') }}">Homepage</a>
+        <ul>
+            <li><a href="{{ path('homepage') }}">Homepage</a></li>
+        </ul>
         <h4>Users</h4>
-            <a href="{{ path('user_login') }}">Login</a>
-            <a href="{{ path('user_logout') }}">Logout</a>
-            <a href="{{ path('user_register') }}">Register</a>
-            <a href="{{ path('user_profil', {'id': 1}) }}">Profil user id 1</a>
-            <a href="{{ path('user_lost_password') }}">Lost Password</a>
+        <ul>
+            <li><a href="{{ path('user_login') }}">Login</a></li>
+            <li><a href="{{ path('user_logout') }}">Logout</a></li>
+            <li><a href="{{ path('user_register') }}">Register</a></li>
+            <li><a href="{{ path('user_profil') }}">Profil user</a></li>
+            <li><a href="{{ path('user_lost_password') }}">Lost Password</a></li>
+        </ul>
     </div>
-    
+
 {% endif %}
