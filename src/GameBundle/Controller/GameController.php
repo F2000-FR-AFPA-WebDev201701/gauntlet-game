@@ -167,13 +167,12 @@ class GameController extends Controller
                 $oMapSer = serialize($oMapUnser);
                 $oGame->setSaveGame($oMapSer);
                 $repo->flush();
+                return $this->render('GameBundle:Map:map.html.twig', array('map' => $oMapUnser->getaElements()));
                 break;
             //case 'shoot';     SHOOT A FAIRE
         }
 
         //Insert map(saveGame) dans l'instance Game
-
-
 
         dump($oGame);
 
