@@ -19,17 +19,6 @@ class DefaultController extends Controller {
     }
 
     /**
-     * @Route("/sitemap")
-     */
-    public function siteMapAction() {
-        $this->oMap = new Map();
-        $nbMaps = $this->oMap->nbMaps();
-        return $this->render('GameBundle:Default:sitemap.html.twig', array(
-                    'nbMaps' => $nbMaps
-        ));
-    }
-
-    /**
      * @Route("/tests/map-{id}")
      */
     public function testsAction($id) {

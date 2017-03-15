@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 class UserController extends Controller {
 
     /**
-     * @Route("/accueil", name="login")
+     * @Route("/user/login", name="user_login")
      */
     public function loginAction(Request $request) {
         $user = new User;
@@ -36,19 +36,19 @@ class UserController extends Controller {
             }
         }
         //dump($form->createView());
-        return $this->render('GameBundle:Default:index.html.twig', ['form' => $form->createView()]);
+        return $this->render('GameBundle:User:login.html.twig', ['form' => $form->createView()]);
     }
 
     /**
-     * @Route("/login/logout", name="logout")
+     * @Route("/user/logout", name="user_logout")
      */
     public function logoutAction(Request $request) {
         $request->getSession()->set('user', NULL);
-        return $this->redirectToRoute('login');
+        return $this->redirectToRoute('homepage');
     }
 
     /**
-     * @Route("/login/register", name="register")
+     * @Route("/user/register", name="user_register")
      */
     public function registerAction(Request $request) {
         $user = new User;
@@ -56,19 +56,28 @@ class UserController extends Controller {
         $form->remove('password');
         $form->handleRequest($request);
 
-
-
-
         if ($form->isSubmitted() && $form->isValid()) {
-
             //$password = $this->get('security.password_encoder')->encodePassword($user, $user->getConfirmPassword());
             $user->setPassword($user->getConfirmPassword());
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
         }
-        return $this->render('GameBundle:Default:_register.html.twig', ['form' => $form->createView()]);
+        return $this->render('GameBundle:User:register.html.twig', ['form' => $form->createView()]);
+    }
+    
+    /**
+     * @Route("/user/profil/{id}", name="user_profil")
+     */
+    public function profilAction($id) {
+        return $this->render('GameBundle:User:profil.html.twig');
+    }
+
+    /**
+     * @Route("/user/lost_password/", name="user_lost_password")
+     */
+    public function lostPasswordAction() {
+        return $this->render('GameBundle:User:lost_password.html.twig');
     }
 
 }

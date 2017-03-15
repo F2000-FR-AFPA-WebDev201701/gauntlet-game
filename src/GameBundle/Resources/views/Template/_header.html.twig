@@ -1,0 +1,26 @@
+<header>
+    <section class="header-top">
+        <a href="#"><img src="images/logo.jpg" class="header-top-logo"/></a>
+
+        <div class="header-top-login">
+            {{ render(controller(
+                    'GameBundle:User:login'
+            )) }}
+
+
+        </div>
+        <div>
+            <a href="{{ path('user_logout') }}">Logout</a>
+        </div>
+    </section>
+    <section class="header-middle">
+        <div class="header-middle-presentation">
+            <h1>Gauntlet Truc</h1>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, distinctio, magni?
+                Quaerat expedita voluptatum impedit eveniet praesentium velit culpa adipisci deserunt, quasi, voluptates, amet porro laboriosam eum minima
+                repudiandae necessitatibus.
+            </p>
+        </div>
+    </section>
+</header>
