@@ -3,6 +3,7 @@
 namespace GameBundle\Controller;
 
 use GameBundle\Entity\User;
+use GameBundle\Form\LoginType;
 use GameBundle\Form\RegisterType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -16,13 +17,12 @@ class UserController extends Controller {
      */
     public function loginAction(Request $request) {
         $user = new User;
-        $form = $this->createForm(RegisterType::class, $user);
-        $form->remove('confirmPassword')->remove('email');
+        $form = $this->createForm(LoginType::class, $user);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
             $repo = $this->getDoctrine()->getRepository('GameBundle:User');
-            dump($form);
+
             $userValid = $repo->findOneBy(array(
                 'pseudo' => $user->getPseudo(),
                 'password' => $user->getPassword(),
@@ -34,6 +34,7 @@ class UserController extends Controller {
             } else {
                 $request->getSession()->getFlashBag()->add('error', 'Identifiants incorrects');
             }
+            return $this->redirectToRoute('homepage');
         }
         //dump($form->createView());
         return $this->render('GameBundle:User:login.html.twig', ['form' => $form->createView()]);
@@ -65,7 +66,7 @@ class UserController extends Controller {
         }
         return $this->render('GameBundle:User:register.html.twig', ['form' => $form->createView()]);
     }
-    
+
     /**
      * @Route("/user/profil/{id}", name="user_profil")
      */
