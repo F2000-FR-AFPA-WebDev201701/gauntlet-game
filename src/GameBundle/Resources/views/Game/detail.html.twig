@@ -27,10 +27,22 @@
             <tr>
                 <td colspan="2" style="padding: 0;" >
                     {% if(app.session.get('user')) %}
-                        <a href="{{ path('game_game_play', {'id': game.id}) }}">
+                        <a href="{{ path('game_game_play', {'id': game.id , 'action': 'init'}) }}">
                             <button class="text-center button-default" style="display: block; width: 100%; margin: 0;">
                             Lancer
                             
+                            </button>
+                        </a>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding: 0;" >
+                    {% if(app.session.get('user')) %}
+                        <a href="{{ path('game_game_delete', {'id': game.id}) }}">
+                            <button class="text-center " style="display: block; width: 100%; margin: 0;">
+                                Supprimer
+
                             </button>
                         </a>
                     {% endif %}
