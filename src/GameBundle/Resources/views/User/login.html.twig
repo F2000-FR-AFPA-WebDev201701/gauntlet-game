@@ -1,11 +1,14 @@
-{% if app.user %}
-    <p>Username: {{ app.user.pseudo }}</p>
+{% if app.session.get('user') %}
+    <p>Username: {{ app.session.get('user').pseudo }}</p>
     <p><a href="{{ path('user_logout') }}">Logout</a></p>
-    <p><a href="{{ path('user_profil') }}">Profil</a></p>
+
 {% else %}
     {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
-    {{ form_start(form)}}
+    {{ form_start(form,
+                    {'action' : path('user_login')}
+)}}
+    {{ form_errors(form) }}
     {{ form_widget(form) }}
-    {{ form_start(form)}}    
+    {{ form_end(form) }}
 {% endif %}
 

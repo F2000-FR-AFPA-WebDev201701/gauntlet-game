@@ -1,5 +1,4 @@
 # Gauntlet : Journal
-####################
 
 
 ## 06-03-2017
@@ -57,12 +56,15 @@
 
 - Login / Inscription / Logout User
 
+## 15-03-2017
 
-#################################################
-en cours
-#################################################
+- 
+
+# En cours
 
 - Page d'accueil (liste des games)
+
+- GameController (list / create / join / refresh / play) (en cours mika)
 
 - Style css du template
 
@@ -70,5 +72,5 @@ en cours
 
 - Page "mot de passe oublié"
 
-- GameController (list / create / join / refresh / play) (en cours mika)
+
 
