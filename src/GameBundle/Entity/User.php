@@ -46,7 +46,7 @@ class User implements UserInterface {
 
     /**
      * @ORM\ManyToOne(targetEntity="Game", inversedBy="users")
-     * @ORM\JoinColumn(name="game_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="game_id", referencedColumnName="id", onDelete="SET NULL")
      */
     protected $game;
 

@@ -5,6 +5,7 @@ namespace GameBundle\Controller;
 use ClassesWithParents\G;
 use GameBundle\Entity\Game;
 use GameBundle\Entity\User;
+use GameBundle\Model\Map;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -43,6 +44,20 @@ class GameController extends Controller
             'game' => $oGame
         ));
     }
+
+    /**
+     * @Route("/game/delete/{id}")
+     */
+    public function deleteAction($id)
+    {
+        //RECUPERATION BDD
+        $repo = $this->getDoctrine()->getManager();
+        $oGame = $repo->getRepository('GameBundle:Game')->findOneById($id);
+        $repo->remove($oGame);
+        $repo->flush();
+        return $this->redirectToRoute('homepage');
+    }
+
 
 
     /**
@@ -120,24 +135,54 @@ class GameController extends Controller
 
     }
 
+
     /**
-     * @Route("/game/refresh/{id}")
+     * @Route("/game/play/{id}/{action}/{value}")
      */
-    public function refreshAction($id)
+    public function playAction($id, $action, $value = NULL)
     {
-        return $this->render('GameBundle:Game:refresh.html.twig', array(
-            // ...
+        $repo = $this->getDoctrine()->getManager();
+        $oGame = $repo->getRepository('GameBundle:Game')->findOneById($id);
+
+
+        switch ($action){
+            //Afficher la map (action create)
+            case 'init':
+                if($oGame->getSaveGame() == NULL){
+                    $oMap = new Map(1);
+                    $initMap = $oMap->load();
+                    $initMapSer = serialize($initMap);
+                    $oGame->setSaveGame($initMapSer);
+                    dump($initMap);
+                    dump($initMapSer);
+                    //Sauvegarde en base
+                    $repo->flush();
+                }
+                break;
+
+             //AJAX de move
+            case 'move':
+                $oMapUnser = unserialize($oGame->getSaveGame());
+                $oMapUnser->move($value);
+                $oMapSer = serialize($oMapUnser);
+                $oGame->setSaveGame($oMapSer);
+                $repo->flush();
+                break;
+            //case 'shoot';     SHOOT A FAIRE
+        }
+
+        //Insert map(saveGame) dans l'instance Game
+
+
+
+        dump($oGame);
+
+        return $this->render('GameBundle:Game:play.html.twig', array(
+            'idGame' => $id
         ));
     }
 
-    /**
-     * @Route("/game/play/{id}")
-     */
-    public function playAction($id)
-    {
-        return $this->render('GameBundle:Game:play.html.twig', array(
-            // ...
-        ));
-    }
+
+
 
 }

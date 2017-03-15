@@ -1,8 +1,6 @@
-{% extends "::base.html.twig" %}
+{% extends "@Game/Template/layout.html.twig" %}
 
-{% block title %}GameBundle:Game:join{% endblock %}
-
-{% block body %}
+{% block content %}
 <h1>Welcome to the Game:join page</h1>
     <h2>{{ game.id }}</h2>
     <h3>{{ dump(game.users) }}</h3>
