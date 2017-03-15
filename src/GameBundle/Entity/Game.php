@@ -15,7 +15,7 @@ class Game
 {
     /**
      *
-     * @ORM\OneToMany(targetEntity="User", mappedBy="game")
+     * @ORM\OneToMany(targetEntity="User", mappedBy="game" )
      */
     private $users;
 
@@ -53,7 +53,7 @@ class Game
     /**
      * @var int
      *
-     * @ORM\Column(name="status", type="integer", nullable=false)
+     * @ORM\Column(name="status", type="integer", nullable=true)
      */
     private $status;
 
@@ -82,7 +82,7 @@ class Game
     /**
      * @var string
      *
-     * @ORM\Column(name="saveGame", type="text")
+     * @ORM\Column(name="saveGame", type="text", nullable=true)
      */
     private $saveGame;
 

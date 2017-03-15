@@ -1,6 +1,7 @@
 <div>
     {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
-    {{ form_start(form) }}
+    {{ form_start(form,
+                {'action' : path('game_create')})  }}
     <div class="row">
         <div class="col-xs-5">
             {{ form_widget(form.nameRoom) }}

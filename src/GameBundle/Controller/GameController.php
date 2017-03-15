@@ -38,7 +38,7 @@ class GameController extends Controller
         //RECUPERATION BDD
         $repo = $this->getDoctrine()->getRepository('GameBundle:Game');
         $oGame = $repo->findOneById($id);
-
+        dump($oGame);
         return $this->render('GameBundle:Game:detail.html.twig', array(
             'game' => $oGame
         ));
@@ -46,7 +46,7 @@ class GameController extends Controller
 
 
     /**
-     * @Route("/game/create")
+     * @Route("/game/create", name="game_create")
      */
     public function createAction(Request $request)
     {
@@ -56,6 +56,9 @@ class GameController extends Controller
         if(!$oUser) {
             return new Response();
         }
+
+        $oUser = $this->getDoctrine()->getRepository('GameBundle:User')->find($oUser->getId());
+
         $oGame = new Game();
         $form = $this->createFormBuilder($oGame)
             ->add('nameRoom', TextType::class)
@@ -64,15 +67,14 @@ class GameController extends Controller
             ->add('save', SubmitType::class, array('label' => 'Create Game'))
             ->getForm();
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $oGame->setDate(new \DateTime());
-            $oGame->setIdUser($oUser->getId());
+            $oGame->addUser($oUser);
             $em = $this->getDoctrine()->getManager();
             $em->persist($oGame);
             $em->flush();
             //Renvoi vers la list sur homepage
-            return $this->redirectToRoute('game_game_detail');
+            return $this->redirectToRoute('game_game_detail', ['id' => $oGame->getId()]);
             }
 
         //Render controller dans la homepage
@@ -129,9 +131,9 @@ class GameController extends Controller
     }
 
     /**
-     * @Route("/game/play/{id}/{action}")
+     * @Route("/game/play/{id}")
      */
-    public function playAction($id, $action)
+    public function playAction($id)
     {
         return $this->render('GameBundle:Game:play.html.twig', array(
             // ...
