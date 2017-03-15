@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class GameController extends Controller
 {
@@ -49,8 +50,12 @@ class GameController extends Controller
      */
     public function createAction(Request $request)
     {
+
         //FORMULAIRE
-        $idUser = $request->getSession()->get('user')->getId();
+        $oUser = $request->getSession()->get('user', NULL);
+        if(!$oUser) {
+            return new Response();
+        }
         $oGame = new Game();
         $form = $this->createFormBuilder($oGame)
             ->add('nameRoom', TextType::class)
@@ -62,7 +67,7 @@ class GameController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $oGame->setDate(new \DateTime());
-            $oGame->setIdUser($idUser);
+            $oGame->setIdUser($oUser->getId());
             $em = $this->getDoctrine()->getManager();
             $em->persist($oGame);
             $em->flush();
@@ -70,7 +75,7 @@ class GameController extends Controller
             return $this->redirectToRoute('game_game_detail');
             }
 
-        ///////RENDER CONTROLLER A METTRE DANS LA HOME PAGE///////
+        //Render controller dans la homepage
        return $this->render('GameBundle:Game:create.html.twig', array(
             'form' => $form->createView(),
         ));
@@ -81,6 +86,10 @@ class GameController extends Controller
      */
     public function joinAction(Request $request, $id)
     {
+        $oUser = $request->getSession()->get('user', NULL);
+        if(!$oUser) {
+            return new Response();
+        }
         $repoGame = $this->getDoctrine()->getManager()->getRepository('GameBundle:Game');
         $oGame = $repoGame->findOneById($id);
 

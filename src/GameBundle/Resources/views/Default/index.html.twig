@@ -1,10 +1,8 @@
 {% extends 'GameBundle:Template:layout.html.twig' %}
 
 {% block content %}
-    <section class="jouer">
-        <div class="jouer-connecter">
-            <div class="jouer-connecter-room"><div class="room-name"></div><div class="room-player"></div><div class="room-player"></div><div class="room-player"></div></div>
-            <button>Lancer une partie</button>
-        </div>
+    <section class="game">
+        {{ render(controller('GameBundle:Game:list')) }}
+        {{ render(controller('GameBundle:Game:create')) }}
     </section>
 {% endblock %}

@@ -1,11 +1,16 @@
-{% extends "::base.html.twig" %}
-
-{% block title %}GameBundle:Game:create{% endblock %}
-
-{% block body %}
-<h1>Welcome to the Game:create page</h1>
+<div>
+    {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
     {{ form_start(form) }}
-    {{ form_widget(form) }}
+    <div class="row">
+        <div class="col-xs-5">
+            {{ form_widget(form.nameRoom) }}
+        </div>
+        <div class="col-xs-5">
+            {{ form_widget(form.nbPlayerMax) }}
+        </div>
+        <div class="col-xs-2">
+            {{ form_widget(form.save) }}
+        </div>
     {{ form_end(form) }}
+</div>
 
-{% endblock %}
