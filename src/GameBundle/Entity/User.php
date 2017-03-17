@@ -7,8 +7,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Table(name="user")
- * @ORM\Entity(name="gauntlet_user")
+ * @ORM\Table(name="gauntlet_user")
+ * @ORM\Entity
  */
 class User implements UserInterface {
 
