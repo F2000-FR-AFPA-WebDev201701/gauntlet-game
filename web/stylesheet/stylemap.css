@@ -11,20 +11,24 @@
     height: 640px;
     box-sizing: border-box;
     border:2px solid black;
+    background-image: url(../images/sol2.png);
+    z-index: -10;
 }
 
 .tile{
     position: absolute;
-    width: 32px;
-    height: 32px;
+    width: 64px;
+    height: 64px;
 }
 
 .hero{
-    background-color: greenyellow;
+    background-image: url(../images/warrior.png);
+
 }
 
 .mur{
-    background-color: darkred;
+    background-image: url(../images/mur.png);
+
 }
 
 
