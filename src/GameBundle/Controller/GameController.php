@@ -61,16 +61,18 @@ class GameController extends Controller
      */
     public function createAction(Request $request)
     {
-
-        //FORMULAIRE
         $oUser = $request->getSession()->get('user', NULL);
-        if(!$oUser) {
-            return new Response();
+        if(!$oUser) { // not connected then return a login message
+            return new Response(
+                '<p class="alert-danger text-center">Vous devez vous connecter pour créer ou rejoindre une game !</p>'
+            );
         }
 
         $oUser = $this->getDoctrine()->getRepository('GameBundle:User')->find($oUser->getId());
 
         $oGame = new Game();
+        
+        // form builder
         $form = $this->createFormBuilder($oGame)
             ->add('nameRoom', TextType::class)
             ->add('nbPlayerMax', ChoiceType::class, array(
@@ -78,6 +80,8 @@ class GameController extends Controller
             ->add('save', SubmitType::class, array('label' => 'Create Game'))
             ->getForm();
         $form->handleRequest($request);
+        
+        // test form datas (submitted and is valid)
         if ($form->isSubmitted() && $form->isValid()) {
             $oGame->setDate(new \DateTime());
             $oGame->addUser($oUser);
@@ -86,12 +90,12 @@ class GameController extends Controller
             $em->flush();
             return $this->redirectToRoute('game_game_join', ['id' => $oGame->getId(), 'game' => $oGame,
                 'nbusers' => count($oGame->getUsers())]);
-            }
+        }
 
        // Game Create
        return $this->render('GameBundle:Game:create.html.twig', array(
             'form' => $form->createView(),
-        ));
+       ));
     }
 
     /**
@@ -133,7 +137,7 @@ class GameController extends Controller
         $oGame = $repo->getRepository('GameBundle:Game')->findOneById($id);
 
         switch ($action){
-            // init map if no save game in $oGame object
+            // init map if no saved game in $oGame object
             case 'init':
                 if($oGame->getSaveGame() == NULL){
                     $oMap = new Map();
@@ -154,7 +158,7 @@ class GameController extends Controller
                 break;
             //case 'shoot';
         }
-        dump($oGame);
+        //dump($oGame);
 
         return $this->render('GameBundle:Game:play.html.twig', array(
             'idGame' => $id
