@@ -1,21 +1,30 @@
-<header>
+<header class="header">
     <section class="header-top">
-        <a href="#"><img src="images/logo.jpg" class="header-top-logo"/></a>
-
+        <a href="#"><img src="images/gant.png" class="header-top-logo"/></a>
+        <nav class="header-top-nav">
+            <ul>
+                <li class="header-top-nav-items"><a href="#" >Accueil</a></li>
+                <li class="header-top-nav-items"><a href="#" >Jouer</a></li>
+                <li class="header-top-nav-items"><a href="#" >Le jeux</a></li>
+                <li class="header-top-nav-items"><a href="#" >A propos</a></li>
+            </ul>
+        </nav>
         <div class="header-top-login">
-            {{ render(controller(
+            <div class="header-top-login">
+                {{ render(controller(
                     'GameBundle:User:login'
             )) }}
 
 
+            </div>
+            <a href="" ><i class="fa fa-user fa-2x" aria-hidden="true" class="header-top-login-user"></i></a>
         </div>
     </section>
     <section class="header-middle">
-        <div class="header-middle-presentation">
-            <h1>Gauntlet</h1>
-            <p>
-                Bienvenue.
-            </p>
-        </div>
+
+        <h1>Gauntlet PHP</h1>
+        <p>Le remake du célébre hack and slash, d'Atari Games de 1985, full PHP/Symfony ! </p>
+
     </section>
 </header>
+
