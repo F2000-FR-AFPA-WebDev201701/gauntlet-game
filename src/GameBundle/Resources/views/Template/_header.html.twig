@@ -1,30 +1,36 @@
 <header class="header">
     <section class="header-top">
-        <a href="#"><img src="images/gant.png" class="header-top-logo"/></a>
-        <nav class="header-top-nav">
-            <ul>
-                <li class="header-top-nav-items"><a href="#" >Accueil</a></li>
-                <li class="header-top-nav-items"><a href="#" >Jouer</a></li>
-                <li class="header-top-nav-items"><a href="#" >Le jeux</a></li>
-                <li class="header-top-nav-items"><a href="#" >A propos</a></li>
-            </ul>
+        <!-- Static navbar -->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ path('homepage') }}"><img src="{{ asset('images/gant.png') }}" class="header-top-logo" width="120" height="30" /></a>
+                </div>
+                <div id="nav" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ path('homepage') }}">Games</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            {{ render(controller(
+                                    'GameBundle:User:login'
+                        )) }}
+                        </li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div><!--/.container-fluid -->
         </nav>
-        <div class="header-top-login">
-            <div class="header-top-login">
-                {{ render(controller(
-                    'GameBundle:User:login'
-            )) }}
-
-
-            </div>
-            <a href="" ><i class="fa fa-user fa-2x" aria-hidden="true" class="header-top-login-user"></i></a>
-        </div>
     </section>
     <section class="header-middle">
-
         <h1>Gauntlet PHP</h1>
         <p>Le remake du célébre hack and slash, d'Atari Games de 1985, full PHP/Symfony ! </p>
-
     </section>
 </header>
 
