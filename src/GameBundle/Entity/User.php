@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Table(name="user")
- * @ORM\Entity
+ * @ORM\Entity(name="gauntlet_user")
  */
 class User implements UserInterface {
 
