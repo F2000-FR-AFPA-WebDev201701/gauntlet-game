@@ -72,11 +72,19 @@
 
 - Game : Lancer (création/chargement de la map en mémoire&bdd + move en mémoire&bdd)
 
+## 17-03-2017
+
+- Game Page déails : en attente de joueurs si nb joueurs < nb joueurs max
+
+- Style css du template
+
 # En cours
+
+- Mise à en place du bootstrap sur template principal
 
 - Game : Lancer (=/game/play) (change statut de la game et affiche la page map)
 
-- Style css du template
+- design plateau : style css + images(en cours nico)
 
 - Contenu infos (règles, commandes, à propos, ...)
 
