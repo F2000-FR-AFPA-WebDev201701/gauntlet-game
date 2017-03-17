@@ -15,16 +15,16 @@
 
 .tile{
     position: absolute;
-    width: 32px;
-    height: 32px;
+    width: 64px;
+    height: 64px;
 }
 
 .hero{
-    background-color: greenyellow;
+    background-image: url(../images/warrior.png);
 }
 
 .mur{
-    background-color: darkred;
+    background-color: blue;
 }
 
 
