@@ -8,8 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Game
  *
- * @ORM\Table(name="game")
- * @ORM\Entity(name="gauntlet_game", repositoryClass="GameBundle\Repository\GameRepository")
+ * @ORM\Table(name="gauntlet_game")
+ * @ORM\Entity
  */
 class Game
 {
