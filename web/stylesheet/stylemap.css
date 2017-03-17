@@ -1,16 +1,55 @@
-.container{
-    width: 960px;
-    height: 960px;
-    margin:0 auto;
+body{
+    padding:16px;
+    background-color: black;
 }
 
+p,h1,h2{
+    font-family: 'Press Start 2P', cursive;
+
+}
+
+h1{
+    font-size:16px;
+}
+
+p{
+    font-size:10px;
+}
+
+h2{
+    font-size:12px;
+}
+
+.infogame-player{
+    text-align: center;
+}
+
+.infogame-logo{
+    display: block;
+    width: 200px;
+    margin: auto;
+}
+
+.content{
+    margin: 0 auto;
+    width: 1000px;
+}
+
+aside{
+    float:right;
+    width:200px;
+    height: 640px;
+}
 
 .plateau{
+    float: left;
     position: relative;
-    width: 640px;
-    height: 640px;
+    width: 768px;
+    height: 576px;
     box-sizing: border-box;
     border:2px solid black;
+    background-image: url(../images/sol2.png);
+    z-index: -10;
 }
 
 .tile{
@@ -21,10 +60,12 @@
 
 .hero{
     background-image: url(../images/warrior.png);
+
 }
 
 .mur{
-    background-color: blue;
+    background-image: url(../images/mur.png);
+
 }
 
 

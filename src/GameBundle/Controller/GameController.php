@@ -39,9 +39,9 @@ class GameController extends Controller
         //RECUPERATION BDD
         $repo = $this->getDoctrine()->getRepository('GameBundle:Game');
         $oGame = $repo->findOneById($id);
-        dump($oGame);
         return $this->render('GameBundle:Game:detail.html.twig', array(
-            'game' => $oGame
+            'game' => $oGame,
+            'nbusers' => count($oGame->getUsers())
         ));
     }
 
@@ -88,8 +88,8 @@ class GameController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($oGame);
             $em->flush();
-            //Renvoi vers la list sur homepage
-            return $this->redirectToRoute('game_game_detail', ['id' => $oGame->getId()]);
+            return $this->redirectToRoute('game_game_join', ['id' => $oGame->getId(), 'game' => $oGame,
+                'nbusers' => count($oGame->getUsers())]);
             }
 
         //Render controller dans la homepage
@@ -110,16 +110,21 @@ class GameController extends Controller
         $repoGame = $this->getDoctrine()->getManager()->getRepository('GameBundle:Game');
         $oGame = $repoGame->findOneById($id);
 
-        //Rejoindre la partie si pas full
         if (count($oGame->getUsers()) < $oGame->getNbPlayerMax()  ){
 
-            // METTRE le gameID dans USER  A FAIREEEEEEEEE
             $em = $this->getDoctrine()->getManager();
             $oUser = $em->getRepository('GameBundle:User')
                 ->find($request->getSession()->get('user')->getId());
-            $oUser->setGame($oGame);
-            //$oGame->addUser($oUser);
+            $oGame->addUser($oUser);
+            //$oUser->setGame($oGame);
             $em->flush();
+
+
+        //Rejoindre la partie si pas full
+
+            // METTRE le gameID dans USER  A FAIREEEEEEEEE
+            //$oGame->addUser($oUser);
+
             //RECUPERER USERS DE LA GAME SELECT BDD
             //liste d'objet à retourner
             //$oGame->getUsers();
@@ -130,7 +135,7 @@ class GameController extends Controller
         return $this->render('GameBundle:Game:detail.html.twig', array(
             // Vue sur le détail de la Game avec oGame et oUsers
             'game' => $oGame,
-            'users' => $oGame->getUsers()
+            'nbusers' => count($oGame->getUsers())
         ));
 
     }
