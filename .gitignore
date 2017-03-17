@@ -32,3 +32,6 @@
 
 # Maps
 /web/maps/
+
+# Parameters
+/app/config/parameters.yml
