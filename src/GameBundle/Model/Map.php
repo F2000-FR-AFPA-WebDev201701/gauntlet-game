@@ -12,24 +12,21 @@ class Map {
     public static $_MAP_DIRECTORY = 'maps'; // /web/maps/
     public static $_MAP_FILENAME_EXT_INITIAL = '.initial'; //example map file /web/maps/1.initial
     public static $_MAP_FILENAME_EXT_SAVE = '.save'; //example map file /web/maps/1.save
-    public static $_MAP_MAX_X = 320;   // 320 pixels
-    public static $_MAP_MAX_Y = 480;   // 480 pixels
+    public static $_MAP_MAX_X = 698;   // 698 pixels
+    public static $_MAP_MAX_Y = 568;   // 568 pixels
+    public static $_FIRST_MAP_TO_LOAD = 1; // map number to load when there's no saveGame  
     private $filenameMap = '';
-    private $filenameMapGame = '';
     // element
     public static $_ELEMENT_OFFSET_MOVE = 4;  // pixels
-    public static $_ELEMENT_SIZE = 32; // pixels
+    public static $_ELEMENT_SIZE = 64; // pixels
     // elements
     protected $aElements = [];
 
     /*
      * __construct()
      */
+    function __construct() {
 
-    function __construct($idMap = null) {
-        if ($idMap > 0) {
-            $this->initCurrentMapFilename($idMap);
-        }
     }
 
     /*
@@ -37,7 +34,6 @@ class Map {
      * add a element (wall, item, perso, ...) into $aElements
      * a element can be a array or a object (instance)
      */
-
     public function addElement($element) {
         $this->aElements[] = $element;
     }
@@ -46,7 +42,6 @@ class Map {
      * nbMaps()
      * return nbMaps (search in files)
      */
-
     public function nbMaps() {
         $nbMaps = $this->nbFilesInDirectory(self::$_MAP_DIRECTORY);
         return $nbMaps;
@@ -55,31 +50,39 @@ class Map {
     /*
      * load()
      * load a map from a file
+     * return serialize map object
      */
+    public function load($idMap = null) {
+        if($idMap == null) {
+            $idMap = self::$_FIRST_MAP_TO_LOAD;
+        }
+        
+        if ($idMap > 0) {
+            $this->initCurrentMapFilename($idMap);
+        
+            if (file_exists($this->filenameMap)) { // else test if initial map exist
+                $filenameSer = $this->filenameMap;
+            } else {
+                return null;
+            }
+            $contentFile = file_get_contents($filenameSer);
+            //$serFile = serialize($contentFile);
 
-    public function load() {
-        if (file_exists($this->filenameMapGame)) { // test if game exist
-            $filenameSer = $this->filenameMapGame;
-        } else if (file_exists($this->filenameMap)) { // else test if initial map exist
-            $filenameSer = $this->filenameMap;
-        } else {
+            return($contentFile);
+        }
+        else {
             return null;
         }
-        $contentFile = file_get_contents($filenameSer);
-        $unserFile = unserialize($contentFile);
-
-        return($unserFile);
     }
 
     /*
      * save()
      * save a map (all elements + methods) into a file
+     * used to generate a new initial map
      */
-
     public function save($initial = true) {
         $ser = serialize($this);
-        $filenameSer = ($initial) ? $this->filenameMap : $this->filenameMapGame;
-        file_put_contents($filenameSer, $ser);
+        file_put_contents($this->filenameMap, $ser);
     }
 
     /*
@@ -95,7 +98,6 @@ class Map {
      * move()
      * move a element and save the map
      */
-
     public function move($moveDirection) {
         $elementA = $this->aElements[0]; // perso
         // move elementA (calcul)
@@ -111,11 +113,9 @@ class Map {
             }
         }
 
-        // not move or save
+        // not move if collision
         if ($collision) {
             $this->calcMoveInverse($elementA, $moveDirection); // it's not a valid move then come back move
-        } else {
-            $this->save(false); // no collisions then keep move and save the map
         }
     }
 
@@ -123,7 +123,6 @@ class Map {
      * calcMove($element, $moveDirection)
      * set element with new coord. Une a move direction.
      */
-
     private function calcMove($element, $moveDirection) {
         switch ($moveDirection) {
             case self::$_MOVE_UP :
@@ -145,7 +144,6 @@ class Map {
      * calcMoveInverse($element, $moveDirection)
      * set element with new coord. Use a inverse move direction.
      */
-
     private function calcMoveInverse($element, $moveDirection) {
         switch ($moveDirection) {
             case self::$_MOVE_UP :
@@ -167,7 +165,6 @@ class Map {
      * checkCollisionMapside($elementA)
      * return true if a collision exist with border map
      * */
-
     private function checkCollisionMapside($element) {
         return (
                 ($element->getPositionX() <= 0) || ($element->getPositionX() >= self::$_MAP_MAX_X) ||
@@ -179,7 +176,6 @@ class Map {
      * checkCollision($element1, $element2)
      * return true if a collision exist with element2
      * */
-
     private function checkCollision($element1, $element2) {
         $x1 = $element1->getPositionX();
         $x2 = $element2->getPositionX();
@@ -202,17 +198,14 @@ class Map {
      * initCurrentMapFilename($idMap)
      * init filenameMap & filenameMapGame = filename of specific map
      * */
-
     private function initCurrentMapFilename($idMap) {
         $this->filenameMap = self::$_MAP_DIRECTORY . '/' . $idMap . self::$_MAP_FILENAME_EXT_INITIAL;
-        $this->filenameMapGame = self::$_MAP_DIRECTORY . '/' . $idMap . self::$_MAP_FILENAME_EXT_SAVE;
     }
 
     /*
      * deleteFilesDirectory($directory)
      * delete all files in a directory
      * */
-
     private function deleteFilesDirectory($directory) {
         // open dir
         $directoryOpen = opendir($directory);
@@ -232,7 +225,6 @@ class Map {
      * nbFilesInDirectory($directory)
      * return nb files in a directory
      * */
-
     private function nbFilesInDirectory($directory) {
         $nbFiles = 0;
         // open dir
@@ -257,8 +249,7 @@ class Map {
         return $this->aElements;
     }
 
-    public
-            function setaElements($structure) {
+    public function setaElements($structure) {
         $this->aElements = $structure;
     }
 

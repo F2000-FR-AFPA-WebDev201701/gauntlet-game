@@ -22,7 +22,6 @@ class GameController extends Controller
      */
     public function listAction()
     {
-        //RECUPERATION BDD
         $repo = $this->getDoctrine()->getRepository('GameBundle:Game');
         $oGame = $repo->findAll();
 
@@ -36,7 +35,6 @@ class GameController extends Controller
      */
     public function detailAction($id)
     {
-        //RECUPERATION BDD
         $repo = $this->getDoctrine()->getRepository('GameBundle:Game');
         $oGame = $repo->findOneById($id);
         return $this->render('GameBundle:Game:detail.html.twig', array(
@@ -57,8 +55,6 @@ class GameController extends Controller
         $repo->flush();
         return $this->redirectToRoute('homepage');
     }
-
-
 
     /**
      * @Route("/game/create", name="game_create")
@@ -92,7 +88,7 @@ class GameController extends Controller
                 'nbusers' => count($oGame->getUsers())]);
             }
 
-        //Render controller dans la homepage
+       // Game Create
        return $this->render('GameBundle:Game:create.html.twig', array(
             'form' => $form->createView(),
         ));
@@ -110,36 +106,23 @@ class GameController extends Controller
         $repoGame = $this->getDoctrine()->getManager()->getRepository('GameBundle:Game');
         $oGame = $repoGame->findOneById($id);
 
+        // join the game if she's not full
         if (count($oGame->getUsers()) < $oGame->getNbPlayerMax()  ){
 
             $em = $this->getDoctrine()->getManager();
             $oUser = $em->getRepository('GameBundle:User')
                 ->find($request->getSession()->get('user')->getId());
-            $oGame->addUser($oUser);
+            $oGame->addUser($oUser); // add a user instance into $oGame
             //$oUser->setGame($oGame);
-            $em->flush();
-
-
-        //Rejoindre la partie si pas full
-
-            // METTRE le gameID dans USER  A FAIREEEEEEEEE
-            //$oGame->addUser($oUser);
-
-            //RECUPERER USERS DE LA GAME SELECT BDD
-            //liste d'objet à retourner
-            //$oGame->getUsers();
-            //SAVE oGAME EN BDD
+            $em->flush(); // save the game with the new player (user.gameid = game.id)
         }
 
-        //////RENDER CONTROLLER DETAIL DANS HOMEPAGE//////
+        // game details view
         return $this->render('GameBundle:Game:detail.html.twig', array(
-            // Vue sur le détail de la Game avec oGame et oUsers
             'game' => $oGame,
             'nbusers' => count($oGame->getUsers())
         ));
-
     }
-
 
     /**
      * @Route("/game/play/{id}/{action}/{value}")
@@ -149,44 +132,32 @@ class GameController extends Controller
         $repo = $this->getDoctrine()->getManager();
         $oGame = $repo->getRepository('GameBundle:Game')->findOneById($id);
 
-
         switch ($action){
-            //Afficher la map (action create)
+            // init map if no save game in $oGame object
             case 'init':
                 if($oGame->getSaveGame() == NULL){
-                    $oMap = new Map(1);
-                    $initMap = $oMap->load();
-                    $initMapSer = serialize($initMap);
-                    $oGame->setSaveGame($initMapSer);
-                    dump($initMap);
-                    dump($initMapSer);
-                    //Sauvegarde en base
-                    $repo->flush();
+                    $oMap = new Map();
+                    $initMapSer = $oMap->load();                    
+                    $oGame->setSaveGame($initMapSer); 
+                    $repo->flush(); // save the game into database
                 }
                 break;
 
-             //AJAX de move
+            //move (used by ajax)
             case 'move':
-                $oMapUnser = unserialize($oGame->getSaveGame());
+                $oMapUnser = unserialize($oGame->getSaveGame()); // get map in a map object
                 $oMapUnser->move($value);
                 $oMapSer = serialize($oMapUnser);
                 $oGame->setSaveGame($oMapSer);
-                $repo->flush();
+                $repo->flush(); // save the game into database
                 return $this->render('GameBundle:Map:map.html.twig', array('map' => $oMapUnser->getaElements()));
                 break;
-            //case 'shoot';     SHOOT A FAIRE
+            //case 'shoot';
         }
-
-        //Insert map(saveGame) dans l'instance Game
-
         dump($oGame);
 
         return $this->render('GameBundle:Game:play.html.twig', array(
             'idGame' => $id
         ));
     }
-
-
-
-
 }
