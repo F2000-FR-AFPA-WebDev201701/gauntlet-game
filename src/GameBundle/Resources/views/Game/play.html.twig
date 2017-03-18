@@ -21,10 +21,11 @@
                     <h2>Items récupérés</h2>
                 </div>
 
-
             </aside>
-            <div class="plateau"></div>
-            GameBundle:Game:play
+            <div class="plateau">
+                {% include 'GameBundle:Map:map.html.twig' %}
+            </div>
+       
             <script type="text/javascript">
                 $(document).ready(function () {
                     // Votre code ici avec les appels à la fonction $()

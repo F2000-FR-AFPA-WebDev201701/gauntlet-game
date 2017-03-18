@@ -37,6 +37,7 @@ class GameController extends Controller
     {
         $repo = $this->getDoctrine()->getRepository('GameBundle:Game');
         $oGame = $repo->findOneById($id);
+        
         return $this->render('GameBundle:Game:detail.html.twig', array(
             'game' => $oGame,
             'nbusers' => count($oGame->getUsers())
@@ -48,11 +49,11 @@ class GameController extends Controller
      */
     public function deleteAction($id)
     {
-        //RECUPERATION BDD
         $repo = $this->getDoctrine()->getManager();
         $oGame = $repo->getRepository('GameBundle:Game')->findOneById($id);
         $repo->remove($oGame);
         $repo->flush();
+        
         return $this->redirectToRoute('homepage');
     }
 
@@ -77,7 +78,7 @@ class GameController extends Controller
             ->add('nameRoom', TextType::class)
             ->add('nbPlayerMax', ChoiceType::class, array(
                 'choices'  => array('1' => 1, '2' => 2, '3' => 3, '4' => 4)))
-            ->add('save', SubmitType::class, array('label' => 'Create Game'))
+            ->add('save', SubmitType::class, array('label' => 'Créer une Game'))
             ->getForm();
         $form->handleRequest($request);
         
@@ -139,29 +140,35 @@ class GameController extends Controller
         switch ($action){
             // init map if no saved game in $oGame object
             case 'init':
-                if($oGame->getSaveGame() == NULL){
+                if(!$oGame->getSaveGame()){
                     $oMap = new Map();
-                    $initMapSer = $oMap->load();                    
+                    $initMapSer = $oMap->load(); // load map from file (mapX.initial)               
                     $oGame->setSaveGame($initMapSer); 
-                    $repo->flush(); // save the game into database
+                    $repo->flush(); // save the game into database                                    
+                } else {
+                    $oMap = unserialize($oGame->getSaveGame()); // read gamesave from database
                 }
+                
+                return $this->render('GameBundle:Game:play.html.twig', array(
+                        'idGame' => $id,
+                        'map' => $oMap->getaElements()
+                    )); 
+                
                 break;
 
             //move (used by ajax)
             case 'move':
-                $oMapUnser = unserialize($oGame->getSaveGame()); // get map in a map object
-                $oMapUnser->move($value);
-                $oMapSer = serialize($oMapUnser);
+                $oMapUnser = unserialize($oGame->getSaveGame()); // get a map object
+                $oMapUnser->move($value); // do the move
+                $oMapSer = serialize($oMapUnser); // serialize (prepare to save into database)
                 $oGame->setSaveGame($oMapSer);
                 $repo->flush(); // save the game into database
+            
                 return $this->render('GameBundle:Map:map.html.twig', array('map' => $oMapUnser->getaElements()));
                 break;
             //case 'shoot';
         }
-        //dump($oGame);
-
-        return $this->render('GameBundle:Game:play.html.twig', array(
-            'idGame' => $id
-        ));
+        
+        return new Response('Map : Problème!');
     }
 }

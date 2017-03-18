@@ -11,7 +11,6 @@ class Map {
     // map
     public static $_MAP_DIRECTORY = 'maps'; // /web/maps/
     public static $_MAP_FILENAME_EXT_INITIAL = '.initial'; //example map file /web/maps/1.initial
-    public static $_MAP_FILENAME_EXT_SAVE = '.save'; //example map file /web/maps/1.save
     public static $_MAP_MAX_X = 698;   // 698 pixels
     public static $_MAP_MAX_Y = 568;   // 568 pixels
     public static $_FIRST_MAP_TO_LOAD = 1; // map number to load when there's no saveGame  
@@ -66,7 +65,6 @@ class Map {
                 return null;
             }
             $contentFile = file_get_contents($filenameSer);
-            //$serFile = serialize($contentFile);
 
             return($contentFile);
         }
@@ -196,7 +194,7 @@ class Map {
 
     /*
      * initCurrentMapFilename($idMap)
-     * init filenameMap & filenameMapGame = filename of specific map
+     * init filenameMap = filename of specific map
      * */
     private function initCurrentMapFilename($idMap) {
         $this->filenameMap = self::$_MAP_DIRECTORY . '/' . $idMap . self::$_MAP_FILENAME_EXT_INITIAL;
