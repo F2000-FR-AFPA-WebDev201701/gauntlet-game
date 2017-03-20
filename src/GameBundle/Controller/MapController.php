@@ -4,10 +4,11 @@ namespace GameBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use GameBundle\Model\Decor;
-use GameBundle\Model\Personage;
-use GameBundle\Model\Item;
 use GameBundle\Model\Map;
+use GameBundle\Model\Personage;
+use GameBundle\Model\Decor;
+use GameBundle\Model\Item;
+use GameBundle\Model\Monster;
 
 class MapController extends Controller {
 
@@ -38,11 +39,18 @@ class MapController extends Controller {
         $this->item1->setPositionX(200);
         $this->item1->setPositionY(260);
         $this->item1->setType('potion');
+        //monsters
+        $this->monster1 = new Monster();
+        $this->monster1->setPositionX(100);
+        $this->monster1->setPositionY(10);
+        $this->monster1->setHp(100);
+        $this->monster1->setType('ghost');
 
         $oMap1 = new Map();
         $oMap1->addElementCharacter($this->perso1);
         $oMap1->addElementDecor($this->decor1);
         $oMap1->addElementItem($this->item1);
+        $oMap1->addElementMonster($this->monster1);
 
         $oMap1->save(1);
 

@@ -143,8 +143,6 @@ class GameController extends Controller {
                 } else {
                     $oMap = unserialize($oGame->getSaveGame()); // read gamesave from database
                 }
-                //dump($oMap);
-                dump($oMap->getaElements());
                 return $this->render('GameBundle:Game:play.html.twig', array(
                             'idGame' => $id,
                             'player' => $oMap->getaElementsCharacters()[0],

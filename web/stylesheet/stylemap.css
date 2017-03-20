@@ -60,7 +60,6 @@ h2{
 
 .hero{
     background-image: url(../images/warrior.png);
-
 }
 
 .mur{
@@ -69,6 +68,10 @@ h2{
 
 .potion{
     background-image: url(../images/potion.png);
+}
+
+.ghost{
+    background-image: url(../images/ghost.png);
 }
 
 

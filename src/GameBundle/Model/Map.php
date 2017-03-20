@@ -8,7 +8,6 @@ class Map {
     public static $_MOVE_RIGHT = 2;
     public static $_MOVE_DOWN = 3;
     public static $_MOVE_LEFT = 4;
-    //public static $_LU = [self::$_MOVE_UP, self::$_MOVE_LEFT];
     // map
     public static $_MAP_DIRECTORY = 'maps'; // /web/maps/
     public static $_MAP_FILENAME_EXT_INITIAL = '.initial'; //example map file /web/maps/1.initial
@@ -24,6 +23,7 @@ class Map {
     protected $aElementsCharacters = [];
     protected $aElementsDecors = [];
     protected $aElementsItems = [];
+    protected $aElementsMonsters = [];
 
     /*
      * __construct()
@@ -49,6 +49,10 @@ class Map {
 
     public function addElementItem($element) {
         $this->aElementsItems[] = $element;
+    }
+
+    public function addElementMonster($element) {
+        $this->aElementsMonsters[] = $element;
     }
 
     /*
@@ -120,6 +124,9 @@ class Map {
 
     public function move($moveDirection) {
         $elementA = $this->aElementsCharacters[0]; // perso 1
+
+        $this->moveMonster($this->aElementsMonsters[0], $elementA);
+
         // move elementA (calcul)
         $this->calcMove($elementA, $moveDirection);
 
@@ -150,7 +157,6 @@ class Map {
             // test if move is valid
             if ($this->checkCollision($elementA, $this->aElementsItems[$i])) {
                 // collision with a item
-                dump($this->aElementsItems[$i]);
                 switch ($this->aElementsItems[$i]->getType()) {
                     case 'potion' :
                         $elementA->setHp($elementA->getHp() + 50);
@@ -159,6 +165,69 @@ class Map {
                 unset($this->aElementsItems[$i]);
             }
         }
+    }
+
+    /*
+     * move()
+     * move a monster
+     */
+
+    public function moveMonster($monster, $elementA) {
+        $_UL = [self::$_MOVE_UP, self::$_MOVE_LEFT];
+        $_UR = [self::$_MOVE_UP, self::$_MOVE_RIGHT];
+        $_DL = [self::$_MOVE_DOWN, self::$_MOVE_LEFT];
+        $_DR = [self::$_MOVE_DOWN, self::$_MOVE_RIGHT];
+
+        $randomKey = array_rand(array(0, 1));
+
+        if (($monster->getPositionX() > $elementA->getPositionX()) &&
+                ($monster->getPositionY() > $elementA->getPositionY())
+        ) {
+            $this->calcMove($monster, $_UL[$randomKey]);
+            if ($this->checkCollisionsWithElements($monster, $this->aElementsDecors)) {
+                $this->calcMoveInverse($monster, $_UL[$randomKey]);
+            }
+        }
+
+        if (($monster->getPositionX() < $elementA->getPositionX()) &&
+                ($monster->getPositionY() > $elementA->getPositionY())
+        ) {
+            $this->calcMove($monster, $_UR[$randomKey]);
+            if ($this->checkCollisionsWithElements($monster, $this->aElementsDecors)) {
+                $this->calcMoveInverse($monster, $_UR[$randomKey]);
+            }
+        }
+
+        if (($monster->getPositionX() > $elementA->getPositionX()) &&
+                ($monster->getPositionY() < $elementA->getPositionY())
+        ) {
+            $this->calcMove($monster, $_DL[$randomKey]);
+            if ($this->checkCollisionsWithElements($monster, $this->aElementsDecors)) {
+                $this->calcMoveInverse($monster, $_DL[$randomKey]);
+            }
+        }
+
+        if (($monster->getPositionX() < $elementA->getPositionX()) &&
+                ($monster->getPositionY() < $elementA->getPositionY())
+        ) {
+            $this->calcMove($monster, $_DR[$randomKey]);
+
+            if ($this->checkCollisionsWithElements($monster, $this->aElementsDecors)) {
+                $this->calcMoveInverse($monster, $_DR[$randomKey]);
+            }
+        }
+    }
+
+    // check collision between elementA and all decors
+    private function checkCollisionsWithElements($element, $aElements) {
+        for ($i = 0; $i < count($aElements); $i++) {
+            // test if move is valid
+            if ($this->checkCollision($element, $aElements[$i])) {
+                // collision with map side or and another element
+                return true;
+            }
+        }
+        return false;
     }
 
     /*
@@ -295,8 +364,9 @@ class Map {
      * Getters / Setters
      */
     public function getaElements() {
-        $this->aElements = array_merge($this->getaElementsCharacters(), $this->getaElementsDecors(), $this->getaElementsItems());
-        dump($this->aElements);
+        $this->aElements = array_merge(
+                $this->getaElementsCharacters(), $this->getaElementsDecors(), $this->getaElementsItems(), $this->getaElementsMonsters()
+        );
         return $this->aElements;
     }
 
@@ -320,8 +390,16 @@ class Map {
         return $this->aElementsItems;
     }
 
-    public function setaElementsItem($structure) {
+    public function setaElementsItems($structure) {
         $this->aElementsItems = $structure;
+    }
+
+    public function getaElementsMonsters() {
+        return $this->aElementsMonsters;
+    }
+
+    public function setaElementsMonsters($structure) {
+        $this->aElementsMonsters = $structure;
     }
 
 }
