@@ -1,3 +1,20 @@
-{% for tile in map %}
-       <div class="{{ tile.type }} tile" style="margin-left:{{ tile.positionX }}px; margin-top:{{ tile.positionY }}px"></div>
-{% endfor %}
+<div class="plateau">
+
+    {% for tile in map %}
+        <div class="{{ tile.type }} tile" style="margin-left:{{ tile.positionX }}px; margin-top:{{ tile.positionY }}px"></div>
+    {% endfor %}
+</div>
+
+<div class="infogame">
+    <img class="infogame-logo" src="{{ asset('images/gant.png') }}" alt=""/>
+    <div class="infogame-player">
+        <h1> {{ app.session.get('user').pseudo }} </h1>
+        <h2> Vie : </h2>
+        <p> {{ player.hp }} Vie </p>
+        <h2>Score</h2>
+        <p> {{ player.score }} Points </p>
+        <h2>Items récupérés</h2>
+    </div>
+
+</div>
+

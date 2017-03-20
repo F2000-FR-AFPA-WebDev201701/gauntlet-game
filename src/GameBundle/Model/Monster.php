@@ -3,9 +3,9 @@
 namespace GameBundle\Model;
 
 /**
- * Personage
+ * Monster
  */
-class Personage {
+class Monster {
 
     /**
      * @var int
@@ -35,17 +35,7 @@ class Personage {
     /**
      * @var int
      */
-    private $score;
-
-    /**
-     * @var int
-     */
     private $strength;
-
-    /**
-     * @var int
-     */
-    private $gameId;
 
     /**
      * Get id
@@ -59,7 +49,7 @@ class Personage {
      *
      * @param string $type
      *
-     * @return Personage
+     * @return Monster
      */
     public function setType($type) {
         $this->type = $type;
@@ -81,7 +71,7 @@ class Personage {
      *
      * @param integer $positionX
      *
-     * @return Personage
+     * @return Monster
      */
     public function setPositionX($positionX) {
         $this->positionX = $positionX;
@@ -103,7 +93,7 @@ class Personage {
      *
      * @param integer $positionY
      *
-     * @return Personage
+     * @return Monster
      */
     public function setPositionY($positionY) {
         $this->positionY = $positionY;
@@ -125,7 +115,7 @@ class Personage {
      *
      * @param integer $hp
      *
-     * @return Personage
+     * @return Monster
      */
     public function setHp($hp) {
         $this->hp = $hp;
@@ -143,33 +133,11 @@ class Personage {
     }
 
     /**
-     * Set score
-     *
-     * @param integer $score
-     *
-     * @return Personage
-     */
-    public function setScore($score) {
-        $this->score = $score;
-
-        return $this;
-    }
-
-    /**
-     * Get score
-     *
-     * @return int
-     */
-    public function getScore() {
-        return $this->score;
-    }
-
-    /**
      * Set strength
      *
      * @param integer $strength
      *
-     * @return Personage
+     * @return Monster
      */
     public function setStrength($strength) {
         $this->strength = $strength;
@@ -184,28 +152,6 @@ class Personage {
      */
     public function getStrength() {
         return $this->strength;
-    }
-
-    /**
-     * Set gameId
-     *
-     * @param integer $gameId
-     *
-     * @return Personage
-     */
-    public function setGameId($gameId) {
-        $this->gameId = $gameId;
-
-        return $this;
-    }
-
-    /**
-     * Get gameId
-     *
-     * @return int
-     */
-    public function getGameId() {
-        return $this->gameId;
     }
 
 }
