@@ -2,13 +2,10 @@
 
 namespace GameBundle\Controller;
 
-use ClassesWithParents\G;
 use GameBundle\Entity\Game;
-use GameBundle\Entity\User;
 use GameBundle\Model\Map;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -67,7 +64,11 @@ class GameController extends Controller {
 
         $oUser = $this->getDoctrine()->getRepository('GameBundle:User')->find($oUser->getId());
 
-        //dump($oUser->getGame());
+        if ($oUser->getGame()) {
+            return new Response(
+                    '<p class="alert-danger text-center">Vous avez déjà une game !</p>'
+            );
+        }
 
         $oGame = new Game();
 
@@ -84,6 +85,7 @@ class GameController extends Controller {
         if ($form->isSubmitted() && $form->isValid()) {
             $oGame->setDate(new \DateTime());
             $oGame->addUser($oUser);
+            $oUser->setGame($oGame);
             $em = $this->getDoctrine()->getManager();
             $em->persist($oGame);
             $em->flush();
