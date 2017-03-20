@@ -65,10 +65,10 @@ class GameController extends Controller {
             );
         }
 
-
-
         $oUser = $this->getDoctrine()->getRepository('GameBundle:User')->find($oUser->getId());
-        dump($oUser);
+
+        //dump($oUser->getGame());
+
         $oGame = new Game();
 
         // form builder
@@ -110,19 +110,17 @@ class GameController extends Controller {
 
         // join the game if she's not full
         if (count($oGame->getUsers()) < $oGame->getNbPlayerMax()) {
-
             $em = $this->getDoctrine()->getManager();
             $oUser = $em->getRepository('GameBundle:User')
                     ->find($request->getSession()->get('user')->getId());
             $oGame->addUser($oUser); // add a user instance into $oGame
-            //$oUser->setGame($oGame);
+            $oUser->setGame($oGame);
             $em->flush(); // save the game with the new player (user.gameid = game.id)
         }
 
         // game details view
         return $this->render('GameBundle:Game:detail.html.twig', array(
                     'game' => $oGame,
-                    'player' => $oGame->getSavedGame()->getaElementsCharacters()[0],
                     'nbusers' => count($oGame->getUsers())
         ));
     }
@@ -153,8 +151,6 @@ class GameController extends Controller {
                             'map' => $oMap->getaElements()
                 ));
 
-                break;
-
             //move (used by ajax)
             case 'move':
                 $oMapUnser = unserialize($oGame->getSaveGame()); // get a map object
@@ -167,7 +163,6 @@ class GameController extends Controller {
                             'map' => $oMapUnser->getaElements(),
                             'player' => $oMapUnser->getaElementsCharacters()[0]
                 ));
-                break;
             //case 'shoot';
         }
 
