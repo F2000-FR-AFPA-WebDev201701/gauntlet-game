@@ -1,36 +1,49 @@
-<header class="header">
-    <section class="header-top">
-        <!-- Static navbar -->
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="{{ path('homepage') }}"><img src="{{ asset('images/gant.png') }}" class="header-top-logo" width="120" height="30" /></a>
-                </div>
-                <div id="nav" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="{{ path('homepage') }}">Games</a></li>
-                    </ul>
+<header class="banner">
+    <div class="l-container">
+        <div class="banner-top">
+            <a href="{{ path('homepage') }}" class="logo">GAUNTLET php</a>
+            <ul class="banner-top-menu">
+                <li class="banner-top-menu-items"><a href="#">JOUER</a></li>
+                <li class="banner-top-menu-items"><a href="#">LE JEU</a></li>
+                <li class="banner-top-menu-items"><a  href="#">A PROPOS</a></li>
+                <li class="banner-top-menu-items">
+                    <ul>
+                        {% if app.session.get('user') %}
+                            <li class="dropdown  logoon">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-user fa-2x" aria-hidden="true"></i> {{ app.session.get('user').pseudo }}
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('user_profil') }}">Profil</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="{{ path('user_logout') }}">Logout</a></li>
+                                </ul>
+                                <ul>
+                            </li>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
+                        {% else %}
+                            <i class="fa fa-user fa-2x" aria-hidden="true" style="color:grey"></i>
+                            </a>
+                        {% endif %}
+                    </ul>
+                    </div>
+                    <div class="banner-center">
+                        <div class="banner-center-bl1"><img src="{{ asset('images/gant.png') }}" alt=""></div>
+                        <div class="banner-center-bl2">Le Hack'n Slash</div>
+                        <div class="banner-center-bl3">FULL PHP!</div>
+                        <div class="line"></div>
+
+
+                        <div class="form">
                             {{ render(controller(
                                     'GameBundle:User:login'
                         )) }}
-                        </li>
-                    </ul>
-                </div><!--/.nav-collapse -->
-            </div><!--/.container-fluid -->
-        </nav>
-    </section>
-    <section class="header-middle">
-        <h1>Gauntlet PHP</h1>
-        <p>Le remake du célébre hack and slash, d'Atari Games de 1985, full PHP/Symfony ! </p>
-    </section>
-</header>
+                        </div
 
+                    </div>
+                    <div class="banner-bottom">
+
+                    </div>
+                    </div>
+                    </header>
