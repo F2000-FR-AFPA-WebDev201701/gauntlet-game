@@ -13,26 +13,33 @@
             </tr>
 
             <tr>
-                <th>Name</th>
+                <th>Nom de la Room</th>
                 <td>{{game.nameRoom }}</td>
             </tr>
             <tr>
-                <th>Created Date</th>
+                <th>Création Date</th>
                 <td>{{game.date.date }}</td>
             </tr>
             <tr>
-                <th>Number player</th>
-                <td>{{game.nbPlayerMax }}</td>
+                <th>Nombre de joueurs</th>
+                <td>{{nbusers}} / {{game.nbPlayerMax }}</td>
             </tr>
             <tr>
                 <td colspan="2" style="padding: 0;" >
                     {% if(app.session.get('user')) %}
-                        <a href="{{ path('game_game_play', {'id': game.id , 'action': 'init'}) }}">
-                            <button class="text-center button-default" style="display: block; width: 100%; margin: 0;">
-                            Lancer
-                            
-                            </button>
-                        </a>
+                        {% if((nbusers) < (game.nbPlayerMax)) %}
+                            <div  href="{{ path('game_game_play', {'id': game.id , 'action': 'init'}) }}">
+                                <button  disabled="disabled" class=" text-center button-default" style="display: block; width: 100%; margin: 0;">
+                                    En attente de joueurs
+                                </button>
+                            </div>
+                        {% else %}
+                            <a  href="{{ path('game_game_play', {'id': game.id , 'action': 'init'}) }}">
+                                <button   class=" text-center button-default" style="display: block; width: 100%; margin: 0;">
+                                    Lancer
+                                </button>
+                            </a>
+                        {% endif %}
                     {% endif %}
                 </td>
             </tr>
@@ -42,7 +49,6 @@
                         <a href="{{ path('game_game_delete', {'id': game.id}) }}">
                             <button class="text-center " style="display: block; width: 100%; margin: 0;">
                                 Supprimer
-
                             </button>
                         </a>
                     {% endif %}

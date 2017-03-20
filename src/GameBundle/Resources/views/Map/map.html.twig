@@ -1,4 +1,3 @@
- {% for tile in map %}
-       <!-- Changer les noms des variables coord/ect-->
+{% for tile in map %}
        <div class="{{ tile.type }} tile" style="margin-left:{{ tile.positionX }}px; margin-top:{{ tile.positionY }}px"></div>
 {% endfor %}

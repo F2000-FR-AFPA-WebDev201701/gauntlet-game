@@ -1,14 +1,51 @@
 {% if app.session.get('user') %}
-    <p>Username: {{ app.session.get('user').pseudo }}</p>
-    <p><a href="{{ path('user_logout') }}">Logout</a></p>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            {{ app.session.get('user').pseudo }}
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="{{ path('user_profil') }}">Profil</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="{{ path('user_logout') }}">Logout</a></li>
+        </ul>
+    </li>
 
 {% else %}
+
+
     {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
     {{ form_start(form,
                     {'action' : path('user_login')}
-)}}
+             )}}
     {{ form_errors(form) }}
-    {{ form_widget(form) }}
+    <div class="row">
+        <div class="col-xs-5">
+            {{ form_row(form.pseudo) }}
+        </div>
+        <div class="col-xs-5">
+            {{ form_row(form.password) }}
+        </div>
+        <div class="col-xs-2">
+            {{ form_row(form.submit) }}
+        </div>
+    </div>
     {{ form_end(form) }}
+    <li class="dropdown">
+
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <span class="glyphicon glyphicon-user"> </span>
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="{{ path('user_register') }}">S'enregistrer</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="{{ path('user_lost_password') }}">Mot de passe oublié</a></li>
+        </ul>
+
+    </li>
+</li>
+
+
 {% endif %}
 
