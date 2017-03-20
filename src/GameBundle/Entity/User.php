@@ -50,6 +50,9 @@ class User implements UserInterface {
      */
     protected $game;
 
+
+    protected $salt;
+
     /**
      * @return mixed
      */
