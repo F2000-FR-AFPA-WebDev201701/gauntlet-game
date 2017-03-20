@@ -65,14 +65,16 @@ class GameController extends Controller {
             );
         }
 
-        $oUser = $this->getDoctrine()->getRepository('GameBundle:User')->find($oUser->getId());
 
+
+        $oUser = $this->getDoctrine()->getRepository('GameBundle:User')->find($oUser->getId());
+        dump($oUser);
         $oGame = new Game();
 
         // form builder
         $form = $this->createFormBuilder($oGame)
-                ->add('nameRoom', TextType::class)
-                ->add('nbPlayerMax', ChoiceType::class, array(
+                ->add('nameRoom', TextType::class, array('label' => 'Nom'))
+                ->add('nbPlayerMax', ChoiceType::class, array('label' => 'Joueurs',
                     'choices' => array('1' => 1, '2' => 2, '3' => 3, '4' => 4)))
                 ->add('save', SubmitType::class, array('label' => 'Créer une Game'))
                 ->getForm();
@@ -120,6 +122,7 @@ class GameController extends Controller {
         // game details view
         return $this->render('GameBundle:Game:detail.html.twig', array(
                     'game' => $oGame,
+                    'player' => $oGame->getSavedGame()->getaElementsCharacters()[0],
                     'nbusers' => count($oGame->getUsers())
         ));
     }
@@ -143,11 +146,13 @@ class GameController extends Controller {
                 } else {
                     $oMap = unserialize($oGame->getSaveGame()); // read gamesave from database
                 }
+
                 return $this->render('GameBundle:Game:play.html.twig', array(
                             'idGame' => $id,
                             'player' => $oMap->getaElementsCharacters()[0],
                             'map' => $oMap->getaElements()
                 ));
+
                 break;
 
             //move (used by ajax)
@@ -159,8 +164,9 @@ class GameController extends Controller {
                 $repo->flush(); // save the game into database
 
                 return $this->render('GameBundle:Map:map.html.twig', array(
-                            'player' => $oMapUnser->getaElementsCharacters()[0],
-                            'map' => $oMapUnser->getaElements()));
+                            'map' => $oMapUnser->getaElements(),
+                            'player' => $oMapUnser->getaElementsCharacters()[0]
+                ));
                 break;
             //case 'shoot';
         }
