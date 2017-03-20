@@ -13,20 +13,19 @@
             </tr>
 
             <tr>
-                <th>Name</th>
+                <th>Nom de la Room</th>
                 <td>{{game.nameRoom }}</td>
             </tr>
             <tr>
-                <th>Created Date</th>
+                <th>Création Date</th>
                 <td>{{game.date.date }}</td>
             </tr>
             <tr>
-                <th>Number player</th>
-                <td>{{game.nbPlayerMax }}</td>
+                <th>Nombre de joueurs</th>
+                <td>{{nbusers}} / {{game.nbPlayerMax }}</td>
             </tr>
             <tr>
                 <td colspan="2" style="padding: 0;" >
-                    {{ dump(nbusers) }}
                     {% if(app.session.get('user')) %}
                         {% if((nbusers) < (game.nbPlayerMax)) %}
                             <div  href="{{ path('game_game_play', {'id': game.id , 'action': 'init'}) }}">
