@@ -97,15 +97,15 @@
 
 - Game : Lancer (=/game/play) affichage du plateau (chargement de la game ou init)
 
+- Mise à en place du template principal
+
+
+
 
 
 # En cours
 
-- Mise à en place du template principal (en cours)
-
 - User recupération du mot de passe (en cours)
-
-
 
 - Contenu infos (règles, commandes, à propos, ...)
 
