@@ -13,7 +13,7 @@
             <aside class="infogame">
                 <img class="infogame-logo" src="{{ asset('images/gant.png') }}" alt=""/>
                 <div class="infogame-player">
-                    <h1> Nom Joueur </h1>
+                    <h1> {{ app.session.get('user').pseudo }} </h1>
                     <h2> Vie : </h2>
                     <p> XX Vie </p>
                     <h2>Score</h2>
