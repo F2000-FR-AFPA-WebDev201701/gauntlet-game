@@ -75,8 +75,8 @@ class GameController extends Controller
         
         // form builder
         $form = $this->createFormBuilder($oGame)
-            ->add('nameRoom', TextType::class)
-            ->add('nbPlayerMax', ChoiceType::class, array(
+            ->add('nameRoom', TextType::class, array('label' => 'Nom'))
+            ->add('nbPlayerMax', ChoiceType::class, array('label' => 'Joueurs',
                 'choices'  => array('1' => 1, '2' => 2, '3' => 3, '4' => 4)))
             ->add('save', SubmitType::class, array('label' => 'Créer une Game'))
             ->getForm();
