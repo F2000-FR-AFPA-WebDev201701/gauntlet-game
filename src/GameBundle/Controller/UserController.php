@@ -22,10 +22,11 @@ class UserController extends Controller {
 
         if ($form->isSubmitted()) {
             $repo = $this->getDoctrine()->getRepository('GameBundle:User');
+            $md5pass = md5($user->getPassword());
 
             $userValid = $repo->findOneBy(array(
                 'pseudo' => $user->getPseudo(),
-                'password' => $user->getPassword(),
+                'password' => $md5pass,
             ));
 
             if ($userValid) {
@@ -59,7 +60,7 @@ class UserController extends Controller {
 
         if ($form->isSubmitted() && $form->isValid()) {
             //$password = $this->get('security.password_encoder')->encodePassword($user, $user->getConfirmPassword());
-            $user->setPassword($user->getConfirmPassword());
+            $user->setPassword(md5($user->getConfirmPassword()));
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
