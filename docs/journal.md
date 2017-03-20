@@ -4,10 +4,12 @@
 ## 06-03-2017
 
 - Cahier des charges V1
-              
+     
+	 
 ## 07-03-2017
 
 - Petit script php pour faire un cadre avec un carré qui se déplace (gestion de bordures et test de rapidité d'execution)
+
 
 ## 08-03-2017
 
@@ -16,6 +18,7 @@
 - Paramêtrage de git sur les 3 postes
 
 - Entités Personage / Map / Decor
+
 
 ## 09-03-2017
 
@@ -30,6 +33,7 @@
 
 - Création d'un répertoire /php-tests dans SF3 pour les petits tests en Php (pas de SF3)
 
+
 ## 10-03-2017
 
 - Serialiser Map dans entité Game
@@ -37,6 +41,7 @@
 - Gestion collision (entre 2 éléments)
 
 - Login / Inscription / Logout User (début)
+
 
 ## 13-03-2017
 
@@ -52,11 +57,13 @@
 
 - GameController (début)
 
+
 ## 14-03-2017
 
 - Login / Inscription / Logout User
 
 - GameController (list / create / join / refresh / play) (suite)
+
 
 ## 15-03-2017
 
@@ -72,19 +79,33 @@
 
 - Game : Lancer (création/chargement de la map en mémoire&bdd + move en mémoire&bdd)
 
+
 ## 17-03-2017
 
 - Game Page déails : en attente de joueurs si nb joueurs < nb joueurs max
 
 - Style css du template
 
+
+## 20-03-2017
+
+- User : mot de passe crypté
+
+- Map : gestion des items (trésors, clés, potions)
+
+- design plateau : images
+
+- Game : Lancer (=/game/play) affichage du plateau (chargement de la game ou init)
+
+
+
 # En cours
 
-- Mise à en place du bootstrap sur template principal
+- Mise à en place du template principal (en cours)
 
-- Game : Lancer (=/game/play) (change statut de la game et affiche la page map)
+- User recupération du mot de passe (en cours)
 
-- design plateau : style css + images(en cours nico)
+
 
 - Contenu infos (règles, commandes, à propos, ...)
 

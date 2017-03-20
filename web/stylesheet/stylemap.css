@@ -20,6 +20,12 @@ h2{
     font-size:12px;
 }
 
+.infogame {
+    float:right;
+    width:200px;
+    height: 640px;
+}
+
 .infogame-player{
     text-align: center;
 }
@@ -33,12 +39,6 @@ h2{
 .content{
     margin: 0 auto;
     width: 1000px;
-}
-
-aside{
-    float:right;
-    width:200px;
-    height: 640px;
 }
 
 .plateau{
@@ -65,7 +65,10 @@ aside{
 
 .mur{
     background-image: url(../images/mur.png);
+}
 
+.potion{
+    background-image: url(../images/potion.png);
 }
 
 

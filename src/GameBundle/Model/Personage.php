@@ -35,6 +35,11 @@ class Personage {
     /**
      * @var int
      */
+    private $score;
+
+    /**
+     * @var int
+     */
     private $strength;
 
     /**
@@ -116,9 +121,9 @@ class Personage {
     }
 
     /**
-     * Set hP
+     * Set hp
      *
-     * @param integer $hP
+     * @param integer $hp
      *
      * @return Personage
      */
@@ -129,12 +134,34 @@ class Personage {
     }
 
     /**
-     * Get Hp
+     * Get hp
      *
      * @return int
      */
     public function getHp() {
         return $this->hp;
+    }
+
+    /**
+     * Set score
+     *
+     * @param integer $score
+     *
+     * @return Personage
+     */
+    public function setScore($score) {
+        $this->score = $score;
+
+        return $this;
+    }
+
+    /**
+     * Get score
+     *
+     * @return int
+     */
+    public function getScore() {
+        return $this->score;
     }
 
     /**

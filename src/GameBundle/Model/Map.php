@@ -8,22 +8,27 @@ class Map {
     public static $_MOVE_RIGHT = 2;
     public static $_MOVE_DOWN = 3;
     public static $_MOVE_LEFT = 4;
+    //public static $_LU = [self::$_MOVE_UP, self::$_MOVE_LEFT];
     // map
     public static $_MAP_DIRECTORY = 'maps'; // /web/maps/
     public static $_MAP_FILENAME_EXT_INITIAL = '.initial'; //example map file /web/maps/1.initial
     public static $_MAP_MAX_X = 698;   // 698 pixels
     public static $_MAP_MAX_Y = 568;   // 568 pixels
-    public static $_FIRST_MAP_TO_LOAD = 1; // map number to load when there's no saveGame  
+    public static $_FIRST_MAP_TO_LOAD = 1; // map number to load when there's no saveGame
     private $filenameMap = '';
     // element
     public static $_ELEMENT_OFFSET_MOVE = 4;  // pixels
     public static $_ELEMENT_SIZE = 64; // pixels
     // elements
-    protected $aElements = [];
+    protected $aElements = []; // all elements : used by view
+    protected $aElementsCharacters = [];
+    protected $aElementsDecors = [];
+    protected $aElementsItems = [];
 
     /*
      * __construct()
      */
+
     function __construct() {
 
     }
@@ -33,14 +38,24 @@ class Map {
      * add a element (wall, item, perso, ...) into $aElements
      * a element can be a array or a object (instance)
      */
-    public function addElement($element) {
-        $this->aElements[] = $element;
+
+    public function addElementCharacter($element) {
+        $this->aElementsCharacters[] = $element;
+    }
+
+    public function addElementDecor($element) {
+        $this->aElementsDecors[] = $element;
+    }
+
+    public function addElementItem($element) {
+        $this->aElementsItems[] = $element;
     }
 
     /*
      * nbMaps()
      * return nbMaps (search in files)
      */
+
     public function nbMaps() {
         $nbMaps = $this->nbFilesInDirectory(self::$_MAP_DIRECTORY);
         return $nbMaps;
@@ -51,14 +66,15 @@ class Map {
      * load a map from a file
      * return serialize map object
      */
+
     public function load($idMap = null) {
-        if($idMap == null) {
+        if ($idMap == null) {
             $idMap = self::$_FIRST_MAP_TO_LOAD;
         }
-        
+
         if ($idMap > 0) {
             $this->initCurrentMapFilename($idMap);
-        
+
             if (file_exists($this->filenameMap)) { // else test if initial map exist
                 $filenameSer = $this->filenameMap;
             } else {
@@ -67,8 +83,7 @@ class Map {
             $contentFile = file_get_contents($filenameSer);
 
             return($contentFile);
-        }
-        else {
+        } else {
             return null;
         }
     }
@@ -78,9 +93,15 @@ class Map {
      * save a map (all elements + methods) into a file
      * used to generate a new initial map
      */
-    public function save($initial = true) {
-        $ser = serialize($this);
-        file_put_contents($this->filenameMap, $ser);
+
+    public function save($idMap = null) {
+        if ($idMap > 0) {
+            $this->initCurrentMapFilename($idMap);
+            $ser = serialize($this);
+            file_put_contents($this->filenameMap, $ser);
+        } else {
+            return null;
+        }
     }
 
     /*
@@ -96,16 +117,23 @@ class Map {
      * move()
      * move a element and save the map
      */
+
     public function move($moveDirection) {
-        $elementA = $this->aElements[0]; // perso
+        $elementA = $this->aElementsCharacters[0]; // perso 1
         // move elementA (calcul)
         $this->calcMove($elementA, $moveDirection);
 
-        // check collision between elementA and others elements
         $collision = false;
-        for ($i = 1; $i < count($this->aElements); $i++) {
+
+        // check collision with map sides
+        if ($this->checkCollisionMapside($elementA)) {
+            $collision = true;
+        }
+
+        // check collision between elementA and all decors
+        for ($i = 0; $i < count($this->aElementsDecors); $i++) {
             // test if move is valid
-            if (($this->checkCollisionMapside($elementA)) || ($this->checkCollision($elementA, $this->aElements[$i]))) {
+            if ($this->checkCollision($elementA, $this->aElementsDecors[$i])) {
                 // collision with map side or and another element
                 $collision = true;
             }
@@ -115,12 +143,29 @@ class Map {
         if ($collision) {
             $this->calcMoveInverse($elementA, $moveDirection); // it's not a valid move then come back move
         }
+
+        // check collision between elementA and all items
+        $collision = false;
+        for ($i = 0; $i < count($this->aElementsItems); $i++) {
+            // test if move is valid
+            if ($this->checkCollision($elementA, $this->aElementsItems[$i])) {
+                // collision with a item
+                dump($this->aElementsItems[$i]);
+                switch ($this->aElementsItems[$i]->getType()) {
+                    case 'potion' :
+                        $elementA->setHp($elementA->getHp() + 50);
+                        break;
+                }
+                unset($this->aElementsItems[$i]);
+            }
+        }
     }
 
     /*
      * calcMove($element, $moveDirection)
      * set element with new coord. Une a move direction.
      */
+
     private function calcMove($element, $moveDirection) {
         switch ($moveDirection) {
             case self::$_MOVE_UP :
@@ -142,6 +187,7 @@ class Map {
      * calcMoveInverse($element, $moveDirection)
      * set element with new coord. Use a inverse move direction.
      */
+
     private function calcMoveInverse($element, $moveDirection) {
         switch ($moveDirection) {
             case self::$_MOVE_UP :
@@ -163,6 +209,7 @@ class Map {
      * checkCollisionMapside($elementA)
      * return true if a collision exist with border map
      * */
+
     private function checkCollisionMapside($element) {
         return (
                 ($element->getPositionX() <= 0) || ($element->getPositionX() >= self::$_MAP_MAX_X) ||
@@ -174,6 +221,7 @@ class Map {
      * checkCollision($element1, $element2)
      * return true if a collision exist with element2
      * */
+
     private function checkCollision($element1, $element2) {
         $x1 = $element1->getPositionX();
         $x2 = $element2->getPositionX();
@@ -196,6 +244,7 @@ class Map {
      * initCurrentMapFilename($idMap)
      * init filenameMap = filename of specific map
      * */
+
     private function initCurrentMapFilename($idMap) {
         $this->filenameMap = self::$_MAP_DIRECTORY . '/' . $idMap . self::$_MAP_FILENAME_EXT_INITIAL;
     }
@@ -204,6 +253,7 @@ class Map {
      * deleteFilesDirectory($directory)
      * delete all files in a directory
      * */
+
     private function deleteFilesDirectory($directory) {
         // open dir
         $directoryOpen = opendir($directory);
@@ -223,6 +273,7 @@ class Map {
      * nbFilesInDirectory($directory)
      * return nb files in a directory
      * */
+
     private function nbFilesInDirectory($directory) {
         $nbFiles = 0;
         // open dir
@@ -244,11 +295,33 @@ class Map {
      * Getters / Setters
      */
     public function getaElements() {
+        $this->aElements = array_merge($this->getaElementsCharacters(), $this->getaElementsDecors(), $this->getaElementsItems());
+        dump($this->aElements);
         return $this->aElements;
     }
 
-    public function setaElements($structure) {
-        $this->aElements = $structure;
+    public function getaElementsCharacters() {
+        return $this->aElementsCharacters;
+    }
+
+    public function setaElementsCharacters($structure) {
+        $this->aElementsCharacters = $structure;
+    }
+
+    public function getaElementsDecors() {
+        return $this->aElementsDecors;
+    }
+
+    public function setaElementsDecors($structure) {
+        $this->aElementsDecors = $structure;
+    }
+
+    public function getaElementsItems() {
+        return $this->aElementsItems;
+    }
+
+    public function setaElementsItem($structure) {
+        $this->aElementsItems = $structure;
     }
 
 }
