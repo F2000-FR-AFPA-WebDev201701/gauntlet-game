@@ -2,7 +2,7 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>GantletPHP</title>
+        <title>GauntletPHP</title>
         <link rel="stylesheet" type="text/css" href="{{ asset('stylesheet/stylemap.css') }}" />
         <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap-3.3.7-dist/css/bootstrap.min.css') }}" />
@@ -10,22 +10,10 @@
     </head>
     <body>
         <div class="content">
-            <aside class="infogame">
-                <img class="infogame-logo" src="{{ asset('images/gant.png') }}" alt=""/>
-                <div class="infogame-player">
-                    <h1> {{ app.session.get('user').pseudo }} </h1>
-                    <h2> Vie : </h2>
-                    <p> XX Vie </p>
-                    <h2>Score</h2>
-                    <p> XX Points </p>
-                    <h2>Items récupérés</h2>
-                </div>
-
-            </aside>
-            <div class="plateau">
+            <div class="gamescreen">
                 {% include 'GameBundle:Map:map.html.twig' %}
             </div>
-       
+
             <script type="text/javascript">
                 $(document).ready(function () {
                     // Votre code ici avec les appels à la fonction $()
@@ -54,7 +42,7 @@
                             success: function (code_html, statut) {
 
                                 //alert(code_html);
-                                $(".plateau").html(code_html);
+                                $(".gamescreen").html(code_html);
 
                             },
                             error: function (resultat, statut, erreur) {
