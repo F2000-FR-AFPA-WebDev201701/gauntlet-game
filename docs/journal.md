@@ -104,11 +104,13 @@
 
 - Contenu infos (règles, commandes, à propos, ...)
 
-- Améliorations de la page d'accueil (design, css, ergonomie, ...)
+- Améliorations de la page d'accueil (design, css, ergonomie, responsive, ...)
 
 - Gestion des collisions (monstres, personnages, ...)
 
 - Création des 2 maps
+
+- Amélioration du code front (w3c)
 
 
 
@@ -116,7 +118,7 @@
 
 # En cours
 
-- Game : Gestion de la mort
+- Game : Gestion de la mort du personnage
 
 - Game : Gestion de la frappe du personnage
 
@@ -130,6 +132,8 @@
 
 - Game : Animations JS (pertes de pv du perso, récupération de pv, score up, ...)
 
+- Game : Gestion du cycle (?)
+
 - User : recupération du mot de passe
 
 - User : Page "mot de passe oublié" / verif register
@@ -142,5 +146,4 @@
 
 - Amélioration du code back (cf Sensio Labs)
 
-- Amélioration du code front (w3c)
 
