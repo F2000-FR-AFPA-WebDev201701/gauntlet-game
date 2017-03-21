@@ -19,7 +19,7 @@
                 <td>{{ i.date.date }}</td>
                 <td>{{ i.nbPlayerMax }}</td>
                 {% if(app.session.get('user')) %}
-                <td ><a href="{{ path('game_game_join', {'id': i.id}) }}">Rejoindre</a></td>
+                <td ><a class="btn btn-success" href="{{ path('game_game_join', {'id': i.id}) }}">Rejoindre</a></td>
                 {% endif %}
             </tr>
         </tbody>
