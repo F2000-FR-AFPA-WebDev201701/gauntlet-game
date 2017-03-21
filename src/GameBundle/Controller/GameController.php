@@ -141,6 +141,7 @@ class GameController extends Controller {
                     $oMap = new Map();
                     $initMapSer = $oMap->load(); // load map from file (mapX.initial)
                     $oGame->setSaveGame($initMapSer);
+                    $oGame->setStatus(1);
                     $repo->flush(); // save the game into database
                     $oMap = unserialize($initMapSer);
                 } else {
