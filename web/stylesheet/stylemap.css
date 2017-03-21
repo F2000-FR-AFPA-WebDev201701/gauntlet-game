@@ -66,6 +66,10 @@ h2{
     background-image: url(../images/mur.png);
 }
 
+.clef{
+    background-image: url(../images/clef.png);
+}
+
 .potion{
     background-image: url(../images/potion.png);
 }
@@ -76,12 +80,13 @@ h2{
 
 .wallx{
     background-image: url(../images/wallx.png);
+
 }
 .wallxlt{
     background-image: url(../images/wallxlt.png);
 }
 .wallxrt{
-    background-image: url(../images/wallrxt.png);
+    background-image: url(../images/wallxrt.png);
 }
 .wallxyx{
     background-image: url(../images/wallxyx.png);
