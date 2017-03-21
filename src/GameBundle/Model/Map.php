@@ -158,7 +158,7 @@ class Map {
                     // collision with a item
                     switch ($this->aElementsItems[$i]->getType()) {
                         case 'potion' :
-                            $elementA->receiveHp(50);
+                            $elementA->receiveHp($this->aElementsItems[$i]->getBonus());
                             break;
                     }
                     unset($this->aElementsItems[$i]);
@@ -173,7 +173,6 @@ class Map {
      */
 
     public function moveMonster($monster, $monsterId, $character) {
-
         $_UL = [self::$_MOVE_UP, self::$_MOVE_LEFT];
         $_UR = [self::$_MOVE_UP, self::$_MOVE_RIGHT];
         $_DL = [self::$_MOVE_DOWN, self::$_MOVE_LEFT];
