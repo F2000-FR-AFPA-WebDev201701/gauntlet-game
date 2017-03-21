@@ -216,7 +216,7 @@ class Map {
         } else {
             if ($this->checkCollision($monster, $character)) {
                 //$character->setHp($character->getHp() - 50);
-                $character->receiveHit(10);
+                $character->receiveHit($monster->getStrength());
                 $this->calcMoveInverse($monster, $move);
             }
         }

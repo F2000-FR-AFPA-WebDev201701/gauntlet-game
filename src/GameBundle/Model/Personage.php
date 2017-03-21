@@ -174,6 +174,28 @@ class Personage {
     }
 
     /**
+     * Set maxHp
+     *
+     * @param integer $maxHp
+     *
+     * @return Personage
+     */
+    public function setMaxHp($maxHp) {
+        $this->maxHp = $maxHp;
+
+        return $this;
+    }
+
+    /**
+     * Get maxHp
+     *
+     * @return int
+     */
+    public function getMaxHp() {
+        return $this->maxHp;
+    }
+
+    /**
      * Set score
      *
      * @param integer $score

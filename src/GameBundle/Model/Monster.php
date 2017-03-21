@@ -7,6 +7,10 @@ namespace GameBundle\Model;
  */
 class Monster {
 
+    private static $_DEFAULT_TYPE = "ghost";
+    private static $_DEFAULT_HP = 250;
+    private static $_DEFAULT_STRENGTH = 10;
+
     /**
      * @var int
      */
@@ -35,7 +39,22 @@ class Monster {
     /**
      * @var int
      */
+    private $maxHp;
+
+    /**
+     * @var int
+     */
     private $strength;
+
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->type = self::$_DEFAULT_TYPE;
+        $this->hp = self::$_DEFAULT_HP;
+        $this->maxHp = $this->hp;
+        $this->strength = self::$_DEFAULT_STRENGTH;
+    }
 
     /**
      * Get id
@@ -130,6 +149,28 @@ class Monster {
      */
     public function getHp() {
         return $this->hp;
+    }
+
+    /**
+     * Set maxHp
+     *
+     * @param integer $maxHp
+     *
+     * @return Personage
+     */
+    public function setMaxHp($maxHp) {
+        $this->maxHp = $maxHp;
+
+        return $this;
+    }
+
+    /**
+     * Get maxHp
+     *
+     * @return int
+     */
+    public function getMaxHp() {
+        return $this->maxHp;
     }
 
     /**
