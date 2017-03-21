@@ -71,7 +71,7 @@ class Personage {
     /**
      * receiveHit($strength)
      */
-    public function receiveHit($strenght = 50) {
+    public function receiveHit($strength = 50) {
         $this->hp -= $strength;
         if ($this->hp < 0) {
             $this->hp = 0;
