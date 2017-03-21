@@ -1,4 +1,5 @@
 {
+    "description": "A PHP gauntlet game",
     "name": "f2000/gauntlet-game",
     "license": "proprietary",
     "type": "project",

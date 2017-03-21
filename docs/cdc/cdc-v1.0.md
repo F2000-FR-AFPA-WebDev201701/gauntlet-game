@@ -6,14 +6,14 @@ GAUNTLET
 ## Le JEU
 
 ### Fiche du jeu
-- Hack&Slash en multiplayer coopératif (réseau Internet).
+- Hack&Slash en multiplayer coopï¿½ratif (rï¿½seau Internet).
 - Vue de dessus.
 - Son & Musique.
 
 ### But du jeu 
-- Grimper en haut du donjon qui fait X maps afin de délivrer la princesse.
-- Chaque map est prédifinie à l'avance.
-- Chaque map possède une sortie pour monter au niveau au dessus.
+- Grimper en haut du donjon qui fait X maps afin de dï¿½livrer la princesse.
+- Chaque map est prï¿½difinie ï¿½ l'avance.
+- Chaque map possï¿½de une sortie pour monter au niveau au dessus.
 
 ### Ecran de la zone de jeu (gauche) : 
 - Plateau fixe : 480 x 640 pixels.
@@ -28,57 +28,57 @@ Infos de la partie actuelle (en PO) :
 - Points de vie.
 - Score (PO).
 
-### Règles de déplacements :
-- Déplacement X / Y.
-- Déplacement au clavier avec les flèches.
+### Rï¿½gles de dï¿½placements :
+- Dï¿½placement X / Y.
+- Dï¿½placement au clavier avec les flï¿½ches.
 - Tir avec la barre espace.
-- Tour à tour automatique limité à XX secondes.
-- Bords limités (cf écran de la zone de jeu).
+- Tour ï¿½ tour automatique limitï¿½ ï¿½ XX secondes.
+- Bords limitï¿½s (cf ï¿½cran de la zone de jeu).
 
 ### Personnage :
 - 1 type de personnage : war par exemple.
 - 1 position initiale connue dans le donjon.
-- Attaque au jet (jet dans la direction spécifiée par l'orientation du player).
+- Attaque au jet (jet dans la direction spï¿½cifiï¿½e par l'orientation du player).
 - XXX points de vie.
 - Force d'attaque.
 
 ### Monstres :
 - 1 type de monstre (fantomes).
 - Ont une position initiale connue.
-- Avancent vers le héro (CAC).
+- Avancent vers le hï¿½ro (CAC).
 - XXX points de vie.
 - Force d'attaque.
-- Ajoutent XXX PO au personnage lors qu'ils sont tués. Si plusieurs joueurs XXX PO reparties sur l'ensemble des joueurs.
+- Ajoutent XXX PO au personnage lors qu'ils sont tuï¿½s. Si plusieurs joueurs XXX PO reparties sur l'ensemble des joueurs.
 
 ### Objets :
-Utilisé lors que l'on passe dessus:
+Utilisï¿½ lors que l'on passe dessus:
 - Potions : + XX points de vie.
-- Clés : On peut les cumuler (sert à ouvrir les portes).
-- Coffres : + XX Pièces.
+- Clï¿½s : On peut les cumuler (sert ï¿½ ouvrir les portes).
+- Coffres : + XX Piï¿½ces.
 
-### Décors :
-- Portails de sortie (level supérieur).
+### Dï¿½cors :
+- Portails de sortie (level supï¿½rieur).
 - Murs.
 - Portes.
-- Générateur de monstres.
+- Gï¿½nï¿½rateur de monstres.
 
-## Fonctionnalités Avancées
+## Fonctionnalitï¿½s Avancï¿½es
 ### Suivant la classe du perso :
 - Points de vie.
 - Attaque (puissance).
-- Portée de l'attaque.
+- Portï¿½e de l'attaque.
 
 ### Monstres :
-- Plus de types de monstres avec caractéristiques différentes (pt de vie, attaque, portée de l'attaque...).
-- Emplacement aléatoire (mode de jeu = aléatoire).
+- Plus de types de monstres avec caractï¿½ristiques diffï¿½rentes (pt de vie, attaque, portï¿½e de l'attaque...).
+- Emplacement alï¿½atoire (mode de jeu = alï¿½atoire).
 
 ### Maps :
 - Maps plus nombreuses.
-- Aléatoires possible (mode de jeu = aléatoire).
-- Générateur de monstres.
+- Alï¿½atoires possible (mode de jeu = alï¿½atoire).
+- Gï¿½nï¿½rateur de monstres.
 
 ### Items :
-- Objets supplémentaires : Armures, trésors, ...
+- Objets supplï¿½mentaires : Armures, trï¿½sors, ...
 
 ## Limites du projet
 - Multiplayer (local = 1 machine).
@@ -87,14 +87,14 @@ Utilisé lors que l'on passe dessus:
 
 ### Page d'accueil
 - Pas de header / pas de aside
-- Zone de login sur la partie principale de l'écran
-- Logo en fond sur l'écran de login
-- En bas infos sur le jeu (règles, commandes, scores (ou page à part), copyright, ...).
+- Zone de login sur la partie principale de l'ï¿½cran
+- Logo en fond sur l'ï¿½cran de login
+- En bas infos sur le jeu (rï¿½gles, commandes, scores (ou page ï¿½ part), copyright, ...).
 
 ### Page des games
 - Pas de header
-- Liste des games sur la partie principale de l'écran
-- Aside :  Infos sur le player (Statut de connexion à une game / infos games (nb joueur, nom de la game, ...)
+- Liste des games sur la partie principale de l'ï¿½cran
+- Aside :  Infos sur le player (Statut de connexion ï¿½ une game / infos games (nb joueur, nom de la game, ...)
 
 ### Page du jeu
 - Pas de header

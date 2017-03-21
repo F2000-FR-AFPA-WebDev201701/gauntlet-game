@@ -1,9 +1,9 @@
 ENTITES:
 
-- Game : une partie avec les scores. La game contient la sauvegarde du modèle Map (serialize).
-- User : un user qui appartient à une Game.
+- Game : une partie avec les scores. La game contient la sauvegarde du modï¿½le Map (serialize).
+- User : un user qui appartient ï¿½ une Game.
 
 MODELS:
-- Map : une map qui appartient à une game.
+- Map : une map qui appartient ï¿½ une game.
 - Personage : un element personnage.
 - Decor : un element decor.
