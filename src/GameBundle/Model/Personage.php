@@ -7,6 +7,11 @@ namespace GameBundle\Model;
  */
 class Personage {
 
+    private static $_DEFAULT_TYPE = "hero";
+    private static $_DEFAULT_HP = 500;
+    private static $_DEFAULT_SCORE = 0;
+    private static $_DEFAULT_STRENGTH = 50;
+
     /**
      * @var int
      */
@@ -35,6 +40,11 @@ class Personage {
     /**
      * @var int
      */
+    private $maxHp;
+
+    /**
+     * @var int
+     */
     private $score;
 
     /**
@@ -46,6 +56,27 @@ class Personage {
      * @var int
      */
     private $gameId;
+
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->type = self::$_DEFAULT_TYPE;
+        $this->hp = self::$_DEFAULT_HP;
+        $this->maxHp = $this->hp;
+        $this->score = self::$_DEFAULT_SCORE;
+        $this->strength = self::$_DEFAULT_STRENGTH;
+    }
+
+    /**
+     * receiveHit($strength)
+     */
+    public function receiveHit($strenght = 50) {
+        $this->hp -= $strength;
+        if ($this->hp < 0) {
+            $this->hp = 0;
+        }
+    }
 
     /**
      * Get id
