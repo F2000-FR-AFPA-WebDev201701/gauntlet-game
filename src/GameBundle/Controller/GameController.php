@@ -100,7 +100,7 @@ class GameController extends Controller {
     }
 
     /**
-     * @Route("/game/join/{id}")
+     * @Route("/game/join/{id}", defaults={"_fragment" = "game-section"})
      */
     public function joinAction(Request $request, $id) {
         $oUser = $request->getSession()->get('user', NULL);
