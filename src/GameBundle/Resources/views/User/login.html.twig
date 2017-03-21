@@ -11,10 +11,15 @@
              )}}
     {{ form_errors(form) }}
     <div class="header-login">
+        <div class="col-xs-12">
+            {{ form_label(form.pseudo) }}
+        </div>
+        {{ form_widget(form.pseudo) }}
 
-        {{ form_row(form.pseudo) }}
-
-        {{ form_row(form.password) }}
+        <div class="col-xs-12">
+        {{ form_label(form.password) }}
+        </div>
+        {{ form_widget(form.password) }}
 
         {{ form_row(form.submit) }}
     </div>
