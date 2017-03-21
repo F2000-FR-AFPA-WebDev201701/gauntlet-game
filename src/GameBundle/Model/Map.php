@@ -125,7 +125,10 @@ class Map {
     public function move($moveDirection) {
         $elementA = $this->aElementsCharacters[0]; // perso 1
 
-        $this->moveMonster($this->aElementsMonsters[0], $elementA);
+        $nbMonsters = count($this->aElementsMonsters);
+        for ($i = 0; $i < $nbMonsters; $i++) {
+            $this->moveMonster($this->aElementsMonsters[$i], $i, $elementA);
+        }
 
         // move elementA (calcul)
         $this->calcMove($elementA, $moveDirection);
@@ -169,7 +172,7 @@ class Map {
      * move a monster
      */
 
-    public function moveMonster($monster, $character) {
+    public function moveMonster($monster, $monsterId, $character) {
 
         $_UL = [self::$_MOVE_UP, self::$_MOVE_LEFT];
         $_UR = [self::$_MOVE_UP, self::$_MOVE_RIGHT];
@@ -181,25 +184,25 @@ class Map {
         if (($monster->getPositionX() > $character->getPositionX()) &&
                 ($monster->getPositionY() > $character->getPositionY())
         ) {
-            $this->checkCollisionMonsterWithCharacter($monster, $character, $_UL[$randomKey]);
+            $this->doMonsterMove($monster, $monsterId, $character, $_UL[$randomKey]);
         }
 
         if (($monster->getPositionX() < $character->getPositionX()) &&
                 ($monster->getPositionY() > $character->getPositionY())
         ) {
-            $this->checkCollisionMonsterWithCharacter($monster, $character, $_UR[$randomKey]);
+            $this->doMonsterMove($monster, $monsterId, $character, $_UR[$randomKey]);
         }
 
         if (($monster->getPositionX() > $character->getPositionX()) &&
                 ($monster->getPositionY() < $character->getPositionY())
         ) {
-            $this->checkCollisionMonsterWithCharacter($monster, $character, $_DL[$randomKey]);
+            $this->doMonsterMove($monster, $monsterId, $character, $_DL[$randomKey]);
         }
 
         if (($monster->getPositionX() < $character->getPositionX()) &&
                 ($monster->getPositionY() < $character->getPositionY())
         ) {
-            $this->checkCollisionMonsterWithCharacter($monster, $character, $_DR[$randomKey]);
+            $this->doMonsterMove($monster, $monsterId, $character, $_DR[$randomKey]);
         }
     }
 
@@ -208,12 +211,16 @@ class Map {
      *
      */
 
-    private function checkCollisionMonsterWithCharacter($monster, $character, $move) {
+    private function doMonsterMove($monster, $monsterId, $character, $move) {
+        dump($monster);
+        dump($this->aElementsMonsters);
+        // monsters collisions with decors & items & monsters
         $this->calcMove($monster, $move);
         if ($this->checkCollisionsWithElements($monster, $this->aElementsDecors) ||
-                $this->checkCollisionsWithElements($monster, $this->aElementsItems)) {
+                $this->checkCollisionsWithElements($monster, $this->aElementsItems) ||
+                $this->checkCollisionsWithElementsWithoutId($monster, $this->aElementsMonsters, $monsterId)) {
             $this->calcMoveInverse($monster, $move);
-        } else {
+        } else { // monsters collisions with characters
             if ($this->checkCollision($monster, $character)) {
                 $character->receiveHit($monster->getStrength());
                 $this->calcMoveInverse($monster, $move);
@@ -221,7 +228,7 @@ class Map {
         }
     }
 
-    // check collision between elementA and all decors
+    // check collision between element and all elements defined in aElements
     private function checkCollisionsWithElements($element, $aElements) {
         $nbItems = count($aElements);
         for ($i = 0; $i < $nbItems; $i++) {
@@ -229,6 +236,21 @@ class Map {
             if ($this->checkCollision($element, $aElements[$i])) {
                 // collision with map side or and another element
                 return true;
+            }
+        }
+        return false;
+    }
+
+    // check collision between elementA and all elements defined in aElements without aElements[$id]
+    private function checkCollisionsWithElementsWithoutId($element, $aElements, $id) {
+        $nbItems = count($aElements);
+        for ($i = 0; $i < $nbItems; $i++) {
+            if ($i != $id) {
+                // test if move is valid
+                if ($this->checkCollision($element, $aElements[$i])) {
+                    // collision with map side or and another element
+                    return true;
+                }
             }
         }
         return false;
