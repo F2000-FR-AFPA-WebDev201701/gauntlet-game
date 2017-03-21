@@ -79,6 +79,16 @@ class Personage {
     }
 
     /**
+     * receiveHp($hp)
+     */
+    public function receiveHp($hp = 50) {
+        $this->hp += $hp;
+        if ($this->hp > $this->maxHp) {
+            $this->hp = $this->maxHp;
+        }
+    }
+
+    /**
      * Get id
      */
     public function getId() {

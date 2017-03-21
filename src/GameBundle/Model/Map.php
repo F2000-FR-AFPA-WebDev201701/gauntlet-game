@@ -155,7 +155,7 @@ class Map {
                     // collision with a item
                     switch ($this->aElementsItems[$i]->getType()) {
                         case 'potion' :
-                            $elementA->setHp($elementA->getHp() + 50);
+                            $elementA->receiveHp(50);
                             break;
                     }
                     unset($this->aElementsItems[$i]);
@@ -215,7 +215,6 @@ class Map {
             $this->calcMoveInverse($monster, $move);
         } else {
             if ($this->checkCollision($monster, $character)) {
-                //$character->setHp($character->getHp() - 50);
                 $character->receiveHit($monster->getStrength());
                 $this->calcMoveInverse($monster, $move);
             }
