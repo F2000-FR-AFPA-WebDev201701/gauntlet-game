@@ -15,9 +15,9 @@ class LoginType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-                ->add('pseudo', TextType::class)//, array('max_lenght' => 12, 'required' => true, 'label' => 'pseudo'))
-                ->add('password', PasswordType::class)//, array('max_lenght' => 12, 'required' => true, 'label' => 'password'))
-                ->add('submit', SubmitType::class);
+                ->add('pseudo', TextType::class, array('attr' => array('placeholder' => 'Pseudo', 'class' => 'text-center')))//, array('max_lenght' => 12, 'required' => true, 'label' => 'pseudo'))
+                ->add('password', PasswordType::class, array('attr' => array('placeholder' => 'Password', 'class' => 'text-center')))//, array('max_lenght' => 12, 'required' => true, 'label' => 'password'))
+                ->add('submit', SubmitType::class, array('attr' => array('class' => 'text-center')));
     }
 
     public function configureOptions(OptionsResolver $resolver) {
