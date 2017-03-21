@@ -100,16 +100,45 @@
 - Mise à en place du template principal
 
 
+## 21-03-2017
+
+- Contenu infos (règles, commandes, à propos, ...)
+
+- Améliorations de la page d'accueil (design, css, ergonomie, ...)
+
+- Gestion des collisions (monstres, personnages, ...)
+
+- Création des 2 maps
+
+
 
 
 
 # En cours
 
-- User recupération du mot de passe (en cours)
+- Game : Gestion de la mort
 
-- Contenu infos (règles, commandes, à propos, ...)
+- Game : Gestion de la frappe du personnage
 
-- USER : Page "mot de passe oublié" / verif register
+- Game : Gestion de la mort d'un monstre
 
+- Game : Récupération d'un coffre
 
+- Game : Passage au niveau 2
+
+- Game : Gestion de la victoire
+
+- Game : Animations JS (pertes de pv du perso, récupération de pv, score up, ...)
+
+- User : recupération du mot de passe
+
+- User : Page "mot de passe oublié" / verif register
+
+- Header : Liens vers sections
+
+- Game détails : création date = depuis xx minutes / jours
+
+- Amélioration du code back (cf Sensio Labs)
+
+- Amélioration du code front (w3c)
 
