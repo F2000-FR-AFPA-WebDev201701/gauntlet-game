@@ -138,6 +138,8 @@
 
 - Game détails : création date = depuis xx minutes / jours
 
+- Liste des games : historique des games avec scores
+
 - Amélioration du code back (cf Sensio Labs)
 
 - Amélioration du code front (w3c)
