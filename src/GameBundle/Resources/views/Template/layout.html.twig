@@ -17,17 +17,27 @@
         <header>
             {% include 'GameBundle:Template:_header.html.twig' %}
         </header>
-
-        <div class="well">
-            {% block content %} {% endblock %}
+        <div class="row game-section">
+            <div >
+                <div class="col-xs-12"></div>
+                <hr class="hr"/>
+                <h3 class="text-center">Salles de Jeux</h3>
+                    {% block content %} {% endblock %}
+            </div>
+        </div>
+        <div class="row game-description">
+            <div class="col-xs-offset-2 col-xs-8">
+                <hr class="hr"/>
+                {% include 'GameBundle:Template:_infos.html.twig' %}
+            </div>
         </div>
 
-        <div class="well">
-            {% include 'GameBundle:Template:_infos.html.twig' %}
+        <div class="row">
+            <div class="col-xs-offset-2 col-xs-8">
+                {% include 'GameBundle:Content:content.html.twig' %}
+            </div>
         </div>
-        <div class="">
-            {% include 'GameBundle:Content:content.html.twig' %}
-        </div>
+
 
         <footer>
             {% include 'GameBundle:Template:_footer.html.twig' %}
