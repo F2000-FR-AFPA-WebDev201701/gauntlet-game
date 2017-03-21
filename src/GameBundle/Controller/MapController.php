@@ -226,27 +226,193 @@ class MapController extends Controller {
         $oMap1->save(1);
 
         // map 2
-        $this->perso1 = new Personage();
-        $this->perso1->setPositionX(250);
-        $this->perso1->setPositionY(140);
-        $this->perso1->setType('hero'); // perso
-        // load decor datas
-        $this->decor1 = new Decor();
-        $this->decor1->setPositionX(90);
-        $this->decor1->setPositionY(100);
-        $this->decor1->setType('mur'); // wall
+        $this->perso01 = new Personage();
+        $this->perso01->setPositionX(660);
+        $this->perso01->setPositionY(460);
+        $this->perso01->setType('hero');
+        $this->perso01->setHp(100);
+        $this->perso01->setScore(0);
 
-        $this->decor2 = new Decor();
-        $this->decor2->setPositionX(100);
-        $this->decor2->setPositionY(160);
-        $this->decor2->setType('mur'); // wall
+        // decors
+        $this->decor01 = new Decor();
+        $this->decor01->setPositionX(0);
+        $this->decor01->setPositionY(192);
+        $this->decor01->setType('wallx'); // wall
+        //
+        $this->decor02 = new Decor();
+        $this->decor02->setPositionX(64);
+        $this->decor02->setPositionY(192);
+        $this->decor02->setType('wallx'); // wall
+        //
+        $this->decor03 = new Decor();
+        $this->decor03->setPositionX(128);
+        $this->decor03->setPositionY(192);
+        $this->decor03->setType('wallxrt'); // wall
+        //0
+        $this->decor04 = new Decor(); //2nd mur
+        $this->decor04->setPositionX(384);
+        $this->decor04->setPositionY(0);
+        $this->decor04->setType('wally'); // wall
+        //0
+        $this->decor05 = new Decor();
+        $this->decor05->setPositionX(384);
+        $this->decor05->setPositionY(64);
+        $this->decor05->setType('wally'); // wall
+        //0
+        $this->decor06 = new Decor();
+        $this->decor06->setPositionX(384);
+        $this->decor06->setPositionY(128);
+        $this->decor06->setType('wallxyx'); // wall
+        //0
+        $this->decor07 = new Decor();
+        $this->decor07->setPositionX(320);
+        $this->decor07->setPositionY(128);
+        $this->decor07->setType('wallyxr'); // wall
+
+        $this->decor08 = new Decor();
+        $this->decor08->setPositionX(320);
+        $this->decor08->setPositionY(192);
+        $this->decor08->setType('wallybt'); // wall xrt
+
+        $this->decor09 = new Decor();
+        $this->decor09->setPositionX(448);
+        $this->decor09->setPositionY(128);
+        $this->decor09->setType('wallxrt'); // wall
+        //
+        $this->decor010 = new Decor(); //mur 3
+        $this->decor010->setPositionX(640);
+        $this->decor010->setPositionY(128);
+        $this->decor010->setType('wallxlt'); // wall
+        // items0
+        $this->decor011 = new Decor();
+        $this->decor011->setPositionX(704);
+        $this->decor011->setPositionY(128);
+        $this->decor011->setType('wallx'); // wall
+        // items0
+        $this->decor012 = new Decor(); //mur 4
+        $this->decor012->setPositionX(192);
+        $this->decor012->setPositionY(384);
+        $this->decor012->setType('wallxlt'); // wall
+        // items0
+        $this->decor013 = new Decor();
+        $this->decor013->setPositionX(256);
+        $this->decor013->setPositionY(384);
+        $this->decor013->setType('wallx'); // wall
+        // items0
+        $this->decor014 = new Decor();
+        $this->decor014->setPositionX(320);
+        $this->decor014->setPositionY(384);
+        $this->decor014->setType('wallxrt'); // wall
+        // items0
+        $this->decor015 = new Decor(); //mur 4
+        $this->decor015->setPositionX(512);
+        $this->decor015->setPositionY(320);
+        $this->decor015->setType('wally'); // wall
+        // items0
+        $this->decor016 = new Decor();
+        $this->decor016->setPositionX(512);
+        $this->decor016->setPositionY(384);
+        $this->decor016->setType('wallxlt'); // wall
+        // items0
+        $this->decor017 = new Decor();
+        $this->decor017->setPositionX(576);
+        $this->decor017->setPositionY(384);
+        $this->decor017->setType('wallx'); // wall
+        // items0
+        $this->decor018 = new Decor();
+        $this->decor018->setPositionX(640);
+        $this->decor018->setPositionY(384);
+        $this->decor018->setType('wallx'); // wall
+        // items0
+        $this->decor019 = new Decor();
+        $this->decor019->setPositionX(704);
+        $this->decor019->setPositionY(384);
+        $this->decor019->setType('wallx'); // wall
+        // items
+        $this->decor020 = new Decor();
+        $this->decor020->setPositionX(0);
+        $this->decor020->setPositionY(64);
+        $this->decor020->setType('nextlvl'); // wall
+        // items
+
+
+        $this->item01 = new Item();
+        $this->item01->setPositionX(0);
+        $this->item01->setPositionY(384);
+        $this->item01->setType('potion');
+        // items
+
+
+        $this->item02 = new Item();
+        $this->item02->setPositionX(704);
+        $this->item02->setPositionY(0);
+        $this->item02->setType('clef');
+        //monsters
+        //
+        //monsters
+        $this->monster01 = new Monster();
+        $this->monster01->setPositionX(256);
+        $this->monster01->setPositionY(0);
+        $this->monster01->setHp(100);
+        $this->monster01->setType('ghost');
+        //monsters
+        $this->monster02 = new Monster();
+        $this->monster02->setPositionX(0);
+        $this->monster02->setPositionY(192);
+        $this->monster02->setHp(100);
+        $this->monster02->setType('ghost');
+        //monsters
+        $this->monster03 = new Monster();
+        $this->monster03->setPositionX(704);
+        $this->monster03->setPositionY(192);
+        $this->monster03->setHp(100);
+        $this->monster03->setType('ghost');
+        //monsters
+        $this->monster04 = new Monster();
+        $this->monster04->setPositionX(576);
+        $this->monster04->setPositionY(320);
+        $this->monster04->setHp(100);
+        $this->monster04->setType('ghost');
+        //monsters
+        $this->monster05 = new Monster();
+        $this->monster05->setPositionX(256);
+        $this->monster05->setPositionY(448);
+        $this->monster05->setHp(100);
+        $this->monster05->setType('ghost');
 
         $oMap2 = new Map();
-        $oMap2->addElementCharacter($this->perso1);
-        $oMap2->addElementDecor($this->decor1);
-        $oMap2->addElementDecor($this->decor2);
+        $oMap2->addElementCharacter($this->perso01);
+        $oMap2->addElementDecor($this->decor01);
+        $oMap2->addElementDecor($this->decor02);
+        $oMap2->addElementDecor($this->decor03);
+        $oMap2->addElementDecor($this->decor04);
+        $oMap2->addElementDecor($this->decor05);
+        $oMap2->addElementDecor($this->decor06);
+        $oMap2->addElementDecor($this->decor07);
+        $oMap2->addElementDecor($this->decor08);
+        $oMap2->addElementDecor($this->decor09);
+        $oMap2->addElementDecor($this->decor010);
+        $oMap2->addElementDecor($this->decor011);
+        $oMap2->addElementDecor($this->decor012);
+        $oMap2->addElementDecor($this->decor013);
+        $oMap2->addElementDecor($this->decor014);
+        $oMap2->addElementDecor($this->decor015);
+        $oMap2->addElementDecor($this->decor016);
+        $oMap2->addElementDecor($this->decor017);
+        $oMap2->addElementDecor($this->decor018);
+        $oMap2->addElementDecor($this->decor019);
+        $oMap2->addElementDecor($this->decor020);
+
+        $oMap2->addElementItem($this->item01);
+        $oMap2->addElementItem($this->item02);
+        $oMap2->addElementMonster($this->monster01);
+        $oMap2->addElementMonster($this->monster02);
+        $oMap2->addElementMonster($this->monster03);
+        $oMap2->addElementMonster($this->monster04);
+        $oMap2->addElementMonster($this->monster05);
 
         $oMap2->save(2);
+
 
         //dump($oMap1);
         //dump($oMap2);
