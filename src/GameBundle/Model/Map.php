@@ -2,6 +2,8 @@
 
 namespace GameBundle\Model;
 
+use GameBundle\Model\Tool;
+
 class Map {
 
     public static $_MOVE_UP = 1;
@@ -61,7 +63,8 @@ class Map {
      */
 
     public function nbMaps() {
-        $nbMaps = $this->nbFilesInDirectory(self::$_MAP_DIRECTORY);
+        $tool = new Tool();
+        $nbMaps = $tool->nbFilesInDirectory(self::$_MAP_DIRECTORY);
         return $nbMaps;
     }
 
@@ -114,7 +117,8 @@ class Map {
      */
 
     public function delete() {
-        $this->deleteFilesDirectory(self::$_MAP_DIRECTORY);
+        $tool = new Tool();
+        $tool->deleteFilesDirectory(self::$_MAP_DIRECTORY);
     }
 
     /*
@@ -123,9 +127,16 @@ class Map {
      */
 
     public function move($moveDirection) {
-        $elementA = $this->aElementsCharacters[0]; // perso 1
+        if (isset($this->aElementsCharacters[0])) {
+            $elementA = $this->aElementsCharacters[0]; // perso 1
+        } else {
+            return false;
+        }
 
-        $this->moveMonster($this->aElementsMonsters[0], $elementA);
+        $nbMonsters = count($this->aElementsMonsters);
+        for ($i = 0; $i < $nbMonsters; $i++) {
+            $this->moveMonster($this->aElementsMonsters[$i], $i, $elementA);
+        }
 
         // move elementA (calcul)
         $this->calcMove($elementA, $moveDirection);
@@ -155,7 +166,7 @@ class Map {
                     // collision with a item
                     switch ($this->aElementsItems[$i]->getType()) {
                         case 'potion' :
-                            $elementA->receiveHp(50);
+                            $elementA->receiveHp($this->aElementsItems[$i]->getBonus());
                             break;
                     }
                     unset($this->aElementsItems[$i]);
@@ -169,8 +180,7 @@ class Map {
      * move a monster
      */
 
-    public function moveMonster($monster, $character) {
-
+    public function moveMonster($monster, $monsterId, $character) {
         $_UL = [self::$_MOVE_UP, self::$_MOVE_LEFT];
         $_UR = [self::$_MOVE_UP, self::$_MOVE_RIGHT];
         $_DL = [self::$_MOVE_DOWN, self::$_MOVE_LEFT];
@@ -181,25 +191,25 @@ class Map {
         if (($monster->getPositionX() > $character->getPositionX()) &&
                 ($monster->getPositionY() > $character->getPositionY())
         ) {
-            $this->checkCollisionMonsterWithCharacter($monster, $character, $_UL[$randomKey]);
+            $this->doMonsterMove($monster, $monsterId, $character, $_UL[$randomKey]);
         }
 
         if (($monster->getPositionX() < $character->getPositionX()) &&
                 ($monster->getPositionY() > $character->getPositionY())
         ) {
-            $this->checkCollisionMonsterWithCharacter($monster, $character, $_UR[$randomKey]);
+            $this->doMonsterMove($monster, $monsterId, $character, $_UR[$randomKey]);
         }
 
         if (($monster->getPositionX() > $character->getPositionX()) &&
                 ($monster->getPositionY() < $character->getPositionY())
         ) {
-            $this->checkCollisionMonsterWithCharacter($monster, $character, $_DL[$randomKey]);
+            $this->doMonsterMove($monster, $monsterId, $character, $_DL[$randomKey]);
         }
 
         if (($monster->getPositionX() < $character->getPositionX()) &&
                 ($monster->getPositionY() < $character->getPositionY())
         ) {
-            $this->checkCollisionMonsterWithCharacter($monster, $character, $_DR[$randomKey]);
+            $this->doMonsterMove($monster, $monsterId, $character, $_DR[$randomKey]);
         }
     }
 
@@ -208,12 +218,14 @@ class Map {
      *
      */
 
-    private function checkCollisionMonsterWithCharacter($monster, $character, $move) {
+    private function doMonsterMove($monster, $monsterId, $character, $move) {
+        // monsters collisions with decors & items & monsters
         $this->calcMove($monster, $move);
         if ($this->checkCollisionsWithElements($monster, $this->aElementsDecors) ||
-                $this->checkCollisionsWithElements($monster, $this->aElementsItems)) {
+                $this->checkCollisionsWithElements($monster, $this->aElementsItems) ||
+                $this->checkCollisionsWithElementsWithoutId($monster, $this->aElementsMonsters, $monsterId)) {
             $this->calcMoveInverse($monster, $move);
-        } else {
+        } else { // monsters collisions with characters
             if ($this->checkCollision($monster, $character)) {
                 $character->receiveHit($monster->getStrength());
                 $this->calcMoveInverse($monster, $move);
@@ -221,7 +233,7 @@ class Map {
         }
     }
 
-    // check collision between elementA and all decors
+    // check collision between element and all elements defined in aElements
     private function checkCollisionsWithElements($element, $aElements) {
         $nbItems = count($aElements);
         for ($i = 0; $i < $nbItems; $i++) {
@@ -229,6 +241,21 @@ class Map {
             if ($this->checkCollision($element, $aElements[$i])) {
                 // collision with map side or and another element
                 return true;
+            }
+        }
+        return false;
+    }
+
+    // check collision between elementA and all elements defined in aElements without aElements[$id]
+    private function checkCollisionsWithElementsWithoutId($element, $aElements, $id) {
+        $nbItems = count($aElements);
+        for ($i = 0; $i < $nbItems; $i++) {
+            if ($i != $id) {
+                // test if move is valid
+                if ($this->checkCollision($element, $aElements[$i])) {
+                    // collision with map side or and another element
+                    return true;
+                }
             }
         }
         return false;
@@ -320,48 +347,6 @@ class Map {
 
     private function initCurrentMapFilename($idMap) {
         $this->filenameMap = self::$_MAP_DIRECTORY . '/' . $idMap . self::$_MAP_FILENAME_EXT_INITIAL;
-    }
-
-    /*
-     * deleteFilesDirectory($directory)
-     * delete all files in a directory
-     * */
-
-    private function deleteFilesDirectory($directory) {
-        // open dir
-        $directoryOpen = opendir($directory);
-
-        // read all files one
-        while (false !== ($filename = readdir($directoryOpen))) {
-            $fullFilename = $directory . "/" . $filename;
-            if ($filename != "." AND $filename != ".." AND ! is_dir($filename)) {
-                unlink($fullFilename);
-            }
-        }
-
-        closedir($directoryOpen); // On ferme !
-    }
-
-    /*
-     * nbFilesInDirectory($directory)
-     * return nb files in a directory
-     * */
-
-    private function nbFilesInDirectory($directory) {
-        $nbFiles = 0;
-        // open dir
-        $directoryOpen = opendir($directory);
-
-        // read all files name one by one
-        while (false !== ($filename = readdir($directoryOpen))) {
-            $fullFilename = $directory . "/" . $filename;
-            if ($filename != "." AND $filename != ".." AND ! is_dir($filename)) {
-                $nbFiles++;
-            }
-        }
-        closedir($directoryOpen); // close
-
-        return $nbFiles;
     }
 
     /**
