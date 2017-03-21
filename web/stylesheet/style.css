@@ -2,7 +2,7 @@
 body {
     padding: 0;
     margin: 0;
-    background: #F3DBAB;
+    background-color: #FADAA3;
 }
 /* color adobe 8D532B
 */
@@ -25,6 +25,8 @@ h2 {
 h3 {
     margin-top:0;
     padding-top:0;
+    color: #B2AE8F;
+    text-shadow: 1px 0px 1px #000000;
 }
 
 .l-container {
@@ -33,7 +35,9 @@ h3 {
     margin: auto;
     padding-top: 16px;
 }
-
+.banner form {
+    color: #000000;
+}
 
 .banner {
     display: block;
@@ -44,6 +48,8 @@ h3 {
     color: white;
     background: url(../images/banner2.jpg) center top repeat;
 }
+
+
 
 
 .banner-top .logo{
@@ -69,6 +75,10 @@ h3 {
 
 .header-login{
     margin: auto;
+}
+
+.header>button{
+    width: auto;
 }
 
 .banner-top {
@@ -189,6 +199,10 @@ h3 {
     background-color: #FDE3A7;
 }
 
+.game-content{
+    background-color: #FADAA3;
+}
+
 
 .section-entete {
     display: block;
@@ -204,6 +218,7 @@ h3 {
 
 
 footer{
+    margin-top: 0px;
     margin: auto;
     background-color: darkred;
     padding-bottom: 16px;

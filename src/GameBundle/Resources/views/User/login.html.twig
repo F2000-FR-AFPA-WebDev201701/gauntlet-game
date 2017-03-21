@@ -5,23 +5,21 @@
 {% else %}
 
 
-    {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+    {# form_theme form 'bootstrap_3_horizontal_layout.html.twig' #}
     {{ form_start(form,
                     {'action' : path('user_login')}
              )}}
     {{ form_errors(form) }}
     <div class="header-login">
-        <div class="col-xs-12">
-            {{ form_label(form.pseudo) }}
-        </div>
-        {{ form_widget(form.pseudo) }}
 
-        <div class="col-xs-12">
-        {{ form_label(form.password) }}
-        </div>
-        {{ form_widget(form.password) }}
+            {{ form_widget(form.pseudo) }}
+        <div class="col-xs-12" style="height: 10px;"></div>
+            {{ form_widget(form.password) }}
+        <div class="col-xs-12" style="height: 10px;"></div>
 
-        {{ form_row(form.submit) }}
+        <div class="col-xs-offset-3" style="height: 10px;">
+            {{ form_row(form.submit) }}
+        </div>
     </div>
 </div>
 {{ form_end(form) }}

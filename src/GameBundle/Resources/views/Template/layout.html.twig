@@ -19,20 +19,20 @@
         </header>
         <div class="row game-section">
             <div >
-                <div class="col-xs-12"></div>
-                <hr class="hr"/>
+                <div class="col-xs-12" style="height: 15px;"></div>
                 <h3 class="text-center">Salles de Jeux</h3>
                     {% block content %} {% endblock %}
             </div>
         </div>
         <div class="row game-description">
+            <div class="col-xs-12" style="height: 15px;"></div>
             <div class="col-xs-offset-2 col-xs-8">
-                <hr class="hr"/>
                 {% include 'GameBundle:Template:_infos.html.twig' %}
             </div>
         </div>
 
-        <div class="row">
+        <div class="row game-content">
+            <div class="col-xs-12" style="height: 15px;"></div>
             <div class="col-xs-offset-2 col-xs-8">
                 {% include 'GameBundle:Content:content.html.twig' %}
             </div>
