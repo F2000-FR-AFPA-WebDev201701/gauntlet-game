@@ -112,6 +112,7 @@
 
 - Amélioration du code front (w3c)
 
+- Statut de la game (0 = created / 1 = en cours)
 
 
 
@@ -141,6 +142,8 @@
 - Header : Liens vers sections
 
 - Game détails : création date = depuis xx minutes / jours
+
+- Game : Statut de la game = 2 lorsque terminée (mort ou win)
 
 - Liste des games : historique des games avec scores
 
