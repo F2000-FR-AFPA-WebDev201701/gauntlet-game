@@ -31,9 +31,51 @@ class MapController extends Controller {
 
         // decors
         $this->decor1 = new Decor();
-        $this->decor1->setPositionX(110);
-        $this->decor1->setPositionY(110);
-        $this->decor1->setType('mur'); // wall
+        $this->decor1->setPositionX(64);
+        $this->decor1->setPositionY(64);
+        $this->decor1->setType('wallyxr'); // wall
+        //
+        // $this->decor1 = new Decor();
+        $this->decor2->setPositionX(64);
+        $this->decor2->setPositionY(96);
+        $this->decor2->setType('wally'); // wall
+        //
+        // $this->decor1 = new Decor();
+        $this->decor3->setPositionX(64);
+        $this->decor3->setPositionY(128);
+        $this->decor3->setType('wally'); // wall
+        //
+        // $this->decor1 = new Decor();
+        $this->decor4->setPositionX(64);
+        $this->decor4->setPositionY(160);
+        $this->decor4->setType('wallybt'); // wall
+        //
+        // $this->decor1 = new Decor();
+        $this->decor5->setPositionX(192);
+        $this->decor5->setPositionY(160);
+        $this->decor5->setType('wally'); // wall
+        //
+        // $this->decor1 = new Decor();
+        $this->decor6->setPositionX(192);
+        $this->decor6->setPositionY(192);
+        $this->decor6->setType('wally'); // wall
+        //
+        // $this->decor1 = new Decor();
+        $this->decor7->setPositionX(192);
+        $this->decor7->setPositionY(224);
+        $this->decor7->setType('wally'); // wall
+        //// $this->decor1 = new Decor();
+        $this->decor8->setPositionX(192);
+        $this->decor8->setPositionY(256);
+        $this->decor8->setType('wallxrt'); // wall
+        //// $this->decor1 = new Decor();
+        $this->decor9->setPositionX(160);
+        $this->decor9->setPositionY(256);
+        $this->decor9->setType('wallx'); // wall
+        //// $this->decor1 = new Decor();
+        $this->decor10->setPositionX(128);
+        $this->decor10->setPositionY(224);
+        $this->decor10->setType('wallxlt'); // wall
         // items
         $this->item1 = new Item();
         $this->item1->setPositionX(200);
