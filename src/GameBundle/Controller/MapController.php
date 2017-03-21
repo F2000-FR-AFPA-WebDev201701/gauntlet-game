@@ -145,6 +145,11 @@ class MapController extends Controller {
         $this->decor23->setPositionY(128);
         $this->decor23->setType('wallxrt'); // wall
         // items
+        $this->decor24 = new Decor();
+        $this->decor24->setPositionX(640);
+        $this->decor24->setPositionY(384);
+        $this->decor24->setType('nextlvl'); // wall
+        // items
 
 
         $this->item1 = new Item();
@@ -210,6 +215,7 @@ class MapController extends Controller {
         $oMap1->addElementDecor($this->decor21);
         $oMap1->addElementDecor($this->decor22);
         $oMap1->addElementDecor($this->decor23);
+        $oMap1->addElementDecor($this->decor24);
         $oMap1->addElementItem($this->item1);
         $oMap1->addElementItem($this->item2);
         $oMap1->addElementMonster($this->monster1);
