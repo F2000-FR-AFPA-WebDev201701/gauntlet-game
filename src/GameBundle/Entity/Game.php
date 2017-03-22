@@ -210,6 +210,14 @@ class Game {
         return $this->saveGame;
     }
 
+    function getScore() {
+        return $this->score;
+    }
+
+    function setScore($score) {
+        $this->score = $score;
+    }
+
     /**
      * Add user
      *
