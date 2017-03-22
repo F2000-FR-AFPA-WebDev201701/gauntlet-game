@@ -213,6 +213,21 @@ class Map {
         }
     }
 
+    public function attack() {
+        // checker la collision avec les monstres //récupérer l'ID des monstres
+        $nbMonsters = count($this->aElementsMonsters);
+        for ($i = 0; $i < $nbMonsters; $i++) {
+            // test if move is valid
+
+            if ($this->checkCollision($this->aElementsCharacters[0], $this->aElementsMonsters[$i])) {
+                $this->aElementsMonsters[$i]->receiveHit($this->aElementsCharacters[0]->getStrength());
+            }
+        }
+        // return tableau idmonsters
+        return false;
+        // leur faire perdre de la vie
+    }
+
     /*
      * checkCollisionMonsterWithCharacter
      *
@@ -244,6 +259,11 @@ class Map {
             }
         }
         return false;
+    }
+
+    // check collision monster, and get array of id monster
+    private function listIdMonsters() {
+
     }
 
     // check collision between elementA and all elements defined in aElements without aElements[$id]
