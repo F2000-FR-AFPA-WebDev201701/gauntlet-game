@@ -56,6 +56,13 @@ class Monster {
         $this->strength = self::$_DEFAULT_STRENGTH;
     }
 
+    public function receiveHit($strength = 50) {
+        $this->hp -= $strength;
+        if ($this->hp < 0) {
+            $this->hp = 0;
+        }
+    }
+
     /**
      * Get id
      */
