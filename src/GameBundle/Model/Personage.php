@@ -57,22 +57,25 @@ class Personage {
      */
     private $gameId;
 
-    private $door;
+    /**
+     * @var int
+     */
+    private $clef;
 
     /**
-     * @return mixed
+     * @return boolean
      */
-    public function getDoor()
+    public function getClef()
     {
-        return $this->door;
+        return $this->clef;
     }
 
     /**
-     * @param mixed $door
+     * @param boolean $clef
      */
-    public function setDoor($door)
+    public function setClef($clef)
     {
-        $this->door = $door;
+        $this->clef = $clef;
     }
     /**
      * Constructor
