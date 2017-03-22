@@ -160,6 +160,7 @@ class GameController extends Controller {
                 $oMapUnser->move($value); // do the move
                 $oMapSer = serialize($oMapUnser); // serialize (prepare to save into database)
                 $oGame->setSaveGame($oMapSer);
+                // death of character
                 if ($oMapUnser->getaElementsCharacters()[0]->getHp() <= 0) {
                     $em = $this->getDoctrine()->getManager();
                     $oUser = $em->getRepository('GameBundle:User')
@@ -177,7 +178,18 @@ class GameController extends Controller {
                             'map' => $oMapUnser->getaElements(),
                             'player' => $oMapUnser->getaElementsCharacters()[0]
                 ));
-            //case 'shoot';
+            case 'shoot':
+                $oMapUnser = unserialize($oGame->getSaveGame()); // get a map object
+                $oMapUnser->attack();
+                $oMapSer = serialize($oMapUnser); // serialize (prepare to save into database)
+                $oGame->setSaveGame($oMapSer);
+                //
+                $repo->flush(); // save the game into database
+
+                return $this->render('GameBundle:Map:map.html.twig', array(
+                            'map' => $oMapUnser->getaElements(),
+                            'player' => $oMapUnser->getaElementsCharacters()[0]
+                ));
         }
 
         return new Response('Map : Problème!');

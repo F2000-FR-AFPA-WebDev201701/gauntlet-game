@@ -17,26 +17,29 @@
             <script type="text/javascript">
                 $(document).ready(function () {
                     // Votre code ici avec les appels à la fonction $()
+                    var url;
                     $(document).keydown(function (e) {
                         switch (e.which) {
                             case 37: // left
-                                moveDirection = 4;
+                                url = '{{ path('game_game_play', {'id': idGame, 'action': 'move'}) }}' + '/' + 4;
                                 break;
                             case 38: // up
-                                moveDirection = 1;
+                                url = '{{ path('game_game_play', {'id': idGame, 'action': 'move'}) }}' + '/' + 1;
                                 break;
                             case 39: // right
-                                moveDirection = 2;
+                                url = '{{ path('game_game_play', {'id': idGame, 'action': 'move'}) }}' + '/' + 2;
                                 break;
                             case 40: // down
-                                moveDirection = 3;
+                                url = '{{ path('game_game_play', {'id': idGame, 'action': 'move'}) }}' + '/' + 3;
                                 break;
+                            case 32: //SpaceBar
+                                url = '{{ path('game_game_play', {'id': idGame, 'action': 'shoot'}) }}';
                             default:
                                 return; // exit this handler for other keys
                         }
 
                         $.ajax({
-                            url: '{{ path('game_game_play', {'id': idGame, 'action': 'move'}) }}' + '/' + moveDirection, // La ressource ciblée
+                            url: url, // La ressource ciblée
                             type: 'POST', // Le type de la requête HTTP.
                             dataType: 'html',
                             success: function (code_html, statut) {
