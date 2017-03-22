@@ -168,7 +168,7 @@ class MapController extends Controller {
         //monsters
         $this->monster1 = new Monster();
         $this->monster1->setPositionX(64);
-        $this->monster1->setPositionY(448);
+        $this->monster1->setPositionY(64);
         $this->monster1->setHp(100);
         $this->monster1->setType('ghost');
         //monsters

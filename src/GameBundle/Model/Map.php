@@ -215,17 +215,21 @@ class Map {
 
     public function attack() {
         // checker la collision avec les monstres //récupérer l'ID des monstres
-        $nbMonsters = count($this->aElementsMonsters);
-        for ($i = 0; $i < $nbMonsters; $i++) {
+
+        for ($i = 0; $i < count($this->aElementsMonsters); $i++) {
             // test if move is valid
 
-            if ($this->checkCollision($this->aElementsCharacters[0], $this->aElementsMonsters[$i])) {
+            if ($this->checkCollisionAttack($this->aElementsCharacters[0], $this->aElementsMonsters[$i])) {
                 $this->aElementsMonsters[$i]->receiveHit($this->aElementsCharacters[0]->getStrength());
             }
         }
-        // return tableau idmonsters
-        return false;
-        // leur faire perdre de la vie
+        foreach ($this->aElementsMonsters as $key => $oMonster) {
+            if ($oMonster->getHp() <= 0) {
+                unset($this->aElementsMonsters[$key]);
+            }
+        }
+        $this->aElementsMonsters = array_values($this->aElementsMonsters);
+        dump($this->aElementsMonsters);
     }
 
     /*
@@ -352,6 +356,24 @@ class Map {
         $minRight = min($x1 + self::$_ELEMENT_SIZE, $x2 + self::$_ELEMENT_SIZE);
         $maxBottom = max($y1, $y2);
         $minTop = min($y1 + self::$_ELEMENT_SIZE, $y2 + self::$_ELEMENT_SIZE);
+
+        if (($maxLeft < $minRight) && ($maxBottom < $minTop)) { // intersection
+            return true; // collision
+        }
+        // no collision
+        return false;
+    }
+
+    private function checkCollisionAttack($element1, $element2) {
+        $x1 = $element1->getPositionX();
+        $x2 = $element2->getPositionX();
+        $y1 = $element1->getPositionY();
+        $y2 = $element2->getPositionY();
+
+        $maxLeft = max($x1, $x2);
+        $minRight = min($x1 + 80, $x2 + 80);
+        $maxBottom = max($y1, $y2);
+        $minTop = min($y1 + 80, $y2 + 80);
 
         if (($maxLeft < $minRight) && ($maxBottom < $minTop)) { // intersection
             return true; // collision
