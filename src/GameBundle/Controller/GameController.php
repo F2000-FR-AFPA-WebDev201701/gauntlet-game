@@ -177,29 +177,28 @@ class GameController extends Controller {
                     $nextLevel = $oMapUnser->getCurrentLvl()+1;
                     // test if the end ?
                     if($nextLevel > $oMapUnser->nbMaps()) {
-                        return $this->render('GameBundle:Map:dead.html.twig');
+                        return $this->render('GameBundle:Map:win.html.twig');
                     }
                     // no end the go to next level
-                    $oMap = new Map($nextLevel);
-                    $initMapSer = $oMap->load(); // load map from file (mapX.initial)
+                    $oMap = new Map();
+                    $initMapSer = $oMap->load($nextLevel); // load map from file (mapX.initial)
                     $oGame->setSaveGame($initMapSer);
                     $oGame->setStatus(1);
-                    $oMapUnser = unserialize($initMapSer);
-
-                    $repo->flush(); // save the game into database
+                    $oMapUnser = unserialize($initMapSer);                  
+                }
+                
+                $repo->flush(); // save the game into database
     
-                    return $this->render('GameBundle:Map:map.html.twig', array(
+                return $this->render('GameBundle:Map:map.html.twig', array(
                                 'map' => $oMapUnser->getaElements(),
                                 'player' => $oMapUnser->getaElementsCharacters()[0]
-                    ));                    
-                }
+                ));  
            
             case 'shoot':
                 $oMapUnser = unserialize($oGame->getSaveGame()); // get a map object
                 $oMapUnser->attack();
                 $oMapSer = serialize($oMapUnser); // serialize (prepare to save into database)
                 $oGame->setSaveGame($oMapSer);
-                //
                 $repo->flush(); // save the game into database
 
                 return $this->render('GameBundle:Map:map.html.twig', array(

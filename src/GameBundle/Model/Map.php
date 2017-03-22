@@ -173,17 +173,18 @@ class Map {
                     switch ($this->aElementsItems[$i]->getType()) {
                         case 'potion' :
                             $elementCharacter->receiveHp($this->aElementsItems[$i]->getBonus());
+                            $eraseItem = true;
+                            unset($this->aElementsItems[$i]);                            
                             break;
                         case 'clef' :
                             $elementCharacter->setClef(true);
+                            $eraseItem = true;
+                            unset($this->aElementsItems[$i]);                             
                             break;
                         case 'nextlvl' :
                             if($elementCharacter->getClef()) {
                                 $this->setNextlvl(true);
-                                $eraseItem = true;
-                                unset($this->aElementsItems[$i]);
-                            } else
-                            {
+                            } else {
                                 $this->calcMoveInverse($elementCharacter, $moveDirection);
                             }
                             break;
