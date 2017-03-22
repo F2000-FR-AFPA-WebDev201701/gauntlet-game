@@ -4,14 +4,23 @@
             <tr >
                 <th class="text-center">ID</th>
                 <th class="text-center">Status</th>
-                <th class="text-center">Name</th>
-                <th class="text-center">Created Date</th>
-                <th class="text-center">Number player</th>
+                <th class="text-center">Nom de la salle</th>
+                <th class="text-center">Création</th>
+                <th class="text-center">Nombre de joueurs</th>
                 <th class="text-center">Hi Score</th>
                 <th class="text-center">Action</th>
             </tr>
         </thead>
         {% for i in game %}
+            {% if i.status == 2 %}
+                {% set btnJoin = 'btn-danger' %}
+                {% set pathJoin = '#game-section' %}
+                {% set disableJoin = 'disabled="disabled"' %}
+            {% else %}
+                {% set btnJoin = 'btn-success' %}
+                {% set pathJoin = path('game_game_join', {'id': i.id}) %}
+                {% set disableJoin = '' %}
+            {% endif %}
             <tbody>
                 <tr>
                     <td>{{ i.id }}</td>
@@ -21,7 +30,7 @@
                     <td>{{ i.nbPlayerMax }}</td>
                     <td>{{ i.score }}</td>
                     {% if(app.session.get('user')) %}
-                        <td ><a class="btn btn-success" href="{{ path('game_game_join', {'id': i.id}) }}">Rejoindre</a></td>
+                        <td ><a class="btn {{ btnJoin }}" href="{{ pathJoin }}" {{ disableJoin }}>Rejoindre</a></td>
                     {% endif %}
                 </tr>
             </tbody>
