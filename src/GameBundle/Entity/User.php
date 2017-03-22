@@ -49,25 +49,7 @@ class User implements UserInterface {
      * @ORM\JoinColumn(name="game_id", referencedColumnName="id", onDelete="SET NULL")
      */
     protected $game;
-
-
     protected $salt;
-
-    /**
-     * @return mixed
-     */
-    public function getGame()
-    {
-        return $this->game;
-    }
-
-    /**
-     * @param mixed $game_id
-     */
-    public function setGame(Game $game)
-    {
-        $this->game = $game;
-    }
 
     /**
      * Get id
@@ -186,4 +168,28 @@ class User implements UserInterface {
         return null;
     }
 
+
+    /**
+     * Set game
+     *
+     * @param \GameBundle\Entity\Game $game
+     *
+     * @return User
+     */
+    public function setGame(\GameBundle\Entity\Game $game = null)
+    {
+        $this->game = $game;
+
+        return $this;
+    }
+
+    /**
+     * Get game
+     *
+     * @return \GameBundle\Entity\Game
+     */
+    public function getGame()
+    {
+        return $this->game;
+    }
 }

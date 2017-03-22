@@ -7,6 +7,8 @@ namespace GameBundle\Model;
  */
 class Item {
 
+    private static $_DEFAULT_BONUS = 100;
+
     /**
      * @var int
      */
@@ -28,9 +30,21 @@ class Item {
     private $type;
 
     /**
+     * @var int
+     */
+    private $bonus;
+
+    /**
      * @var string
      */
     private $image;
+
+    /**
+     * constructor
+     */
+    function __construct() {
+        $this->bonus = self::$_DEFAULT_BONUS;
+    }
 
     /**
      * Get id
@@ -106,9 +120,31 @@ class Item {
     }
 
     /**
+     * Set type
+     *
+     * @param int $bonus
+     *
+     * @return Decor
+     */
+    public function setBonus($bonus) {
+        $this->bonus = $bonus;
+
+        return $this;
+    }
+
+    /**
+     * Get bonus
+     *
+     * @return Decor
+     */
+    public function getBonus() {
+        return $this->bonus;
+    }
+
+    /**
      * Set image
      *
-     * @param string $image
+     * @param int $value
      *
      * @return Decor
      */

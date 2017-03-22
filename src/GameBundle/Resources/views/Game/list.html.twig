@@ -7,22 +7,24 @@
                 <th class="text-center">Name</th>
                 <th class="text-center">Created Date</th>
                 <th class="text-center">Number player</th>
+                <th class="text-center">Hi Score</th>
                 <th class="text-center">Action</th>
             </tr>
         </thead>
-    {% for i in game %}
-        <tbody>
-            <tr>
-                <td>{{ i.id }}</td>
-                <td>{{ i.status }}</td>
-                <td>{{ i.nameRoom }}</td>
-                <td>{{ i.date.date }}</td>
-                <td>{{ i.nbPlayerMax }}</td>
-                {% if(app.session.get('user')) %}
-                <td ><a class="btn btn-success" href="{{ path('game_game_join', {'id': i.id}) }}">Rejoindre</a></td>
-                {% endif %}
-            </tr>
-        </tbody>
-    {% endfor %}
+        {% for i in game %}
+            <tbody>
+                <tr>
+                    <td>{{ i.id }}</td>
+                    <td>{{ i.status }}</td>
+                    <td>{{ i.nameRoom }}</td>
+                    <td>{{ i.date.date }}</td>
+                    <td>{{ i.nbPlayerMax }}</td>
+                    <td>{{ i.score }}</td>
+                    {% if(app.session.get('user')) %}
+                        <td ><a class="btn btn-success" href="{{ path('game_game_join', {'id': i.id}) }}">Rejoindre</a></td>
+                    {% endif %}
+                </tr>
+            </tbody>
+        {% endfor %}
     </table>
 </div>

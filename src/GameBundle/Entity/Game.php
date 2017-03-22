@@ -11,8 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="gauntlet_game")
  * @ORM\Entity
  */
-class Game
-{
+class Game {
+
     /**
      *
      * @ORM\OneToMany(targetEntity="User", mappedBy="game" )
@@ -22,24 +22,20 @@ class Game
     /**
      * @return mixed
      */
-    public function getUsers()
-    {
+    public function getUsers() {
         return $this->users;
     }
 
     /**
      * @param mixed $users
      */
-    public function setUsers($users)
-    {
+    public function setUsers($users) {
         $this->users = $users;
     }
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->users = new ArrayCollection();
     }
-
 
     /**
      * @var int
@@ -53,7 +49,10 @@ class Game
     /**
      * @var int
      *
-     * @ORM\Column(name="status", type="integer", nullable=true)
+     * @ORM\Column(name="status", type="integer", nullable=true, options={"default" = 0})
+     * 0 = created
+     * 1 = in progress (play)
+     * 2 = terminated (game over or game win)
      */
     private $status;
 
@@ -71,7 +70,6 @@ class Game
      */
     private $date;
 
-
     /**
      * @var int
      *
@@ -86,15 +84,19 @@ class Game
      */
     private $saveGame;
 
-
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="score", type="integer", nullable=true)
+     */
+    private $score;
 
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -105,8 +107,7 @@ class Game
      *
      * @return Game
      */
-    public function setStatus($status)
-    {
+    public function setStatus($status) {
         $this->status = $status;
 
         return $this;
@@ -117,8 +118,7 @@ class Game
      *
      * @return int
      */
-    public function getStatus()
-    {
+    public function getStatus() {
         return $this->status;
     }
 
@@ -129,8 +129,7 @@ class Game
      *
      * @return Game
      */
-    public function setNameRoom($nameRoom)
-    {
+    public function setNameRoom($nameRoom) {
         $this->nameRoom = $nameRoom;
 
         return $this;
@@ -141,8 +140,7 @@ class Game
      *
      * @return string
      */
-    public function getNameRoom()
-    {
+    public function getNameRoom() {
         return $this->nameRoom;
     }
 
@@ -153,8 +151,7 @@ class Game
      *
      * @return Game
      */
-    public function setDate($date)
-    {
+    public function setDate($date) {
         $this->date = $date;
 
         return $this;
@@ -165,8 +162,7 @@ class Game
      *
      * @return \DateTime
      */
-    public function getDate()
-    {
+    public function getDate() {
         return $this->date;
     }
 
@@ -177,8 +173,7 @@ class Game
      *
      * @return Game
      */
-    public function setNbPlayerMax($nbPlayerMax)
-    {
+    public function setNbPlayerMax($nbPlayerMax) {
         $this->nbPlayerMax = $nbPlayerMax;
 
         return $this;
@@ -189,8 +184,7 @@ class Game
      *
      * @return int
      */
-    public function getNbPlayerMax()
-    {
+    public function getNbPlayerMax() {
         return $this->nbPlayerMax;
     }
 
@@ -201,8 +195,7 @@ class Game
      *
      * @return Game
      */
-    public function setSaveGame($saveGame)
-    {
+    public function setSaveGame($saveGame) {
         $this->saveGame = $saveGame;
 
         return $this;
@@ -213,11 +206,17 @@ class Game
      *
      * @return string
      */
-    public function getSaveGame()
-    {
+    public function getSaveGame() {
         return $this->saveGame;
     }
 
+    function getScore() {
+        return $this->score;
+    }
+
+    function setScore($score) {
+        $this->score = $score;
+    }
 
     /**
      * Add user
@@ -226,8 +225,7 @@ class Game
      *
      * @return Game
      */
-    public function addUser(\GameBundle\Entity\User $user)
-    {
+    public function addUser(\GameBundle\Entity\User $user) {
         $this->users[] = $user;
 
         return $this;
@@ -238,8 +236,8 @@ class Game
      *
      * @param \GameBundle\Entity\User $user
      */
-    public function removeUser(\GameBundle\Entity\User $user)
-    {
+    public function removeUser(\GameBundle\Entity\User $user) {
         $this->users->removeElement($user);
     }
+
 }

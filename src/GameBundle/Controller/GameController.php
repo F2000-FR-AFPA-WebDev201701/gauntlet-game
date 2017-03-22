@@ -100,7 +100,7 @@ class GameController extends Controller {
     }
 
     /**
-     * @Route("/game/join/{id}")
+     * @Route("/game/join/{id}", defaults={"_fragment" = "game-section"})
      */
     public function joinAction(Request $request, $id) {
         $oUser = $request->getSession()->get('user', NULL);
@@ -130,7 +130,7 @@ class GameController extends Controller {
     /**
      * @Route("/game/play/{id}/{action}/{value}")
      */
-    public function playAction($id, $action, $value = NULL) {
+    public function playAction(Request $request, $id, $action, $value = NULL) {
         $repo = $this->getDoctrine()->getManager();
         $oGame = $repo->getRepository('GameBundle:Game')->findOneById($id);
 
@@ -141,6 +141,7 @@ class GameController extends Controller {
                     $oMap = new Map();
                     $initMapSer = $oMap->load(); // load map from file (mapX.initial)
                     $oGame->setSaveGame($initMapSer);
+                    $oGame->setStatus(1);
                     $repo->flush(); // save the game into database
                     $oMap = unserialize($initMapSer);
                 } else {
@@ -159,6 +160,17 @@ class GameController extends Controller {
                 $oMapUnser->move($value); // do the move
                 $oMapSer = serialize($oMapUnser); // serialize (prepare to save into database)
                 $oGame->setSaveGame($oMapSer);
+                if ($oMapUnser->getaElementsCharacters()[0]->getHp() <= 0) {
+                    $em = $this->getDoctrine()->getManager();
+                    $oUser = $em->getRepository('GameBundle:User')
+                            ->find($request->getSession()->get('user')->getId());
+                    $oUser->setGame(null);
+                    $oGame->setStatus(2);
+                    $oGame->setScore($oMapUnser->getaElementsCharacters()[0]->getScore()); // save Game Hiscore
+                    $repo->flush(); // save the game into database
+                    return $this->render('GameBundle:Map:dead.html.twig');
+                }
+
                 $repo->flush(); // save the game into database
 
                 return $this->render('GameBundle:Map:map.html.twig', array(

@@ -9,15 +9,15 @@
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
         <script src="{{ asset('bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
-        <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900|Kaushan+Script|Lato:300,400,900,900i|Open+Sans:400,400i,600i" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900" rel="stylesheet">
     </head>
     <body>
 
 
-        <header>
+        <div class="row">
             {% include 'GameBundle:Template:_header.html.twig' %}
-        </header>
-        <div class="row game-section">
+        </div>
+        <div class="row game-section" id="game-section">
             <div >
                 <div class="col-xs-12" style="height: 15px;"></div>
                 <h3 class="text-center">Salles de Jeux</h3>
@@ -26,21 +26,23 @@
         </div>
         <div class="row game-description">
             <div class="col-xs-12" style="height: 15px;"></div>
-            <div class="col-xs-offset-2 col-xs-8">
+            <div class="col-xs-12 col-sm-offset-1 col-sm-10 ">
                 {% include 'GameBundle:Template:_infos.html.twig' %}
             </div>
         </div>
 
         <div class="row game-content">
             <div class="col-xs-12" style="height: 15px;"></div>
-            <div class="col-xs-offset-2 col-xs-8">
+            <div class=" col-xs-12 col-sm-offset-1 col-sm-10">
                 {% include 'GameBundle:Content:content.html.twig' %}
             </div>
         </div>
 
 
         <footer>
-            {% include 'GameBundle:Template:_footer.html.twig' %}
+            <div class="row">
+                {% include 'GameBundle:Template:_footer.html.twig' %}
+            </div>
         </footer>
 
         {% block javascripts %} {% endblock %}

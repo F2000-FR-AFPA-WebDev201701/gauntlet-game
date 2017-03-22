@@ -1,49 +1,49 @@
 <header class="banner ">
-    <div class="l-container">
-        <div class="banner-top">
-            <a href="{{ path('homepage') }}" class="logo">GAUNTLET php</a>
-            <ul class="banner-top-menu">
-                <li class="banner-top-menu-items"><a href="#">JOUER</a></li>
-                <li class="banner-top-menu-items"><a href="#">LE JEU</a></li>
-                <li class="banner-top-menu-items"><a  href="#">A PROPOS</a></li>
-                <li class="banner-top-menu-items">
-                    <ul>
+    <div class="row">
+        <div class="l-container">
+            <div class="banner-top">
+                <a href="{{ path('homepage') }}" class="logo">GAUNTLET php</a>
+                <ul class="banner-top-menu">
+                    <li class="banner-top-menu-items"><a href="#">JOUER</a></li>
+                    <li class="banner-top-menu-items"><a href="#">LE JEU</a></li>
+                    <li class="banner-top-menu-items"><a  href="#">A PROPOS</a></li>
+                    <li class="banner-top-menu-items">
+                    <div>
                         {% if app.session.get('user') %}
+                        <ul>
                             <li class="dropdown  logoon">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                     <i class="fa fa-user fa-2x" aria-hidden="true"></i> {{ app.session.get('user').pseudo }}
                                     <span class="caret"></span>
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{{ path('user_profil') }}">Profil</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="{{ path('user_logout') }}">Logout</a></li>
-                                </ul>
-                                <ul>
                             </li>
-
+                        </ul>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('user_profil') }}">Profil</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{{ path('user_logout') }}">Logout</a></li>
+                        </ul>
                         {% else %}
                             <i class="fa fa-user fa-2x" aria-hidden="true" style="color:grey"></i>
-                            </a>
                         {% endif %}
-                    </ul>
                     </div>
-                    <div class="banner-center">
-                        <div class="banner-center-bl1"><img src="{{ asset('images/gant.png') }}" alt=""></div>
-                        <div class="banner-center-bl2">Le Hack'n Slash</div>
-                        <div class="banner-center-bl3">FULL PHP!</div>
-                        <div class="line"></div>
 
+                </ul>
+            </div>
+            <div class="banner-center">
+                <div class="banner-center-bl1"><img src="{{ asset('images/gant.png') }}" alt=""></div>
+                <div class="banner-center-bl2">Le Hack'n Slash</div>
+                <div class="banner-center-bl3">FULL PHP!</div>
+                <div class="line"></div>
+                <div class="form">
+                    {{ render(controller(
+                            'GameBundle:User:login'
+                    )) }}
+                </div>
+                <div class="banner-bottom">
 
-                        <div class="form">
-                            {{ render(controller(
-                                    'GameBundle:User:login'
-                        )) }}
-                        </div
-
-                    </div>
-                    <div class="banner-bottom">
-
-                    </div>
-                    </div>
-                    </header>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
