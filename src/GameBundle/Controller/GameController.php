@@ -172,6 +172,15 @@ class GameController extends Controller {
                     return $this->render('GameBundle:Map:dead.html.twig');
                 }
 
+                //next level
+                if ($oMapUnser->isNextlvl()){
+                    $oMapSer = new Map();
+                    $initMapSer = $oMapSer->load(2); // load map from file (mapX.initial)
+                    $oGame->setSaveGame($initMapSer);
+                    $oGame->setStatus(1);
+                    $oMapUnser = unserialize($initMapSer);
+                }
+
                 $repo->flush(); // save the game into database
 
                 return $this->render('GameBundle:Map:map.html.twig', array(

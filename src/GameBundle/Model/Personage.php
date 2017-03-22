@@ -57,10 +57,28 @@ class Personage {
      */
     private $gameId;
 
+    private $door;
+
+    /**
+     * @return mixed
+     */
+    public function getDoor()
+    {
+        return $this->door;
+    }
+
+    /**
+     * @param mixed $door
+     */
+    public function setDoor($door)
+    {
+        $this->door = $door;
+    }
     /**
      * Constructor
      */
     public function __construct() {
+        $this->door = false;
         $this->type = self::$_DEFAULT_TYPE;
         $this->hp = self::$_DEFAULT_HP;
         $this->maxHp = $this->hp;

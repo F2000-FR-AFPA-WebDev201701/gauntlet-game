@@ -26,6 +26,23 @@ class Map {
     protected $aElementsDecors = [];
     protected $aElementsItems = [];
     protected $aElementsMonsters = [];
+    protected $nextlvl = false;
+
+    /**
+     * @return bool
+     */
+    public function isNextlvl()
+    {
+        return $this->nextlvl;
+    }
+
+    /**
+     * @param bool $nextlvl
+     */
+    public function setNextlvl($nextlvl)
+    {
+        $this->nextlvl = $nextlvl;
+    }
 
     /*
      * __construct()
@@ -164,12 +181,25 @@ class Map {
                 // test if move is valid
                 if ($this->checkCollision($elementA, $this->aElementsItems[$i])) {
                     // collision with a item
+                    $eraseItem = true;
                     switch ($this->aElementsItems[$i]->getType()) {
                         case 'potion' :
                             $elementA->receiveHp($this->aElementsItems[$i]->getBonus());
                             break;
+                        case 'clef' :
+                            $elementA->setDoor(true);
+                            break;
+                        case 'nextlvl' :
+                            if($elementA->setDoor(true)){
+                                $this->setNextlvl(true);
+
+                            }
+                            else {
+                                $eraseItem = false;
+                            }
+                            break;
                     }
-                    unset($this->aElementsItems[$i]);
+                    if ($eraseItem){unset($this->aElementsItems[$i]);}
                 }
             }
             $this->aElementsItems = array_values($this->aElementsItems);
