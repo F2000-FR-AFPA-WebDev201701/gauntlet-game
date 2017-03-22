@@ -172,6 +172,7 @@ class Map {
                     unset($this->aElementsItems[$i]);
                 }
             }
+            $this->aElementsItems = array_values($this->aElementsItems);
         }
     }
 
