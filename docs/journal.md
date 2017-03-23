@@ -154,12 +154,14 @@
 
 - Game : Perte de la cléf (utilisée) si passage au lvl supérieur
 
+- Homepage : infos supplémentaires (commandes, diamant)
+
 
 # En cours / A faire
 
 - Favicon
 
-- Possibilité de stopper la musique
+- Game : Possibilité de stopper la musique
 
 - Game : Gestion du cycle (?)
 
@@ -169,9 +171,7 @@
 
 - Game : bug taille du plateau
 
-- User : recupération du mot de passe
-
-- User : Page "mot de passe oublié" / verif register
+- User : Page "mot de passe oublié"
 
 - User : Message une fois inscrit + connexion
 
