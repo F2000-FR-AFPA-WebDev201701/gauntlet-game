@@ -19,7 +19,6 @@ class Map {
     private $filenameMap = '';
     protected $nextLvl = false;
     protected $currentLvl = 0;
-
     // element
     public static $_ELEMENT_OFFSET_MOVE = 4;  // pixels
     public static $_ELEMENT_SIZE = 64; // pixels
@@ -29,7 +28,6 @@ class Map {
     protected $aElementsDecors = [];
     protected $aElementsItems = [];
     protected $aElementsMonsters = [];
-
 
     /*
      * __construct()
@@ -83,7 +81,7 @@ class Map {
             $idMap = self::$_FIRST_MAP_TO_LOAD;
         }
 
-        if ($idMap > 0) {           
+        if ($idMap > 0) {
             $this->initCurrentMapFilename($idMap);
 
             if (file_exists($this->filenameMap)) { // else test if initial map exist
@@ -174,15 +172,20 @@ class Map {
                         case 'potion' :
                             $elementCharacter->receiveHp($this->aElementsItems[$i]->getBonus());
                             $eraseItem = true;
-                            unset($this->aElementsItems[$i]);                            
+                            unset($this->aElementsItems[$i]);
                             break;
                         case 'clef' :
                             $elementCharacter->setClef(true);
                             $eraseItem = true;
-                            unset($this->aElementsItems[$i]);                             
+                            unset($this->aElementsItems[$i]);
+                            break;
+                        case 'diamant' :
+                            $elementCharacter->receivePoints($this->aElementsItems[$i]->getBonus());
+                            $eraseItem = true;
+                            unset($this->aElementsItems[$i]);
                             break;
                         case 'nextlvl' :
-                            if($elementCharacter->getClef()) {
+                            if ($elementCharacter->getClef()) {
                                 $this->setNextlvl(true);
                             } else {
                                 $this->calcMoveInverse($elementCharacter, $moveDirection);
@@ -239,6 +242,7 @@ class Map {
      * attack()
      * attack a monster
      */
+
     public function attack() {
         // checker la collision avec les monstres //récupérer l'ID des monstres
 
@@ -452,39 +456,33 @@ class Map {
     public function setaElementsMonsters($structure) {
         $this->aElementsMonsters = $structure;
     }
-    
+
     /**
      * @return int
      */
-    public function getCurrentLvl()
-    {
+    public function getCurrentLvl() {
         return $this->currentLvl;
     }
 
     /**
      * @param int $currentLvl
      */
-    public function setCurrentLvl($currentLvl)
-    {
+    public function setCurrentLvl($currentLvl) {
         $this->currentLvl = $currentLvl;
-    }    
-    
+    }
 
     /**
      * @return bool
      */
-    public function isNextlvl()
-    {
+    public function isNextlvl() {
         return $this->nextLvl;
     }
 
     /**
      * @param bool $nextlvl
      */
-    public function setNextlvl($nextLvl)
-    {
+    public function setNextlvl($nextLvl) {
         $this->nextLvl = $nextLvl;
     }
 
-    
 }

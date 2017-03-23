@@ -126,13 +126,20 @@
 - Game : Passage au niveau 2
 
 
-# En cours
+## 23-03-2017
 
 - Game : Passage au niveau 2 (récupérer score + pt vie du level précédent)
 
 - Game : Récupération d'un coffre
 
+- Game : Statut de la game = 2 lorsque terminée (mort ou win)
+
+
+# En cours
+
 - Game : Gestion de la victoire (ok; vue à faire)
+
+- Game : Gestion de la mort (ok; vue à faire)
 
 - Game : Animations JS (pertes de pv du perso, récupération de pv, score up, ...)
 
@@ -145,8 +152,6 @@
 - Header : Liens vers sections
 
 - Game détails : création date = depuis xx minutes / jours
-
-- Game : Statut de la game = 2 lorsque terminée (mort ou win)
 
 - Liste des games : historique des games avec scores
 
