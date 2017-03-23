@@ -130,12 +130,12 @@
 
 - Game : Passage au niveau 2 (récupérer score + pt vie du level précédent)
 
+- Game : Récupération d'un coffre
 
+- Game : Statut de la game = 2 lorsque terminée (mort ou win)
 
 
 # En cours
-
-- Game : Récupération d'un coffre
 
 - Game : Gestion de la victoire (ok; vue à faire)
 
@@ -152,8 +152,6 @@
 - Header : Liens vers sections
 
 - Game détails : création date = depuis xx minutes / jours
-
-- Game : Statut de la game = 2 lorsque terminée (mort ou win)
 
 - Liste des games : historique des games avec scores
 

@@ -160,7 +160,7 @@ class GameController extends Controller {
                 $oMapUnser->move($value); // do the move
                 $oMapSer = serialize($oMapUnser); // serialize (prepare to save into database)
                 $oGame->setSaveGame($oMapSer);
-                // death of character
+                // death (character)
                 if ($oMapUnser->getaElementsCharacters()[0]->getHp() <= 0) {
                     $oUser = $this->getDoctrine()->getRepository('GameBundle:User')
                             ->find($request->getSession()->get('user')->getId());
@@ -171,11 +171,15 @@ class GameController extends Controller {
                     return $this->render('GameBundle:Map:dead.html.twig');
                 }
 
-                //next level
+                // next level
                 if ($oMapUnser->isNextlvl()) {
                     $nextLevel = $oMapUnser->getCurrentLvl() + 1;
-                    // test if the end ?
+                    // test if this's the end ?
                     if ($nextLevel > $oMapUnser->nbMaps()) {
+                        $oUser = $this->getDoctrine()->getRepository('GameBundle:User')
+                                ->find($request->getSession()->get('user')->getId());
+                        $oUser->setGame(null);
+                        $oGame->setStatus(2);
                         return $this->render('GameBundle:Map:win.html.twig');
                     }
                     // no end the go to next level
