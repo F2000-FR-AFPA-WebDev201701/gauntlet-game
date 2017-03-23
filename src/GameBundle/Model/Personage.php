@@ -58,9 +58,30 @@ class Personage {
     private $gameId;
 
     /**
+     * @var int
+     */
+    private $clef;
+
+    /**
+     * @return boolean
+     */
+    public function getClef()
+    {
+        return $this->clef;
+    }
+
+    /**
+     * @param boolean $clef
+     */
+    public function setClef($clef)
+    {
+        $this->clef = $clef;
+    }
+    /**
      * Constructor
      */
     public function __construct() {
+        $this->door = false;
         $this->type = self::$_DEFAULT_TYPE;
         $this->hp = self::$_DEFAULT_HP;
         $this->maxHp = $this->hp;

@@ -115,9 +115,7 @@
 - Statut de la game (0 = created / 1 = en cours)
 
 
-
-
-# En cours
+## 22-03-2017
 
 - Game : Gestion de la mort du personnage
 
@@ -125,11 +123,16 @@
 
 - Game : Gestion de la mort d'un monstre
 
-- Game : Récupération d'un coffre
-
 - Game : Passage au niveau 2
 
-- Game : Gestion de la victoire
+
+# En cours
+
+- Game : Passage au niveau 2 (récupérer score + pt vie du level précédent)
+
+- Game : Récupération d'un coffre
+
+- Game : Gestion de la victoire (ok; vue à faire)
 
 - Game : Animations JS (pertes de pv du perso, récupération de pv, score up, ...)
 

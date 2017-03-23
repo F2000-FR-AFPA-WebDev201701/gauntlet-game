@@ -143,13 +143,6 @@ class MapController extends Controller {
         //$this->decor23->setPositionY(128);
         //$this->decor23->setType('wallxrt'); // wall
         // items
-        $this->decor24 = new Decor();
-        $this->decor24->setPositionX(640);
-        $this->decor24->setPositionY(384);
-        $this->decor24->setType('nextlvl'); // wall
-        // items
-
-
         $this->item1 = new Item();
         $this->item1->setPositionX(256);
         $this->item1->setPositionY(256);
@@ -162,6 +155,10 @@ class MapController extends Controller {
         $this->item2->setPositionY(192);
         $this->item2->setType('clef');
         //monsters
+        $this->item3 = new Item();
+        $this->item3->setPositionX(640);
+        $this->item3->setPositionY(384);
+        $this->item3->setType('nextlvl'); // wall
         //
         //monsters
         $this->monster1 = new Monster();
@@ -212,10 +209,13 @@ class MapController extends Controller {
         $oMap1->addElementDecor($this->decor20);
         $oMap1->addElementDecor($this->decor21);
         $oMap1->addElementDecor($this->decor22);
+
         // $oMap1->addElementDecor($this->decor23);
         $oMap1->addElementDecor($this->decor24);
+
         $oMap1->addElementItem($this->item1);
         $oMap1->addElementItem($this->item2);
+        $oMap1->addElementItem($this->item3);
         $oMap1->addElementMonster($this->monster1);
         $oMap1->addElementMonster($this->monster2);
         $oMap1->addElementMonster($this->monster3);

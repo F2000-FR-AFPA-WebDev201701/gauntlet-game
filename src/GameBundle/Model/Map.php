@@ -17,6 +17,9 @@ class Map {
     public static $_MAP_MAX_Y = 568;   // 568 pixels
     public static $_FIRST_MAP_TO_LOAD = 1; // map number to load when there's no saveGame
     private $filenameMap = '';
+    protected $nextLvl = false;
+    protected $currentLvl = 0;
+
     // element
     public static $_ELEMENT_OFFSET_MOVE = 4;  // pixels
     public static $_ELEMENT_SIZE = 64; // pixels
@@ -26,6 +29,7 @@ class Map {
     protected $aElementsDecors = [];
     protected $aElementsItems = [];
     protected $aElementsMonsters = [];
+
 
     /*
      * __construct()
@@ -79,7 +83,7 @@ class Map {
             $idMap = self::$_FIRST_MAP_TO_LOAD;
         }
 
-        if ($idMap > 0) {
+        if ($idMap > 0) {           
             $this->initCurrentMapFilename($idMap);
 
             if (file_exists($this->filenameMap)) { // else test if initial map exist
@@ -103,6 +107,7 @@ class Map {
 
     public function save($idMap = null) {
         if ($idMap > 0) {
+            $this->currentLvl = $idMap;
             $this->initCurrentMapFilename($idMap);
             $ser = serialize($this);
             file_put_contents($this->filenameMap, $ser);
@@ -128,55 +133,72 @@ class Map {
 
     public function move($moveDirection) {
         if (isset($this->aElementsCharacters[0])) {
-            $elementA = $this->aElementsCharacters[0]; // perso 1
+            $elementCharacter = $this->aElementsCharacters[0]; // perso 1
         } else {
             return false;
         }
 
         $nbMonsters = count($this->aElementsMonsters);
         for ($i = 0; $i < $nbMonsters; $i++) {
-            $this->moveMonster($this->aElementsMonsters[$i], $i, $elementA);
+            $this->moveMonster($this->aElementsMonsters[$i], $i, $elementCharacter);
         }
 
         // move elementA (calcul)
-        $this->calcMove($elementA, $moveDirection);
+        $this->calcMove($elementCharacter, $moveDirection);
 
         $collision = false;
 
         // check collision with map sides
-        if ($this->checkCollisionMapside($elementA)) {
+        if ($this->checkCollisionMapside($elementCharacter)) {
             $collision = true;
         } else {
             // check collision between elementA and all decors
-            $collision = $this->checkCollisionsWithElements($elementA, $this->aElementsDecors);
+            $collision = $this->checkCollisionsWithElements($elementCharacter, $this->aElementsDecors);
             if ($collision == false) {
-                $collision = $this->checkCollisionsWithElements($elementA, $this->aElementsMonsters);
+                $collision = $this->checkCollisionsWithElements($elementCharacter, $this->aElementsMonsters);
             }
         }
 
         // not move if collision
         if ($collision) {
-            $this->calcMoveInverse($elementA, $moveDirection); // it's not a valid move then come back move
+            $this->calcMoveInverse($elementCharacter, $moveDirection); // it's not a valid move then come back move
         } else {
             // check collision between elementA (perso) and all items (key, exit (door), ...)
             $nbItems = count($this->aElementsItems);
+            $eraseItem = false;
             for ($i = 0; $i < $nbItems; $i++) {
                 // test if move is valid
-                if ($this->checkCollision($elementA, $this->aElementsItems[$i])) {
+                if ($this->checkCollision($elementCharacter, $this->aElementsItems[$i])) {
                     // collision with a item
                     switch ($this->aElementsItems[$i]->getType()) {
                         case 'potion' :
-                            $elementA->receiveHp($this->aElementsItems[$i]->getBonus());
+                            $elementCharacter->receiveHp($this->aElementsItems[$i]->getBonus());
+                            $eraseItem = true;
+                            unset($this->aElementsItems[$i]);                            
                             break;
-                    }
-                    unset($this->aElementsItems[$i]);
-                }
+                        case 'clef' :
+                            $elementCharacter->setClef(true);
+                            $eraseItem = true;
+                            unset($this->aElementsItems[$i]);                             
+                            break;
+                        case 'nextlvl' :
+                            if($elementCharacter->getClef()) {
+                                $this->setNextlvl(true);
+                            } else {
+                                $this->calcMoveInverse($elementCharacter, $moveDirection);
+                            }
+                            break;
+                    } // end switch
+                } // end if collision
+            } // end for items
+            if ($eraseItem) {
+                $this->aElementsItems = array_values($this->aElementsItems);
             }
         }
     }
 
     /*
-     * move()
+     * moveMonster()
      * move a monster
      */
 
@@ -213,6 +235,10 @@ class Map {
         }
     }
 
+    /*
+     * attack()
+     * attack a monster
+     */
     public function attack() {
         // checker la collision avec les monstres //récupérer l'ID des monstres
 
@@ -229,7 +255,6 @@ class Map {
             }
         }
         $this->aElementsMonsters = array_values($this->aElementsMonsters);
-        dump($this->aElementsMonsters);
     }
 
     /*
@@ -263,11 +288,6 @@ class Map {
             }
         }
         return false;
-    }
-
-    // check collision monster, and get array of id monster
-    private function listIdMonsters() {
-
     }
 
     // check collision between elementA and all elements defined in aElements without aElements[$id]
@@ -432,5 +452,39 @@ class Map {
     public function setaElementsMonsters($structure) {
         $this->aElementsMonsters = $structure;
     }
+    
+    /**
+     * @return int
+     */
+    public function getCurrentLvl()
+    {
+        return $this->currentLvl;
+    }
 
+    /**
+     * @param int $currentLvl
+     */
+    public function setCurrentLvl($currentLvl)
+    {
+        $this->currentLvl = $currentLvl;
+    }    
+    
+
+    /**
+     * @return bool
+     */
+    public function isNextlvl()
+    {
+        return $this->nextLvl;
+    }
+
+    /**
+     * @param bool $nextlvl
+     */
+    public function setNextlvl($nextLvl)
+    {
+        $this->nextLvl = $nextLvl;
+    }
+
+    
 }

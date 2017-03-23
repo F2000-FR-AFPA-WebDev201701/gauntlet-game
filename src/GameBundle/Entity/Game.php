@@ -73,7 +73,7 @@ class Game {
     /**
      * @var int
      *
-     * @ORM\Column(name="nbPlayerMax", type="integer", nullable=false)
+     * @ORM\Column(name="nbPlayerMax", type="integer", nullable=false, options={"default" = 0})
      */
     private $nbPlayerMax;
 
