@@ -150,11 +150,13 @@
 
 - Game : monstres tués = points supplémentaires
 
+- Game : Empecher la possibilité de rejoindre le plateau de jeu si game est terminée
 
 
-# En cours
 
-- Game : Empecher la possibilité de rejoindre le plateau de jeu si le perso est mort
+# En cours / A faire
+
+- Favicon
 
 - Game : Gestion du cycle (?)
 
