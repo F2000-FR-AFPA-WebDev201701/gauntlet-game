@@ -1,23 +1,23 @@
-body{
+body {
     padding:16px;
     background-color: black;
 }
 
-p,h1,h2{
+p,h1,h2 {
     font-family: 'Press Start 2P', cursive;
 
 }
 
-h1{
+h1 {
     font-size:16px;
 }
 
-p{
-    font-size:10px;
+h2 {
+    font-size:12px;
 }
 
-h2{
-    font-size:12px;
+p {
+    font-size:10px;
 }
 
 .infogame {
@@ -26,22 +26,35 @@ h2{
     height: 640px;
 }
 
-.infogame-player{
+.infogame-player {
     text-align: center;
 }
 
-.infogame-logo{
+.infogame-logo {
     display: block;
     width: 200px;
     margin: auto;
 }
 
-.content{
+.points-vie-txt {
+    color: green;
+}
+
+.score-txt {
+    color: blue;
+}
+
+.items-infos {
+    width: 32px;
+    height: 32px;
+}
+
+.content {
     margin: 0 auto;
     width: 1000px;
 }
 
-.plateau{
+.plateau {
     float: left;
     position: relative;
     width: 768px;
@@ -52,67 +65,73 @@ h2{
     z-index: -10;
 }
 
-.tile{
+.tile {
     position: absolute;
     width: 64px;
     height: 64px;
 }
 
-.hero{
+.hero {
     background-image: url(../images/warrior.png);
 }
 
-.mur{
+.mur {
     background-image: url(../images/mur.png);
 }
 
-.clef{
+.clef {
     background-image: url(../images/clef.png);
 }
 
-.potion{
+.potion {
     background-image: url(../images/potion.png);
 }
 
-.ghost{
+.ghost {
     background-image: url(../images/ghost.png);
 }
 
-.wallx{
+.wallx {
     background-image: url(../images/wallx.png);
 
 }
-.wallxlt{
+
+.wallxlt {
     background-image: url(../images/wallxlt.png);
 }
-.wallxrt{
+
+.wallxrt {
     background-image: url(../images/wallxrt.png);
 }
-.wallxyx{
+
+.wallxyx {
     background-image: url(../images/wallxyx.png);
 }
-.wally{
+
+.wally {
     background-image: url(../images/wally.png);
 }
-.wallybt{
+
+.wallybt {
     background-image: url(../images/wallybt.png);
 }
-.wallyxl{
+
+.wallyxl {
     background-image: url(../images/wallyxl.png);
 }
-.wallyxr{
+
+.wallyxr {
     background-image: url(../images/wallyxr.png);
 }
 
-.wallyb{
+.wallyb {
     background-image: url(../images/wallyb.png);
 }
 
-.nextlvl{
+.nextlvl {
     background-image: url(../images/nextlvl.png);
 }
 
-.diamant{
+.diamant {
     background-image: url(../images/diamant.png);
 }
-

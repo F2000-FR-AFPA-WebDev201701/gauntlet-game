@@ -1,4 +1,3 @@
-
 body {
     padding: 0;
     margin: 0;
@@ -10,12 +9,10 @@ p {
     font-family: Roboto;
 }
 
-
 h1 {
     font-family: 'Kaushan';
     font-size: 30px;
 }
-
 
 h2 {
     font-family: 'Cinzel', serif;
@@ -54,10 +51,7 @@ h3 {
     background: url(../images/banner2.jpg) center top repeat;
 }
 
-
-
-
-.banner-top .logo{
+.banner-top .logo {
     color: white;
     font-family: 'Cinzel', serif;
     text-decoration: none;
@@ -65,24 +59,24 @@ h3 {
     font-weight: 700;
 }
 
-.logoon{
+.logoon {
     list-style: none;
 }
 
-.header-register a{
+.header-register a {
     text-decoration: none;
     color: grey;
 }
 
-.header-register a:hover{
+.header-register a:hover {
     color: ghostwhite;
 }
 
-.header-login{
+.header-login {
     margin: auto;
 }
 
-.header>button{
+.header>button {
     width: auto;
 }
 
@@ -123,11 +117,10 @@ h3 {
     text-transform: uppercase;
 }
 
-.banner-top-menu-items a:hover{
+.banner-top-menu-items a:hover {
     color: white;
     font-weight:500;
 }
-
 
 .banner-center {
     display: flex;
@@ -151,7 +144,6 @@ h3 {
     font-weight: 900;
 
 }
-
 
 .banner-center-bl2, .banner-center-bl3 {
     font-family:  'Cinzel', serif;
@@ -177,14 +169,15 @@ h3 {
     margin:auto;
 }
 
+.well {
+    background-color: #FFFCE6;
+}
 
-.well{
+.table {
     background-color: #FFFCE6;
 }
-.table{
-    background-color: #FFFCE6;
-}
-.table-hover{
+
+.table-hover {
     background-color: #FFFCE6;
 }
 
@@ -193,21 +186,20 @@ h3 {
     padding: 100px 0;
 }
 
-.game>.alert-danger{
+.game>.alert-danger {
     clear: both;
 }
-.game-section{
+.game-section {
     background-color: #FADAA3;
 }
 
-.game-description{
+.game-description {
     background-color: #FDE3A7;
 }
 
-.game-content{
+.game-content {
     background-color: #FADAA3;
 }
-
 
 .section-entete {
     display: block;
@@ -215,12 +207,9 @@ h3 {
     text-align: center;
 }
 
-
 .section-entete h2 {
     line-height: 10px;
 }
-
-
 
 footer{
     margin-top: 0px;
@@ -229,30 +218,30 @@ footer{
     padding-bottom: 16px;
 }
 
-.footer{
+.footer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     color:white;
 }
 
-footer div{
+footer div {
     width:100%;
 }
 
-.footer-copyright{
+.footer-copyright {
     text-align: center;
     margin-top: -8px;
 }
 
-.footer-copyright li{
+.footer-copyright li {
     list-style:none;
     color:ghostwhite;
     font-style: italic;
     margin-left:-34px;
 }
 
-.footer-nouscontacter{
+.footer-nouscontacter {
     border-left: 2px white solid;
     border-right: 2px white solid;
     margin-top: -8px;
@@ -260,34 +249,33 @@ footer div{
     text-align: center;
 }
 
-.footer-nouscontacter a{
+.footer-nouscontacter a {
     text-decoration:none;
     color: ghostwhite;
     font-style: italic;
 }
 
-.footer-nouscontacter a:hover{
+.footer-nouscontacter a:hover {
     color:white;
 }
 
 .footer-liens {
     margin-top: -8px;
     text-align: center;
-
 }
 
-.footer-liens li{
+.footer-liens li {
     list-style: none;
     font-style: italic;
     margin-left:-34px;
 }
 
-.footer-liens a{
+.footer-liens a {
     text-decoration:none;
     color:ghostwhite;
 }
 
-.footer-liens a:hover{
+.footer-liens a:hover {
     color: white;
 }
 
@@ -295,30 +283,31 @@ section{
     margin: auto;
 }
 
-.lejeux-presentation{
+.lejeux-presentation {
 
 }
 
-.lejeux-presentation img{
+.lejeux-presentation img {
 
 }
-.paragraphes{
+
+.paragraphes {
     margin: 0 auto;
     display: table;
     border-spacing:20px;
 }
 
-.paragraphe-content{
+.paragraphe-content {
     display: table-cell;
     width:33%;
     text-align: justify;
 }
 
-.titre-section{
+.titre-section {
     margin:auto;
 }
 
-.hr{
+.hr {
     border-top: 1px solid #8c8b8b;
 }
 

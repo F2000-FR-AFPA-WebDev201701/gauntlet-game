@@ -9,13 +9,13 @@
     <div class="infogame-player">
         <h1>{{ app.session.get('user').pseudo }}</h1>
         <h2>Points de vie</h2>
-        <p>{{ player.hp }}</p>
+        <p class="points-vie-txt">{{ player.hp }}</p>
         <h2>Score</h2>
-        <p>{{ player.score }}</p>
+        <p class="score-txt">{{ player.score }}</p>
         <h2>Items</h2>
         <p>
             {% if player.clef %}
-                <img src="{{ asset('images/clef.png') }}">
+                <img src="{{ asset('images/clef.png') }}" class="items-infos">
             {% endif %}
         </p>
         <hr />
