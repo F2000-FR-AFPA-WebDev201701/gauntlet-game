@@ -159,6 +159,8 @@
 
 - Favicon
 
+- Possibilité de stopper la musique
+
 - Game : Gestion du cycle (?)
 
 - Game : Voir la portée de l'attaque (cercle ?)
