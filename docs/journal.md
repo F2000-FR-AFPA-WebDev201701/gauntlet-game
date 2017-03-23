@@ -152,6 +152,7 @@
 
 - Game : Empecher la possibilité de rejoindre le plateau de jeu si game est terminée
 
+- Game : Perte de la cléf (utilisée) si passage au lvl supérieur
 
 
 # En cours / A faire
