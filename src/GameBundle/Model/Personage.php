@@ -66,7 +66,7 @@ class Personage {
      * Constructor
      */
     public function __construct() {
-        $this->door = false;
+        $this->clef = false;
         $this->type = self::$_DEFAULT_TYPE;
         $this->hp = self::$_DEFAULT_HP;
         $this->maxHp = $this->hp;
