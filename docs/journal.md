@@ -136,6 +136,8 @@
 
 - Game détails : Date de création
 
+- Game : Animations JS (attaque du perso)
+
 
 
 # En cours
@@ -147,8 +149,6 @@
 - Game : Gestion de la victoire (ok; vue à faire)
 
 - Game : Gestion de la mort (ok; vue à faire)
-
-- Game : Animations JS (pertes de pv du perso, récupération de pv, score up, ...)
 
 - Game : Gestion du cycle (?)
 
