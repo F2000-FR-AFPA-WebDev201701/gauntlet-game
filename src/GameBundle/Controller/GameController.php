@@ -19,7 +19,7 @@ class GameController extends Controller {
      */
     public function listAction() {
         $repo = $this->getDoctrine()->getRepository('GameBundle:Game');
-        $oGame = $repo->findAll();
+        $oGame = $repo->findAll(array('status' => 'DESC', 'score' => 'DESC'));
 
         return $this->render('GameBundle:Game:list.html.twig', array(
                     'game' => $oGame

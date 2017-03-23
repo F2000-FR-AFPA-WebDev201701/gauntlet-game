@@ -4,12 +4,8 @@
         <table class="table table-bordered ">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <td>{{game.id }}</td>
-                </tr>
-                <tr>
                     <th>Status</th>
-                    <td>{{game.status }}</td>
+                    <td>{{game.statusText }}</td>
                 </tr>
 
                 <tr>
@@ -18,7 +14,7 @@
                 </tr>
                 <tr>
                     <th>Création Date</th>
-                    <td>{{game.date.date }}</td>
+                    <td>{{game.date|date('d-m-Y H:i:s') }} </td>
                 </tr>
                 <tr>
                     <th>Nombre de joueurs</th>

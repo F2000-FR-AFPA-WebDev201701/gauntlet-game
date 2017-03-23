@@ -134,17 +134,21 @@
 
 - Game : Statut de la game = 2 lorsque terminée (mort ou win)
 
+- Game détails : Date de création
+
+- Game : Animations JS (attaque du perso)
+
 
 
 # En cours
 
 - Game : voir la clé sur la zone de droite
 
+- Game : monstres tués = points supplémentaires
+
 - Game : Gestion de la victoire (ok; vue à faire)
 
 - Game : Gestion de la mort (ok; vue à faire)
-
-- Game : Animations JS (pertes de pv du perso, récupération de pv, score up, ...)
 
 - Game : Gestion du cycle (?)
 
@@ -153,8 +157,6 @@
 - User : Page "mot de passe oublié" / verif register
 
 - Header : Liens vers sections
-
-- Game détails : création date = depuis xx minutes / jours
 
 - Liste des games : historique des games avec scores
 
