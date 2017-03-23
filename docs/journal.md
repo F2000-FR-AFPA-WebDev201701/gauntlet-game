@@ -144,19 +144,17 @@
 
 - Game : Amélioration de la zone de droite (voir clef + lien vers homepage + style + ...)
 
+- Game : Gestion de la victoire
+
+- Game : Gestion de la mort
 
 
 
 # En cours
 
-
 - Game : Empecher la possibilité de rejoindre le plateau de jeu si le perso est mort
 
 - Game : monstres tués = points supplémentaires
-
-- Game : Gestion de la victoire (ok; vue à faire)
-
-- Game : Gestion de la mort (ok; vue à faire)
 
 - Game : Gestion du cycle (?)
 
