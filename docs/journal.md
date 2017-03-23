@@ -134,11 +134,15 @@
 
 - Game : Statut de la game = 2 lorsque terminée (mort ou win)
 
+- Game détails : Date de création
+
 
 
 # En cours
 
 - Game : voir la clé sur la zone de droite
+
+- Game : monstres tués = points supplémentaires
 
 - Game : Gestion de la victoire (ok; vue à faire)
 
@@ -153,8 +157,6 @@
 - User : Page "mot de passe oublié" / verif register
 
 - Header : Liens vers sections
-
-- Game détails : création date = depuis xx minutes / jours
 
 - Liste des games : historique des games avec scores
 

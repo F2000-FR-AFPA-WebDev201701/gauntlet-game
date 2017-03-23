@@ -22,24 +22,6 @@ class Game {
     private $users;
 
     /**
-     * @return mixed
-     */
-    public function getUsers() {
-        return $this->users;
-    }
-
-    /**
-     * @param mixed $users
-     */
-    public function setUsers($users) {
-        $this->users = $users;
-    }
-
-    public function __construct() {
-        $this->users = new ArrayCollection();
-    }
-
-    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -92,6 +74,15 @@ class Game {
      * @ORM\Column(name="score", type="integer", nullable=true)
      */
     private $score;
+
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->status = 0;
+        $this->score = 0;
+        $this->users = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -221,12 +212,38 @@ class Game {
         return $this->saveGame;
     }
 
+    /**
+     * Get Score
+     *
+     * @return int
+     */
     function getScore() {
         return $this->score;
     }
 
+    /**
+     * Get Score
+     *
+     * @param string $saveGame
+     *
+     * @return score
+     */
     function setScore($score) {
         $this->score = $score;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsers() {
+        return $this->users;
+    }
+
+    /**
+     * @param mixed $users
+     */
+    public function setUsers($users) {
+        $this->users = $users;
     }
 
     /**

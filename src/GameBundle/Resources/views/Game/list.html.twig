@@ -2,7 +2,6 @@
     <table class="table table-responsive table-hover text-center">
         <thead >
             <tr >
-                <th class="text-center">ID</th>
                 <th class="text-center">Status</th>
                 <th class="text-center">Nom de la salle</th>
                 <th class="text-center">Création</th>
@@ -23,10 +22,9 @@
             {% endif %}
             <tbody>
                 <tr>
-                    <td>{{ i.id }}</td>
-                    <td>{{ i.status }}</td>
+                    <td>{{ i.statusText }}</td>
                     <td>{{ i.nameRoom }}</td>
-                    <td>{{ i.date.date }}</td>
+                    <td>{{ i.date|date('d-m-Y H:i:s') }}</td>
                     <td>{{ i.nbPlayerMax }}</td>
                     <td>{{ i.score }}</td>
                     {% if(app.session.get('user')) %}
