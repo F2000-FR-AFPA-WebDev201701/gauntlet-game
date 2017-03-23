@@ -3,7 +3,6 @@
 namespace GameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -168,7 +167,6 @@ class User implements UserInterface {
         return null;
     }
 
-
     /**
      * Set game
      *
@@ -176,8 +174,7 @@ class User implements UserInterface {
      *
      * @return User
      */
-    public function setGame(\GameBundle\Entity\Game $game = null)
-    {
+    public function setGame(\GameBundle\Entity\Game $game = null) {
         $this->game = $game;
 
         return $this;
@@ -188,8 +185,8 @@ class User implements UserInterface {
      *
      * @return \GameBundle\Entity\Game
      */
-    public function getGame()
-    {
+    public function getGame() {
         return $this->game;
     }
+
 }
