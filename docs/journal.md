@@ -138,11 +138,16 @@
 
 - Game : Animations JS (attaque du perso)
 
+- Game : Reduction de l'offset de déplacement des monstres
+
 - Liste des games : historique des games avec scores triées par status et score
 
 
 
 # En cours
+
+
+- Game : Empecher la possibilité de rejoindre le plateau de jeu si le perso est mort
 
 - Game : voir la clé sur la zone de droite
 
@@ -157,6 +162,8 @@
 - User : recupération du mot de passe
 
 - User : Page "mot de passe oublié" / verif register
+
+- User : Message une fois inscrit + connexion
 
 - Header : Liens vers sections
 
