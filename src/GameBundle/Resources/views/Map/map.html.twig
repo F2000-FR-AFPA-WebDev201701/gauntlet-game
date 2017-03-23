@@ -7,12 +7,19 @@
 <div class="infogame">
     <img class="infogame-logo" src="{{ asset('images/gant.png') }}" alt=""/>
     <div class="infogame-player">
-        <h1> {{ app.session.get('user').pseudo }} </h1>
-        <h2> Vie : </h2>
-        <p> {{ player.hp }} Vie </p>
+        <h1>{{ app.session.get('user').pseudo }}</h1>
+        <h2>Points de vie</h2>
+        <p>{{ player.hp }}</p>
         <h2>Score</h2>
-        <p> {{ player.score }} Points </p>
-        <h2>Items récupérés</h2>
+        <p>{{ player.score }}</p>
+        <h2>Items</h2>
+        <p>
+            {% if player.clef %}
+                <img src="{{ asset('images/clef.png') }}">
+            {% endif %}
+        </p>
+        <hr />
+        <a href="{{ path('homepage') }}">Page d'accueil</a>
     </div>
 </div>
 
