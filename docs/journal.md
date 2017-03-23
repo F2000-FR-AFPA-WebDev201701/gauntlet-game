@@ -148,13 +148,13 @@
 
 - Game : Gestion de la mort
 
+- Game : monstres tués = points supplémentaires
+
 
 
 # En cours
 
 - Game : Empecher la possibilité de rejoindre le plateau de jeu si le perso est mort
-
-- Game : monstres tués = points supplémentaires
 
 - Game : Gestion du cycle (?)
 

@@ -184,6 +184,7 @@ class GameController extends Controller {
                     $initMapSerNext = $oMap->load($nextLevel); // load map from file (mapX.initial)
                     $oMapUnserNext = unserialize($initMapSerNext);
                     $oMapUnserNext->setaElementsCharacters($oMapUnser->getaElementsCharacters()); // save hp & score...
+                    $oMapUnser->getaElementsCharacters()[0]->setClef(false); // remove clef
                     $initMapSerNext = serialize($oMapUnserNext);
                     $oGame->setSaveGame($initMapSerNext);
                     $oGame->setStatus(1);
