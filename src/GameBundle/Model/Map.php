@@ -256,6 +256,7 @@ class Map {
         }
         foreach ($this->aElementsMonsters as $key => $oMonster) {
             if ($oMonster->getHp() <= 0) {
+                $this->aElementsCharacters[0]->setScore($this->aElementsCharacters[0]->getScore() + $this->aElementsMonsters[$key]->getBonus());
                 unset($this->aElementsMonsters[$key]);
             }
         }

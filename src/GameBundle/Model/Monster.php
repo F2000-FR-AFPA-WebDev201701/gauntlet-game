@@ -10,6 +10,7 @@ class Monster {
     private static $_DEFAULT_TYPE = "ghost";
     private static $_DEFAULT_HP = 250;
     private static $_DEFAULT_STRENGTH = 10;
+    private static $_DEFAULT_BONUS = 25;
 
     /**
      * @var int
@@ -45,6 +46,11 @@ class Monster {
      * @var int
      */
     private $strength;
+    
+    /**
+     * @var bonus
+     */
+    private $bonus;
 
     /**
      * Constructor
@@ -54,6 +60,7 @@ class Monster {
         $this->hp = self::$_DEFAULT_HP;
         $this->maxHp = $this->hp;
         $this->strength = self::$_DEFAULT_STRENGTH;
+        $this->bonus = self::$_DEFAULT_BONUS;
     }
 
     public function receiveHit($strength = 50) {
@@ -201,5 +208,26 @@ class Monster {
     public function getStrength() {
         return $this->strength;
     }
+    
+    /**
+     * Set type
+     *
+     * @param int $bonus
+     *
+     * @return Decor
+     */
+    public function setBonus($bonus) {
+        $this->bonus = $bonus;
 
+        return $this;
+    }
+
+    /**
+     * Get bonus
+     *
+     * @return Decor
+     */
+    public function getBonus() {
+        return $this->bonus;
+    }
 }
