@@ -21,6 +21,7 @@ class Map {
     protected $currentLvl = 0;
     // element
     public static $_ELEMENT_OFFSET_MOVE = 4;  // pixels
+    public static $_ELEMENT_OFFSET_MOVE_MONSTER = 2;  // pixels
     public static $_ELEMENT_SIZE = 64; // pixels
     // elements
     protected $aElements = []; // all elements : used by view
@@ -141,8 +142,8 @@ class Map {
             $this->moveMonster($this->aElementsMonsters[$i], $i, $elementCharacter);
         }
 
-        // move elementA (calcul)
-        $this->calcMove($elementCharacter, $moveDirection);
+        // move elementCharacter (calcul)
+        $this->calcMove($elementCharacter, $moveDirection, self::$_ELEMENT_OFFSET_MOVE);
 
         $collision = false;
 
@@ -159,7 +160,7 @@ class Map {
 
         // not move if collision
         if ($collision) {
-            $this->calcMoveInverse($elementCharacter, $moveDirection); // it's not a valid move then come back move
+            $this->calcMoveInverse($elementCharacter, $moveDirection, self::$_ELEMENT_OFFSET_MOVE); // it's not a valid move then come back move
         } else {
             // check collision between elementA (perso) and all items (key, exit (door), ...)
             $nbItems = count($this->aElementsItems);
@@ -188,7 +189,7 @@ class Map {
                             if ($elementCharacter->getClef()) {
                                 $this->setNextlvl(true);
                             } else {
-                                $this->calcMoveInverse($elementCharacter, $moveDirection);
+                                $this->calcMoveInverse($elementCharacter, $moveDirection, self::$_ELEMENT_OFFSET_MOVE);
                             }
                             break;
                     } // end switch
@@ -268,15 +269,15 @@ class Map {
 
     private function doMonsterMove($monster, $monsterId, $character, $move) {
         // monsters collisions with decors & items & monsters
-        $this->calcMove($monster, $move);
+        $this->calcMove($monster, $move, self::$_ELEMENT_OFFSET_MOVE_MONSTER);
         if ($this->checkCollisionsWithElements($monster, $this->aElementsDecors) ||
                 $this->checkCollisionsWithElements($monster, $this->aElementsItems) ||
                 $this->checkCollisionsWithElementsWithoutId($monster, $this->aElementsMonsters, $monsterId)) {
-            $this->calcMoveInverse($monster, $move);
+            $this->calcMoveInverse($monster, $move, self::$_ELEMENT_OFFSET_MOVE_MONSTER);
         } else { // monsters collisions with characters
             if ($this->checkCollision($monster, $character)) {
                 $character->receiveHit($monster->getStrength());
-                $this->calcMoveInverse($monster, $move);
+                $this->calcMoveInverse($monster, $move, self::$_ELEMENT_OFFSET_MOVE_MONSTER);
             }
         }
     }
@@ -314,19 +315,19 @@ class Map {
      * set element with new coord. Une a move direction.
      */
 
-    private function calcMove($element, $moveDirection) {
+    private function calcMove($element, $moveDirection, $offset = 4) {
         switch ($moveDirection) {
             case self::$_MOVE_UP :
-                $element->setPositionY($element->getPositionY() - self::$_ELEMENT_OFFSET_MOVE);
+                $element->setPositionY($element->getPositionY() - $offset);
                 break;
             case self::$_MOVE_RIGHT :
-                $element->setPositionX($element->getPositionX() + self::$_ELEMENT_OFFSET_MOVE);
+                $element->setPositionX($element->getPositionX() + $offset);
                 break;
             case self::$_MOVE_DOWN :
-                $element->setPositionY($element->getPositionY() + self::$_ELEMENT_OFFSET_MOVE);
+                $element->setPositionY($element->getPositionY() + $offset);
                 break;
             case self::$_MOVE_LEFT :
-                $element->setPositionX($element->getPositionX() - self::$_ELEMENT_OFFSET_MOVE);
+                $element->setPositionX($element->getPositionX() - $offset);
                 break;
         } // end switch
     }
@@ -336,19 +337,19 @@ class Map {
      * set element with new coord. Use a inverse move direction.
      */
 
-    private function calcMoveInverse($element, $moveDirection) {
+    private function calcMoveInverse($element, $moveDirection, $offset) {
         switch ($moveDirection) {
             case self::$_MOVE_UP :
-                $this->calcMove($element, self::$_MOVE_DOWN);
+                $this->calcMove($element, self::$_MOVE_DOWN, $offset);
                 break;
             case self::$_MOVE_RIGHT :
-                $this->calcMove($element, self::$_MOVE_LEFT);
+                $this->calcMove($element, self::$_MOVE_LEFT, $offset);
                 break;
             case self::$_MOVE_DOWN :
-                $this->calcMove($element, self::$_MOVE_UP);
+                $this->calcMove($element, self::$_MOVE_UP, $offset);
                 break;
             case self::$_MOVE_LEFT :
-                $this->calcMove($element, self::$_MOVE_RIGHT);
+                $this->calcMove($element, self::$_MOVE_RIGHT, $offset);
                 break;
         } // end switch
     }

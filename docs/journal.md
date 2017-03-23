@@ -138,9 +138,16 @@
 
 - Game : Animations JS (attaque du perso)
 
+- Game : Reduction de l'offset de déplacement des monstres
+
+- Liste des games : historique des games avec scores triées par status et score
+
 
 
 # En cours
+
+
+- Game : Empecher la possibilité de rejoindre le plateau de jeu si le perso est mort
 
 - Game : voir la clé sur la zone de droite
 
@@ -156,9 +163,9 @@
 
 - User : Page "mot de passe oublié" / verif register
 
-- Header : Liens vers sections
+- User : Message une fois inscrit + connexion
 
-- Liste des games : historique des games avec scores
+- Header : Liens vers sections
 
 - Amélioration du code back (cf Sensio Labs)
 
