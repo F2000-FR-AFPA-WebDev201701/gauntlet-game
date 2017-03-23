@@ -13,6 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Game {
 
+    public static $_STATUS_INFOS = array('Partie créée', 'Partie commencée', 'Partie terminée');
+
     /**
      *
      * @ORM\OneToMany(targetEntity="User", mappedBy="game" )
@@ -120,6 +122,15 @@ class Game {
      */
     public function getStatus() {
         return $this->status;
+    }
+
+    /**
+     * Get statusText
+     *
+     * @return var
+     */
+    public function getStatusText() {
+        return self::$_STATUS_INFOS[$this->status];
     }
 
     /**
