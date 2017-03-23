@@ -23,8 +23,8 @@ class MapController extends Controller {
         // *****
         // perso
         $this->perso1 = new Personage();
-        $this->perso1->setPositionX(185);
-        $this->perso1->setPositionY(5);
+        $this->perso1->setPositionX(6);
+        $this->perso1->setPositionY(6);
         $this->perso1->setType('hero');
         $this->perso1->setHp(100);
         $this->perso1->setScore(0);
@@ -63,32 +63,30 @@ class MapController extends Controller {
         $this->decor7 = new Decor();
         $this->decor7->setPositionX(384);
         $this->decor7->setPositionY(384);
-        $this->decor7->setType('wally'); // wall
-
-        $this->decor8 = new Decor();
-        $this->decor8->setPositionX(384);
-        $this->decor8->setPositionY(448);
-        $this->decor8->setType('wallxrt'); // wall xrt
-
-        $this->decor9 = new Decor();
-        $this->decor9->setPositionX(320);
-        $this->decor9->setPositionY(448);
-        $this->decor9->setType('wallx'); // wall
+        $this->decor7->setType('wallxrt'); // wall
+        //$this->decor8 = new Decor();
+        //$this->decor8->setPositionX(384);
+        //$this->decor8->setPositionY(448);
+        //$this->decor8->setType('wallxrt'); // wall xrt
+        //$this->decor9 = new Decor();
+        //$this->decor9->setPositionX(320);
+        //$this->decor9->setPositionY(448);
+        //$this->decor9->setType('wallx'); // wall
         //
         $this->decor10 = new Decor();
-        $this->decor10->setPositionX(256);
-        $this->decor10->setPositionY(448);
+        $this->decor10->setPositionX(320);
+        $this->decor10->setPositionY(384);
         $this->decor10->setType('wallxlt'); // wall
         // items
         $this->decor11 = new Decor();
         $this->decor11->setPositionX(192);
         $this->decor11->setPositionY(128);
-        $this->decor11->setType('wallx'); // wall
+        $this->decor11->setType('wallxrt'); // wall
         // items
-        $this->decor12 = new Decor();
-        $this->decor12->setPositionX(256);
-        $this->decor12->setPositionY(128);
-        $this->decor12->setType('wallxrt'); // wall
+        // $this->decor12 = new Decor();
+        //$this->decor12->setPositionX(256);
+        //$this->decor12->setPositionY(128);
+        //$this->decor12->setType('wallxrt'); // wall
         // items
         $this->decor13 = new Decor();
         $this->decor13->setPositionX(448);
@@ -106,12 +104,12 @@ class MapController extends Controller {
         $this->decor15->setType('wallx'); // wall
         // items
         $this->decor16 = new Decor();
-        $this->decor16->setPositionX(256);
+        $this->decor16->setPositionX(192);
         $this->decor16->setPositionY(64);
         $this->decor16->setType('wally'); // wall
         // items
         $this->decor17 = new Decor();
-        $this->decor17->setPositionX(256);
+        $this->decor17->setPositionX(192);
         $this->decor17->setPositionY(0);
         $this->decor17->setType('wally'); // wall
         // items
@@ -138,12 +136,12 @@ class MapController extends Controller {
         $this->decor22 = new Decor();
         $this->decor22->setPositionX(512);
         $this->decor22->setPositionY(128);
-        $this->decor22->setType('wallyxr'); // wall
+        $this->decor22->setType('wally'); // wall
         // items
-        $this->decor23 = new Decor();
-        $this->decor23->setPositionX(576);
-        $this->decor23->setPositionY(128);
-        $this->decor23->setType('wallxrt'); // wall
+        //$this->decor23 = new Decor();
+        //$this->decor23->setPositionX(576);
+        //$this->decor23->setPositionY(128);
+        //$this->decor23->setType('wallxrt'); // wall
         // items
         $this->decor24 = new Decor();
         $this->decor24->setPositionX(640);
@@ -199,11 +197,11 @@ class MapController extends Controller {
         $oMap1->addElementDecor($this->decor5);
         $oMap1->addElementDecor($this->decor6);
         $oMap1->addElementDecor($this->decor7);
-        $oMap1->addElementDecor($this->decor8);
-        $oMap1->addElementDecor($this->decor9);
+        // $oMap1->addElementDecor($this->decor8);
+        // $oMap1->addElementDecor($this->decor9);
         $oMap1->addElementDecor($this->decor10);
         $oMap1->addElementDecor($this->decor11);
-        $oMap1->addElementDecor($this->decor12);
+        // $oMap1->addElementDecor($this->decor12);
         $oMap1->addElementDecor($this->decor13);
         $oMap1->addElementDecor($this->decor14);
         $oMap1->addElementDecor($this->decor15);
@@ -214,7 +212,7 @@ class MapController extends Controller {
         $oMap1->addElementDecor($this->decor20);
         $oMap1->addElementDecor($this->decor21);
         $oMap1->addElementDecor($this->decor22);
-        $oMap1->addElementDecor($this->decor23);
+        // $oMap1->addElementDecor($this->decor23);
         $oMap1->addElementDecor($this->decor24);
         $oMap1->addElementItem($this->item1);
         $oMap1->addElementItem($this->item2);
