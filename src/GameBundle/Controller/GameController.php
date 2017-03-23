@@ -166,7 +166,7 @@ class GameController extends Controller {
                     $this->deadOrWin($request, $oGame, $oMapUnser);
                     $em->flush(); // save the game into database
                     
-                    return $this->render('GameBundle:Map:map.html.twig', $this->aMapRender($oMapUnser, 'Vous êtes mort !!!'));
+                    return $this->render('GameBundle:Map:map.html.twig', $this->aMapRenderText($oMapUnser, 'Vous êtes mort !!!'));
                 }
 
                 // next level
@@ -177,7 +177,7 @@ class GameController extends Controller {
                         $this->deadOrWin($request, $oGame, $oMapUnser);
                         $em->flush(); // save the game into database
                         
-                        return $this->render('GameBundle:Map:map.html.twig', $this->aMapRender($oMapUnser, 'Vous avez Gagné !!!'));
+                        return $this->render('GameBundle:Map:map.html.twig', $this->aMapRenderText($oMapUnser, 'Vous avez Gagné !!!'));
                     }
                     // no end the go to next level
                     $oMap = new Map();
@@ -191,7 +191,7 @@ class GameController extends Controller {
 
                 $em->flush(); // save the game into database
                 
-                return $this->render($this->showMapRender($oMapUnser, $id));
+                return $this->render('GameBundle:Map:map.html.twig', $this->aMapRender($oMapUnser));
 
             case 'shoot':
                 $oMapUnser = unserialize($oGame->getSaveGame()); // get a map object
@@ -207,17 +207,33 @@ class GameController extends Controller {
     }
     
     /*
+     * aMapRenderText
+     *
+     **/
+    private function aMapRenderText($oMap, $text = null) {
+        $result = array();
+        $result = $this->aMapRender($oMap);
+        $result['text'] = $text;
+    }
+
+    /*
      * aMapRender
      *
      **/
-    private function aMapRender($oMap, $text = null) {
+    private function aMapRender($oMap) {
         return array(
-            'text' => $text,
             'map' => $oMap->getaElements(),
             'player' => $oMap->getaElementsCharacters()[0]
         );
     }
     
+    /*
+     * deadOrWin
+     * set game at null in user table
+     * set status à 2 in game table
+     * set score in game table (hiscore)
+     *
+     **/
     private function deadOrWin($request, $oGame, $oMap) {
         $oUser = $this->getDoctrine()->getRepository('GameBundle:User')
                     ->find($request->getSession()->get('user')->getId());
