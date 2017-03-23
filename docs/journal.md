@@ -142,14 +142,15 @@
 
 - Liste des games : historique des games avec scores triées par status et score
 
+- Game : Amélioration de la zone de droite (voir clef + lien vers homepage + style + ...)
+
+
 
 
 # En cours
 
 
 - Game : Empecher la possibilité de rejoindre le plateau de jeu si le perso est mort
-
-- Game : voir la clé sur la zone de droite
 
 - Game : monstres tués = points supplémentaires
 
@@ -161,7 +162,9 @@
 
 - Game : Voir la portée de l'attaque (cercle ?)
 
-- Game : Monstres Points de vie
+- Game : Monstres Points de vie sur la zone de droite
+
+- Game : bug taille du plateau
 
 - User : recupération du mot de passe
 

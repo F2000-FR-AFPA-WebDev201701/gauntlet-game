@@ -21,8 +21,8 @@ p {
 }
 
 .infogame {
-    float:right;
-    width:200px;
+    float: right;
+    width: 200px;
     height: 640px;
 }
 
@@ -135,3 +135,52 @@ p {
 .diamant {
     background-image: url(../images/diamant.png);
 }
+
+@keyframes reset {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    60% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+
+    }
+}
+
+.fade-in {
+    animation-name: reset, fade-in;
+    animation-duration: 3s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+}
+
+.gore {
+    //transition-property:text-shadow;
+    //transition-duration: 10s;
+    //transition-timing-function: linear;
+    //transition-delay: 6s;
+    display:block;
+    position:absolute;
+    width: 300px;
+    height: 140px;
+    left:calc(384px - 150px);
+    top:calc(288px - 70px);
+    z-index: 10;
+    text-align: center;
+    color: whitesmoke;
+    font-size: 48px;
+    font-weight:700;
+    //text-shadow:0px 1px red,0px 2px red, 0px 3px red, 0px 4px red, 0px 5px red, 0px 6px red, 0px 7px red, 0px 8px red, 0px 9px red, 0px 10px red, 0px 11px red, 0px 12px red, 0px 13px red, 0px 14px red, 0px 15px red, 0px 16px red, 0px 17px red, 0px 18px red, 0px 19px red, 0px 20px red, 0px 21px red, 0px 22px red, 0px 23px red, 0px 24px red, 0px 25px red, 0px 26px red, 0px 27px red, 0px 28px red, 0px 29px red, 0px 30px red, 0px 31px red, 0px 32px red, 0px 33px red, 0px 34px red, 0px 35px red, 0px 36px red, 0px 37px red, 0px 38px red, 0px 39px red, 0px 40px red, 0px 41px red, 0px 42px red, 0px 43px red, 0px 44px red, 0px 45px red, 0px 46px red, 0px 47px red, 0px 48px red, 0px 49px red, 0px 50px red, 0px 51px red,0px 52px red, 0px 53px red, 0px 54px red, 0px 55px red, 0px 56px red, 0px 57px red, 0px 58px red, 0px 59px red, 0px 60px red, 0px 61px red, 0px 62px red, 0px 63px red, 0px 64px red, 0px 65px red, 0px 66px red, 0px 67px red, 0px 68px red, 0px 69px red, 0px 70px red, 0px 71px red, 0px 72px red, 0px 73px red, 0px 74px red, 0px 75px red, 0px 76px red, 0px 77px red, 0px 78px red, 0px 79px red, 0px 80px red, 0px 81px red, 0px 82px red, 0px 83px red, 0px 84px red, 0px 85px red, 0px 86px red, 0px 87px red, 0px 88px red, 0px 89px red, 0px 90px red, 0px 91px red, 0px 92px red, 0px 93px red, 0px 94px red, 0px 95px red, 0px 96px red, 0px 97px red, 0px 98px red, 0px 99px red, 0px 100px red;
+}
+

@@ -160,18 +160,13 @@ class GameController extends Controller {
                 $oMapUnser->move($value); // do the move
                 $oMapSer = serialize($oMapUnser); // serialize (prepare to save into database)
                 $oGame->setSaveGame($oMapSer);
+                
                 // death (character)
                 if ($oMapUnser->getaElementsCharacters()[0]->getHp() <= 0) {
-                    $oUser = $this->getDoctrine()->getRepository('GameBundle:User')
-                            ->find($request->getSession()->get('user')->getId());
-                    $oUser->setGame(null);
-                    $oGame->setStatus(2);
-                    $oGame->setScore($oMapUnser->getaElementsCharacters()[0]->getScore()); // save Game Hiscore
+                    $this->deadOrWin($request, $oGame, $oMapUnser);
                     $em->flush(); // save the game into database
-                    return $this->render('GameBundle:Map:dead.html.twig', array(
-                                'text' => 'Vous êtes Mort',
-                                'player' => $oMapUnser->getaElementsCharacters()[0],
-                    ));
+                    
+                    return $this->render('GameBundle:Map:map.html.twig', $this->aMapRender($oMapUnser, 'Vous êtes mort !!!'));
                 }
 
                 // next level
@@ -179,11 +174,10 @@ class GameController extends Controller {
                     $nextLevel = $oMapUnser->getCurrentLvl() + 1;
                     // test if this's the end ?
                     if ($nextLevel > $oMapUnser->nbMaps()) {
-                        $oUser = $this->getDoctrine()->getRepository('GameBundle:User')
-                                ->find($request->getSession()->get('user')->getId());
-                        $oUser->setGame(null);
-                        $oGame->setStatus(2);
-                        return $this->render('GameBundle:Map:win.html.twig');
+                        $this->deadOrWin($request, $oGame, $oMapUnser);
+                        $em->flush(); // save the game into database
+                        
+                        return $this->render('GameBundle:Map:map.html.twig', $this->aMapRender($oMapUnser, 'Vous avez Gagné !!!'));
                     }
                     // no end the go to next level
                     $oMap = new Map();
@@ -196,11 +190,8 @@ class GameController extends Controller {
                 }
 
                 $em->flush(); // save the game into database
-
-                return $this->render('GameBundle:Map:map.html.twig', array(
-                            'map' => $oMapUnser->getaElements(),
-                            'player' => $oMapUnser->getaElementsCharacters()[0]
-                ));
+                
+                return $this->render($this->showMapRender($oMapUnser, $id));
 
             case 'shoot':
                 $oMapUnser = unserialize($oGame->getSaveGame()); // get a map object
@@ -208,14 +199,31 @@ class GameController extends Controller {
                 $oMapSer = serialize($oMapUnser); // serialize (prepare to save into database)
                 $oGame->setSaveGame($oMapSer);
                 $em->flush(); // save the game into database
-
-                return $this->render('GameBundle:Map:map.html.twig', array(
-                            'map' => $oMapUnser->getaElements(),
-                            'player' => $oMapUnser->getaElementsCharacters()[0]
-                ));
+                
+                return $this->render('GameBundle:Map:map.html.twig', $this->aMapRender($oMapUnser));
         }
 
         return new Response('Map : Problème!');
+    }
+    
+    /*
+     * aMapRender
+     *
+     **/
+    private function aMapRender($oMap, $text = null) {
+        return array(
+            'text' => $text,
+            'map' => $oMap->getaElements(),
+            'player' => $oMap->getaElementsCharacters()[0]
+        );
+    }
+    
+    private function deadOrWin($request, $oGame, $oMap) {
+        $oUser = $this->getDoctrine()->getRepository('GameBundle:User')
+                    ->find($request->getSession()->get('user')->getId());
+        $oUser->setGame(null);
+        $oGame->setStatus(2);
+        $oGame->setScore($oMap->getaElementsCharacters()[0]->getScore()); // save Game Hiscore
     }
 
 }

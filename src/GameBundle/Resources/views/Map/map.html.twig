@@ -1,7 +1,11 @@
 <div class="plateau">
-    {% for tile in map %}
-        <div class="{{ tile.type }} tile" style="margin-left:{{ tile.positionX }}px; margin-top:{{ tile.positionY }}px"></div>
-    {% endfor %}
+    {% if text is defined %}
+        <h2 class="gore fade-in">{{ text }}</h2>
+    {% else %}
+        {% for tile in map %}
+            <div class="{{ tile.type }} tile" style="margin-left:{{ tile.positionX }}px; margin-top:{{ tile.positionY }}px"></div>
+        {% endfor %}
+    {% endif %}
 </div>
 
 <div class="infogame">
