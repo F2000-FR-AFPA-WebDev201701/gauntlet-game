@@ -138,6 +138,8 @@
 
 - Game : Animations JS (attaque du perso)
 
+- Liste des games : historique des games avec scores triées par status et score
+
 
 
 # En cours
@@ -157,8 +159,6 @@
 - User : Page "mot de passe oublié" / verif register
 
 - Header : Liens vers sections
-
-- Liste des games : historique des games avec scores
 
 - Amélioration du code back (cf Sensio Labs)
 
