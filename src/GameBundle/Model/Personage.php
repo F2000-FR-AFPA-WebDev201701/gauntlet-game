@@ -63,20 +63,6 @@ class Personage {
     private $clef;
 
     /**
-     * @return boolean
-     */
-    public function getClef() {
-        return $this->clef;
-    }
-
-    /**
-     * @param boolean $clef
-     */
-    public function setClef($clef) {
-        $this->clef = $clef;
-    }
-
-    /**
      * Constructor
      */
     public function __construct() {
@@ -106,6 +92,13 @@ class Personage {
         if ($this->hp > $this->maxHp) {
             $this->hp = $this->maxHp;
         }
+    }
+
+    /**
+     *  receivePoints($points)
+     */
+    public function receivePoints($points = 100) {
+        $this->score += $points;
     }
 
     /**
@@ -290,6 +283,20 @@ class Personage {
      */
     public function getGameId() {
         return $this->gameId;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getClef() {
+        return $this->clef;
+    }
+
+    /**
+     * @param boolean $clef
+     */
+    public function setClef($clef) {
+        $this->clef = $clef;
     }
 
 }
