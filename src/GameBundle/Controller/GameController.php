@@ -214,6 +214,8 @@ class GameController extends Controller {
         $result = array();
         $result = $this->aMapRender($oMap);
         $result['text'] = $text;
+        
+        return $result;
     }
 
     /*
