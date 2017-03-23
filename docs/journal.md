@@ -159,6 +159,10 @@
 
 - Game : Gestion du cycle (?)
 
+- Game : Voir la portée de l'attaque (cercle ?)
+
+- Game : Monstres Points de vie
+
 - User : recupération du mot de passe
 
 - User : Page "mot de passe oublié" / verif register
