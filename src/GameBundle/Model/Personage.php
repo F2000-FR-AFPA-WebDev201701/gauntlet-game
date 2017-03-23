@@ -65,18 +65,17 @@ class Personage {
     /**
      * @return boolean
      */
-    public function getClef()
-    {
+    public function getClef() {
         return $this->clef;
     }
 
     /**
      * @param boolean $clef
      */
-    public function setClef($clef)
-    {
+    public function setClef($clef) {
         $this->clef = $clef;
     }
+
     /**
      * Constructor
      */
@@ -191,6 +190,7 @@ class Personage {
      */
     public function setHp($hp) {
         $this->hp = $hp;
+        $this->maxHp = $hp;
 
         return $this;
     }
