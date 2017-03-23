@@ -130,12 +130,15 @@
 
 - Game : Passage au niveau 2 (récupérer score + pt vie du level précédent)
 
-- Game : Récupération d'un coffre
+- Game : Récupération d'un diamant
 
 - Game : Statut de la game = 2 lorsque terminée (mort ou win)
 
 
+
 # En cours
+
+- Game : voir la clé sur la zone de droite
 
 - Game : Gestion de la victoire (ok; vue à faire)
 
