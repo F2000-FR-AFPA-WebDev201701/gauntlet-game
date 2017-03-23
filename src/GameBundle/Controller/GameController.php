@@ -168,7 +168,10 @@ class GameController extends Controller {
                     $oGame->setStatus(2);
                     $oGame->setScore($oMapUnser->getaElementsCharacters()[0]->getScore()); // save Game Hiscore
                     $em->flush(); // save the game into database
-                    return $this->render('GameBundle:Map:dead.html.twig');
+                    return $this->render('GameBundle:Map:dead.html.twig', array(
+                                'text' => 'Vous êtes Mort',
+                                'player' => $oMapUnser->getaElementsCharacters()[0],
+                    ));
                 }
 
                 // next level

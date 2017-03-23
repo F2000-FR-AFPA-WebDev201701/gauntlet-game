@@ -1,5 +1,4 @@
 <div class="plateau">
-
     {% for tile in map %}
         <div class="{{ tile.type }} tile" style="margin-left:{{ tile.positionX }}px; margin-top:{{ tile.positionY }}px"></div>
     {% endfor %}
@@ -15,6 +14,5 @@
         <p> {{ player.score }} Points </p>
         <h2>Items récupérés</h2>
     </div>
-
 </div>
 
