@@ -126,13 +126,20 @@
 - Game : Passage au niveau 2
 
 
-# En cours
+## 23-03-2017
 
 - Game : Passage au niveau 2 (récupérer score + pt vie du level précédent)
+
+
+
+
+# En cours
 
 - Game : Récupération d'un coffre
 
 - Game : Gestion de la victoire (ok; vue à faire)
+
+- Game : Gestion de la mort (ok; vue à faire)
 
 - Game : Animations JS (pertes de pv du perso, récupération de pv, score up, ...)
 
