@@ -63,6 +63,7 @@ class UserController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
+            return $this->render('GameBundle:User:loginok.html.twig');
         }
         return $this->render('GameBundle:User:register.html.twig', ['form' => $form->createView()]);
     }
