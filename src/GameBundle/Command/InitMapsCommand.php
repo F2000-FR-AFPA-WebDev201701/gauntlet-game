@@ -148,8 +148,8 @@ class InitMapsCommand extends Command {
         $item3->setType('diamant');
 
         $item4 = new Item();
-        $item4->setPositionX(640);
-        $item4->setPositionY(384);
+        $item4->setPositionX(704);
+        $item4->setPositionY(512);
         $item4->setType('nextlvl');
 
         // monsters
