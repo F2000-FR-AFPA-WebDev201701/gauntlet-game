@@ -23,14 +23,14 @@
                     {% block content %} {% endblock %}
             </div>
         </div>
-        <div class="row game-description">
+        <div class="row game-description" id="game-description">
             <div class="col-xs-12" style="height: 15px;"></div>
             <div class="col-xs-12 col-sm-offset-1 col-sm-10 ">
                 {% include 'GameBundle:Template:_infos.html.twig' %}
             </div>
         </div>
 
-        <div class="row game-content">
+        <div class="row game-content" id="game-content">
             <div class="col-xs-12" style="height: 15px;"></div>
             <div class=" col-xs-12 col-sm-offset-1 col-sm-10">
                 {% include 'GameBundle:Content:content.html.twig' %}
