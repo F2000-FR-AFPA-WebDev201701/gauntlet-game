@@ -4,29 +4,28 @@
             <div class="banner-top">
                 <a href="{{ path('homepage') }}" class="logo">GAUNTLET php</a>
                 <ul class="banner-top-menu">
-                    <li class="banner-top-menu-items"><a href="#">JOUER</a></li>
-                    <li class="banner-top-menu-items"><a href="#">LE JEU</a></li>
-                    <li class="banner-top-menu-items"><a  href="#">A PROPOS</a></li>
+                    <li class="banner-top-menu-items"><a href="#game-section">JOUER</a></li>
+                    <li class="banner-top-menu-items"><a href="#game-description">LE JEU</a></li>
+                    <li class="banner-top-menu-items"><a  href="#game-content">A PROPOS</a></li>
                     <li class="banner-top-menu-items">
                     <div>
                         {% if app.session.get('user') %}
-                        <ul>
-                            <li class="dropdown  logoon">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <div class="dropdown logoon">
+                                <a class="dropdown-toggle" type="button" data-toggle="dropdown">
                                     <i class="fa fa-user fa-2x" aria-hidden="true"></i> {{ app.session.get('user').pseudo }}
                                     <span class="caret"></span>
                                 </a>
-                            </li>
-                        </ul>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ path('user_profil') }}">Profil</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{{ path('user_logout') }}">Logout</a></li>
-                        </ul>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('user_profil') }}">Profil</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="{{ path('user_logout') }}">Logout</a></li>
+                                </ul>
+                            </div>
                         {% else %}
                             <i class="fa fa-user fa-2x" aria-hidden="true" style="color:grey"></i>
                         {% endif %}
                     </div>
+
 
                 </ul>
             </div>
