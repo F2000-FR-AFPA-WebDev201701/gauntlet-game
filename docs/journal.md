@@ -157,9 +157,17 @@
 - Homepage : infos supplémentaires (commandes, diamant)
 
 
-# En cours / A faire
+## 24-03-2017
 
 - Favicon
+
+- Amélioration du code back (cf Sensio Labs)
+
+
+
+# En cours / A faire
+
+
 
 - Game : Possibilité de stopper la musique
 
@@ -177,6 +185,6 @@
 
 - Header : Liens vers sections
 
-- Amélioration du code back (cf Sensio Labs)
+
 
 

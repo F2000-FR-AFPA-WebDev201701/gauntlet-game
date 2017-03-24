@@ -5,7 +5,7 @@
         <title>GauntletPHP</title>
         <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap-3.3.7-dist/css/bootstrap.min.css') }}" />
-        <link rel="stylesheet" type="text/css" href="{{ asset('stylesheet/stylemap.css') }}" />        
+        <link rel="stylesheet" type="text/css" href="{{ asset('stylesheet/stylemap.css') }}" />
         <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
     </head>
     <body>
@@ -13,9 +13,11 @@
             <div class="gamescreen">
                 {% include 'GameBundle:Map:map.html.twig' %}
             </div>
-            <audio src="{{ asset('music/Theme_Tapion.mp3') }}" type="audio/mp3" autoplay>
-                <p>If you are reading this, it is because your browser does not support the audio element.     </p>
-            </audio>
+            <div>
+                <audio src="{{ asset('music/Theme_Tapion.mp3') }}" type="audio/mp3" autoplay controls>
+                    <p>If you are reading this, it is because your browser does not support the audio element.     </p>
+                </audio>
+            </div>
             <script type="text/javascript">
                 $(document).ready(function () {
                     // Votre code ici avec les appels à la fonction $()
