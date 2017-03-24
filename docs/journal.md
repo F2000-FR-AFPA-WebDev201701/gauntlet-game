@@ -165,23 +165,27 @@
 
 - Game : Possibilité de stopper la musique
 
+- Header : Liens vers sections
+
+- Game : Monstres Points de vie (visible sprite)
+
+- Game : bug taille du plateau
+
 
 
 # En cours / A faire
 
+- Game : Gestion du cycle (?)
+
 - Game : Voir la portée de l'attaque (cercle ?)
 
-- Game : Monstres Points de vie sur la zone de droite
-
-- Game : bug taille du plateau
+- Game : Perso Point de vie (visible sprite)
 
 - User : Page "mot de passe oublié"
 
 - User : Message une fois inscrit + connexion
 
-- Header : Liens vers sections
 
-- Game : Gestion du cycle (?)
 
 
 

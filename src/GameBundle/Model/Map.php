@@ -13,8 +13,8 @@ class Map {
     // map
     public static $_MAP_DIRECTORY = __DIR__ . '/../../../maps'; // /web/maps/
     public static $_MAP_FILENAME_EXT_INITIAL = '.initial'; //example map file /web/maps/1.initial
-    public static $_MAP_MAX_X = 698;   // 698 pixels
-    public static $_MAP_MAX_Y = 568;   // 568 pixels
+    public static $_MAP_MAX_X = 704;   // 698 pixels
+    public static $_MAP_MAX_Y = 512;   // 568 pixels
     public static $_FIRST_MAP_TO_LOAD = 1; // map number to load when there's no saveGame
     private $filenameMap = '';
     protected $nextLvl = false;

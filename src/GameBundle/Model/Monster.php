@@ -46,7 +46,7 @@ class Monster {
      * @var int
      */
     private $strength;
-    
+
     /**
      * @var bonus
      */
@@ -67,6 +67,8 @@ class Monster {
         $this->hp -= $strength;
         if ($this->hp < 0) {
             $this->hp = 0;
+        } else {
+            $this->setTypeHp();
         }
     }
 
@@ -97,6 +99,34 @@ class Monster {
      */
     public function getType() {
         return $this->type;
+    }
+
+    /**
+     * Set typeHp
+     *
+     * @param no parameter
+     *
+     * @return Monster
+     */
+    public function setTypeHp() {
+        $ratioHpFullLife = $this->hp / $this->maxHp;
+
+        if ($ratioHpFullLife < 100 && $ratioHpFullLife >= 66) {
+            $this->typeHp = '66';
+            return $this;
+        }
+
+        if ($ratioHpFullLife < 66 && $ratioHpFullLife >= 33) {
+            $this->typeHp = '33';
+            return $this;
+        }
+
+        if ($ratioHpFullLife < 33 && $ratioHpFullLife > 0) {
+            $this->typeHp = '00';
+            return $this;
+        }
+
+        return $this;
     }
 
     /**
@@ -208,7 +238,7 @@ class Monster {
     public function getStrength() {
         return $this->strength;
     }
-    
+
     /**
      * Set type
      *
@@ -230,4 +260,5 @@ class Monster {
     public function getBonus() {
         return $this->bonus;
     }
+
 }
