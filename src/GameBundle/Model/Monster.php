@@ -111,17 +111,17 @@ class Monster {
     public function setTypeHp() {
         $ratioHpFullLife = $this->hp / $this->maxHp;
 
-        if ($ratioHpFullLife < 100 && $ratioHpFullLife >= 66) {
+        if ($ratioHpFullLife < 1 && $ratioHpFullLife >= 0.66) {
             $this->typeHp = '66';
             return $this;
         }
 
-        if ($ratioHpFullLife < 66 && $ratioHpFullLife >= 33) {
+        if ($ratioHpFullLife < 0.66 && $ratioHpFullLife >= 0.33) {
             $this->typeHp = '33';
             return $this;
         }
 
-        if ($ratioHpFullLife < 33 && $ratioHpFullLife > 0) {
+        if ($ratioHpFullLife < 0.33 && $ratioHpFullLife > 0) {
             $this->typeHp = '00';
             return $this;
         }

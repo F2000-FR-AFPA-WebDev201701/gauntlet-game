@@ -81,6 +81,8 @@ class Personage {
         $this->hp -= $strength;
         if ($this->hp < 0) {
             $this->hp = 0;
+        } else {
+            $this->setTypeHp();
         }
     }
 
@@ -92,6 +94,7 @@ class Personage {
         if ($this->hp > $this->maxHp) {
             $this->hp = $this->maxHp;
         }
+        $this->setTypeHp();
     }
 
     /**
@@ -128,6 +131,34 @@ class Personage {
      */
     public function getType() {
         return $this->type;
+    }
+
+    /**
+     * Set typeHp
+     *
+     * @param no parameter
+     *
+     * @return Monster
+     */
+    public function setTypeHp() {
+        $ratioHpFullLife = $this->hp / $this->maxHp;
+
+        if ($ratioHpFullLife < 1 && $ratioHpFullLife >= 0.66) {
+            $this->typeHp = '66';
+            return $this;
+        }
+
+        if ($ratioHpFullLife < 0.66 && $ratioHpFullLife >= 0.33) {
+            $this->typeHp = '33';
+            return $this;
+        }
+
+        if ($ratioHpFullLife < 0.33 && $ratioHpFullLife > 0) {
+            $this->typeHp = '00';
+            return $this;
+        }
+
+        return $this;
     }
 
     /**

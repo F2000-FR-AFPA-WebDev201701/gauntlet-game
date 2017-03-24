@@ -171,6 +171,10 @@
 
 - Game : bug taille du plateau
 
+- User : Message une fois inscrit
+
+- Game : Perso Point de vie (visible sprite)
+
 
 
 # En cours / A faire
@@ -179,11 +183,11 @@
 
 - Game : Voir la portée de l'attaque (cercle ?)
 
-- Game : Perso Point de vie (visible sprite)
-
 - User : Page "mot de passe oublié"
 
-- User : Message une fois inscrit + connexion
+- User : Auto connexion après inscription
+
+- User : Pb à l'inscription si user existe deja
 
 
 

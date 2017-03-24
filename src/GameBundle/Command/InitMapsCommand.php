@@ -156,31 +156,31 @@ class InitMapsCommand extends Command {
         $monster1 = new Monster();
         $monster1->setPositionX(64);
         $monster1->setPositionY(448);
-        $monster1->setHp(200);
+        $monster1->setHp(250);
         $monster1->setType('ghost');
 
         $monster2 = new Monster();
         $monster2->setPositionX(448);
         $monster2->setPositionY(320);
-        $monster2->setHp(200);
+        $monster2->setHp(250);
         $monster2->setType('ghost');
 
         $monster3 = new Monster();
         $monster3->setPositionX(320);
         $monster3->setPositionY(0);
-        $monster3->setHp(200);
+        $monster3->setHp(250);
         $monster3->setType('ghost');
 
         $monster4 = new Monster();
         $monster4->setPositionX(512);
         $monster4->setPositionY(64);
-        $monster4->setHp(200);
+        $monster4->setHp(250);
         $monster4->setType('ghost');
 
         $monster5 = new Monster();
         $monster5->setPositionX(640);
         $monster5->setPositionY(128);
-        $monster5->setHp(200);
+        $monster5->setHp(250);
         $monster5->setType('ghost');
 
         $oMap1 = new Map();
@@ -340,31 +340,31 @@ class InitMapsCommand extends Command {
         $monster01 = new Monster();
         $monster01->setPositionX(256);
         $monster01->setPositionY(0);
-        $monster01->setHp(200);
+        $monster01->setHp(250);
         $monster01->setType('ghost');
 
         $monster02 = new Monster();
         $monster02->setPositionX(64);
         $monster02->setPositionY(128);
-        $monster02->setHp(200);
+        $monster02->setHp(250);
         $monster02->setType('ghost');
 
         $monster03 = new Monster();
         $monster03->setPositionX(704);
         $monster03->setPositionY(192);
-        $monster03->setHp(200);
+        $monster03->setHp(250);
         $monster03->setType('ghost');
 
         $monster04 = new Monster();
         $monster04->setPositionX(576);
         $monster04->setPositionY(320);
-        $monster04->setHp(200);
+        $monster04->setHp(250);
         $monster04->setType('ghost');
 
         $monster05 = new Monster();
         $monster05->setPositionX(256);
         $monster05->setPositionY(448);
-        $monster05->setHp(200);
+        $monster05->setHp(250);
         $monster05->setType('ghost');
 
         $oMap2 = new Map();
