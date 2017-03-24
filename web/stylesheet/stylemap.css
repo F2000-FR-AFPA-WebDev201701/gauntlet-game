@@ -80,6 +80,29 @@ p {
     background-position:center center;
 }
 
+.hero66 {
+
+    background-image: url(../images/warrior66.png);
+    background-repeat:no-repeat;
+    background-position:center center;
+}
+
+.hero33 {
+
+    background-image: url(../images/warrior33.png);
+    background-repeat:no-repeat;
+    background-position:center center;
+}
+
+.hero00 {
+
+    background-image: url(../images/warrior00.png);
+    background-repeat:no-repeat;
+    background-position:center center;
+}
+
+
+
 .galette{
     width:96px;
     height: 96px;
