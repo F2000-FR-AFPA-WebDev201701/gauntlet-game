@@ -3,7 +3,7 @@
         <h2 class="gore fade-in">{{ text }}</h2>
     {% else %}
         {% for tile in map %}
-            <div class="{{ tile.type }}{{ tile.typeHp }} tile" style="margin-left:{{ tile.positionX }}px; margin-top:{{ tile.positionY }}px"></div>
+            <div class="{{ tile.type }}{{ tile.subType }} tile" style="margin-left:{{ tile.positionX }}px; margin-top:{{ tile.positionY }}px"></div>
         {% endfor %}
     {% endif %}
 </div>

@@ -26,11 +26,23 @@ class Decor {
      * @var string
      */
     private $type;
+    
+    /**
+     * @var int
+     */
+    private $subType;   
 
     /**
      * @var string
      */
     private $image;
+    
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->subType = '';
+    }
 
     /**
      * Get id
@@ -104,6 +116,15 @@ class Decor {
     public function getType() {
         return $this->type;
     }
+    
+    /**
+     * Get getsubType
+     *
+     * @return string
+     */
+    public function getsubType() {
+        return $this->subType;
+    }        
 
     /**
      * Set image

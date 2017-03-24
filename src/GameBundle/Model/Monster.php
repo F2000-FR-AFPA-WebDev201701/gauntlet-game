@@ -25,6 +25,11 @@ class Monster {
     /**
      * @var int
      */
+    private $subType;
+    
+    /**
+     * @var int
+     */
     private $positionX;
 
     /**
@@ -50,12 +55,13 @@ class Monster {
     /**
      * @var bonus
      */
-    private $bonus;
-
+    private $bonus;  
+    
     /**
      * Constructor
      */
     public function __construct() {
+        $this->subType = '';
         $this->type = self::$_DEFAULT_TYPE;
         $this->hp = self::$_DEFAULT_HP;
         $this->maxHp = $this->hp;
@@ -68,7 +74,7 @@ class Monster {
         if ($this->hp < 0) {
             $this->hp = 0;
         } else {
-            $this->setTypeHp();
+            $this->setsubType();
         }
     }
 
@@ -108,26 +114,36 @@ class Monster {
      *
      * @return Monster
      */
-    public function setTypeHp() {
+    public function setsubType() {
         $ratioHpFullLife = $this->hp / $this->maxHp;
-
+        $this->subType = '';
+        
         if ($ratioHpFullLife < 1 && $ratioHpFullLife >= 0.66) {
-            $this->typeHp = '66';
+            $this->subType = '66';
             return $this;
         }
 
         if ($ratioHpFullLife < 0.66 && $ratioHpFullLife >= 0.33) {
-            $this->typeHp = '33';
+            $this->subType = '33';
             return $this;
         }
 
         if ($ratioHpFullLife < 0.33 && $ratioHpFullLife > 0) {
-            $this->typeHp = '00';
+            $this->subType = '00';
             return $this;
         }
 
         return $this;
     }
+    
+    /**
+     * Get getsubType
+     *
+     * @return string
+     */
+    public function getsubType() {
+        return $this->subType;
+    }    
 
     /**
      * Set positionX

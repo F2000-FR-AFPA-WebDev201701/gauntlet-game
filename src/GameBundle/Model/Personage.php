@@ -25,6 +25,11 @@ class Personage {
     /**
      * @var int
      */
+    private $subType;       
+    
+    /**
+     * @var int
+     */
     private $positionX;
 
     /**
@@ -61,12 +66,13 @@ class Personage {
      * @var int
      */
     private $clef;
-
+   
     /**
      * Constructor
      */
     public function __construct() {
         $this->clef = false;
+        $this->setsubType = '';
         $this->type = self::$_DEFAULT_TYPE;
         $this->hp = self::$_DEFAULT_HP;
         $this->maxHp = $this->hp;
@@ -82,7 +88,7 @@ class Personage {
         if ($this->hp < 0) {
             $this->hp = 0;
         } else {
-            $this->setTypeHp();
+            $this->setsubType();
         }
     }
 
@@ -94,7 +100,7 @@ class Personage {
         if ($this->hp > $this->maxHp) {
             $this->hp = $this->maxHp;
         }
-        $this->setTypeHp();
+        $this->setsubType();
     }
 
     /**
@@ -140,26 +146,36 @@ class Personage {
      *
      * @return Monster
      */
-    public function setTypeHp() {
+    public function setsubType() {
         $ratioHpFullLife = $this->hp / $this->maxHp;
-
+        $this->subType = '';
+        
         if ($ratioHpFullLife < 1 && $ratioHpFullLife >= 0.66) {
-            $this->typeHp = '66';
+            $this->subType = '66';
             return $this;
         }
 
         if ($ratioHpFullLife < 0.66 && $ratioHpFullLife >= 0.33) {
-            $this->typeHp = '33';
+            $this->subType = '33';
             return $this;
         }
 
         if ($ratioHpFullLife < 0.33 && $ratioHpFullLife > 0) {
-            $this->typeHp = '00';
+            $this->subType = '00';
             return $this;
         }
 
         return $this;
     }
+    
+    /**
+     * Get getsubType
+     *
+     * @return string
+     */
+    public function getsubType() {
+        return $this->subType;
+    }        
 
     /**
      * Set positionX

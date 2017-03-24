@@ -28,6 +28,11 @@ class Item {
      * @var string
      */
     private $type;
+    
+    /**
+     * @var int
+     */
+    private $subType;       
 
     /**
      * @var int
@@ -44,6 +49,7 @@ class Item {
      */
     function __construct() {
         $this->bonus = self::$_DEFAULT_BONUS;
+        $this->subType = '';
     }
 
     /**
@@ -120,7 +126,16 @@ class Item {
     }
 
     /**
-     * Set type
+     * Get getsubType
+     *
+     * @return string
+     */
+    public function getsubType() {
+        return $this->subType;
+    }    
+    
+    /**
+     * Set bonus
      *
      * @param int $bonus
      *
