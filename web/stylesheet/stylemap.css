@@ -66,13 +66,20 @@ p {
 }
 
 .tile {
+
     position: absolute;
     width: 64px;
     height: 64px;
+
 }
 
 .hero {
+
     background-image: url(../images/warrior.png);
+    background-repeat:no-repeat;
+    background-position:center center;
+
+
 }
 
 .mur {

@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>GauntletPHP</title>
+        <link rel="icon" type="image/png" href="{{ asset('images/faviconie.png') }}" />
 
         <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap-3.3.7-dist/css/bootstrap.min.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('stylesheet/style.css') }}" />
@@ -20,7 +21,7 @@
             <div >
                 <div class="col-xs-12" style="height: 15px;"></div>
                 <h3 class="text-center">Salles de Jeux</h3>
-                    {% block content %} {% endblock %}
+                {% block content %} {% endblock %}
             </div>
         </div>
         <div class="row game-description">
