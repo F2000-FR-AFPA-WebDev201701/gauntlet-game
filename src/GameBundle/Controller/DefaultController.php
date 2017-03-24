@@ -12,7 +12,6 @@ class DefaultController extends Controller {
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request) {
-        //dump($request->getSession()->get("user"));
         return $this->render('GameBundle:Default:index.html.twig');
     }
 

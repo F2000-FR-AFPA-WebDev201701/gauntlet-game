@@ -163,15 +163,11 @@
 
 - Amélioration du code back (cf Sensio Labs)
 
+- Game : Possibilité de stopper la musique
+
 
 
 # En cours / A faire
-
-
-
-- Game : Possibilité de stopper la musique
-
-- Game : Gestion du cycle (?)
 
 - Game : Voir la portée de l'attaque (cercle ?)
 
@@ -184,6 +180,8 @@
 - User : Message une fois inscrit + connexion
 
 - Header : Liens vers sections
+
+- Game : Gestion du cycle (?)
 
 
 
