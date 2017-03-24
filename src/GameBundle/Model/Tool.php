@@ -15,7 +15,7 @@ class Tool {
         // read all files one
         while (false !== ($filename = readdir($directoryOpen))) {
             $fullFilename = $directory . "/" . $filename;
-            if ($filename != "." && $filename != ".." && ! is_dir($filename)) {
+            if ($filename != "." && $filename != ".." && !is_dir($filename)) {
                 unlink($fullFilename);
             }
         }
@@ -35,7 +35,7 @@ class Tool {
 
         // read all files name one by one
         while (false !== ($filename = readdir($directoryOpen))) {
-            if ($filename != "." AND $filename != ".." AND ! is_dir($filename)) {
+            if ($filename != "." && $filename != ".." && !is_dir($filename)) {
                 $nbFiles++;
             }
         }

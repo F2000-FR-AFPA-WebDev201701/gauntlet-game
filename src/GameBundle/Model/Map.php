@@ -11,7 +11,7 @@ class Map {
     public static $_MOVE_DOWN = 3;
     public static $_MOVE_LEFT = 4;
     // map
-    public static $_MAP_DIRECTORY = 'maps'; // /web/maps/
+    public static $_MAP_DIRECTORY = __DIR__ . '/../../../maps'; // /web/maps/
     public static $_MAP_FILENAME_EXT_INITIAL = '.initial'; //example map file /web/maps/1.initial
     public static $_MAP_MAX_X = 698;   // 698 pixels
     public static $_MAP_MAX_Y = 568;   // 568 pixels
@@ -246,10 +246,8 @@ class Map {
 
     public function attack() {
         // checker la collision avec les monstres //récupérer l'ID des monstres
-
         for ($i = 0; $i < count($this->aElementsMonsters); $i++) {
             // test if move is valid
-
             if ($this->checkCollisionAttack($this->aElementsCharacters[0], $this->aElementsMonsters[$i])) {
                 $this->aElementsMonsters[$i]->receiveHit($this->aElementsCharacters[0]->getStrength());
             }
@@ -414,7 +412,7 @@ class Map {
      * */
 
     private function initCurrentMapFilename($idMap) {
-        $this->filenameMap = self::$_MAP_DIRECTORY . '/' . $idMap . self::$_MAP_FILENAME_EXT_INITIAL;
+        $this->filenameMap = realpath(self::$_MAP_DIRECTORY . '/' . $idMap . self::$_MAP_FILENAME_EXT_INITIAL);
     }
 
     /**

@@ -11,14 +11,14 @@
             </tr>
         </thead>
         {% for i in game %}
+            {% set btnJoin = 'btn-success' %}
+            {% set pathJoin = path('game_game_join', {'id': i.id}) %}
+            {% set disableJoin = '' %}
+
             {% if i.status == 2 %}
                 {% set btnJoin = 'btn-danger' %}
                 {% set pathJoin = '#game-section' %}
                 {% set disableJoin = 'disabled="disabled"' %}
-            {% else %}
-                {% set btnJoin = 'btn-success' %}
-                {% set pathJoin = path('game_game_join', {'id': i.id}) %}
-                {% set disableJoin = '' %}
             {% endif %}
             <tbody>
                 <tr>
@@ -27,7 +27,7 @@
                     <td>{{ i.date|date('d-m-Y H:i:s') }}</td>
                     <td>{{ i.nbPlayerMax }}</td>
                     <td>{{ i.score }}</td>
-                    {% if(app.session.get('user')) %}
+                    {% if app.session.get('user') %}
                         <td ><a class="btn {{ btnJoin }}" href="{{ pathJoin }}" {{ disableJoin }}>Rejoindre</a></td>
                     {% endif %}
                 </tr>
